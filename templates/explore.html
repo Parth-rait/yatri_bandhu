@@ -43,10 +43,9 @@
     {% endfor %}
   </div>
   {% else %}
-  <div class="empty"><span class="empty-ic">{{ icon('compass', 30) }}</span><h2>Nothing within {{ ('₹' ~ value) if kind == 'budget' else (value ~ ' min') }}</h2><p>Try a bigger amount, or check if buses are running at this time.</p></div>
+  <div class="empty"><span class="empty-ic">{{ icon('compass', 30) }}</span><h2>Nothing within {{ ('₹' ~ value) if kind == 'budget' else (value ~ ' min') }}</h2></div>
   {% endif %}
   {% if out %}
-  <p class="hint mt" style="text-align:center">{{ out|length }} more popular place{{ 's' if out|length != 1 }} need more {{ 'money' if kind == 'budget' else 'time' }}.</p>
   {% endif %}
 </section>
 {% endif %}

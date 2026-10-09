@@ -23,7 +23,6 @@
     <div class="fact"><small>First bus</small><b>{{ fmt_time(p.start) }}</b></div>
     <div class="fact"><small>Last bus</small><b>{{ fmt_time(p.end) }}</b></div>
   </div>
-  <p class="hint mt">{{ stops|length }} stops · {{ r.km }} km · {{ r.buses }} bus{{ 'es' if r.buses != 1 }} on this line. Times from the first stop; ride times are estimates.</p>
 </div>
 
 <section class="section" aria-label="Stops on this line">

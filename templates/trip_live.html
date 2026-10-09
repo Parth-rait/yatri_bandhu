@@ -1,40 +1,52 @@
 {% extends "base.html" %}
-{% from "_macros.html" import icon, theme_toggle with context %}
-{% block title %}Trip to {{ dest.name }}{% endblock %}
+{% from "_macros.html" import icon, route_name, theme_toggle with context %}
+{% block title %}Your trip{% endblock %}
 {% block content %}
-{% set first = j.legs[0] %}
+{% set first_bus = j.legs|selectattr('type', 'equalto', 'bus')|first %}
+<header class="topbar has-back">
+  <a class="icon-btn" href="{{ url_for('app_home') }}" aria-label="Back">{{ icon('arrow-left', 22) }}</a>
+  <div class="topbar-title"><h1>Your Trip</h1><p>{{ route_name(j.routes) }}{% if first_bus %} · towards {{ first_bus.headsign }}{% endif %}</p></div>
+  <div class="topbar-actions">
+    <form method="post" action="{{ url_for('trip_cancel', tid=trip.id) }}"><button class="end-trip" type="submit">End Trip</button></form>
+  </div>
+</header>
+
 <div class="map-page">
-  <div class="map-wrap">
-    <div id="journey-map" class="map" role="img" aria-label="Live map of your trip"></div>
-    <div class="map-float">
-      <a class="icon-btn raised" href="{{ url_for('app_home') }}" aria-label="Back to home">{{ icon('arrow-left', 22) }}</a>
-      <span class="spacer"></span>
-      <span class="legend"><span class="pulse"></span> Trip in progress</span>
-    </div>
+  <div class="map-wrap" style="height:40vh;min-height:250px">
+    <div id="journey-map" class="map" role="img" aria-label="Map of your trip with the bus's scheduled position"></div>
     <div class="map-btns">
-      <button type="button" class="icon-btn raised" data-fit aria-label="Show whole route">{{ icon('route', 20) }}</button>
-      <button type="button" class="icon-btn raised" data-locate aria-label="Show my location">{{ icon('locate', 20) }}</button>
+      <button type="button" class="icon-btn raised" data-fit aria-label="Whole route">{{ icon('route', 20) }}</button>
+      <button type="button" class="icon-btn raised" data-locate aria-label="My location">{{ icon('locate', 20) }}</button>
     </div>
   </div>
   <section class="sheet">
     <div class="sheet-in" data-live>
-      <div class="live-card" aria-live="polite">
-        <p class="eyebrow" data-live-step>Step 1 of {{ j.legs|length }}</p>
-        <h2 data-live-title>
-          {% if first.type == 'walk' %}Walk to {{ first.end.name }}{% else %}Board bus {{ first.route }} at {{ first.board.name }}{% endif %}
-        </h2>
-        <p data-live-sub>{% if first.type == 'walk' %}{{ first.minutes }} min · leave by {{ fmt_time(j.leave) }}{% else %}Bus around {{ fmt_time(first.depart) }}{% endif %}</p>
-        <div class="live-progress" aria-hidden="true">{% for l in j.legs %}<i class="{{ 'done' if loop.first }}" data-progress="{{ loop.index0 }}"></i>{% endfor %}</div>
+      <div class="live-head" aria-live="polite">
+        <h2 data-live-title>{% if first_bus %}Arriving in <span data-live-mins>{{ [first_bus.depart - now, 0]|max }} min</span>{% else %}Walk to {{ dest.name }}{% endif %}</h2>
+        <span class="pill-ok">Scheduled</span>
       </div>
-      <button type="button" class="btn btn-dark btn-block mt" data-live-toggle aria-pressed="false">{{ icon('locate', 20) }} <span>Turn on live location</span></button>
-      <p class="hint mt">With live location on, RouteMate tells you how far your next stop is and when to get ready to get off.</p>
+      {% if first_bus %}<p class="muted" data-live-sub>Route {{ first_bus.route }} at {{ first_bus.board.name }}</p>{% endif %}
 
-      <div class="section-head mt-lg"><h2>Your steps</h2>{{ theme_toggle() }}</div>
-      {% include "_itinerary.html" %}
+      {% if first_bus %}
+      <div class="prog" aria-hidden="true">
+        <span class="node on" data-node="0">{{ icon('walk', 18) }}</span><i data-bar="0"></i>
+        <span class="node" data-node="1">{{ icon('bus', 18) }}</span><i data-bar="1"></i>
+        <span class="node" data-node="2">{{ icon('flag', 18) }}</span>
+      </div>
+      <div class="prog-labels"><span>{{ j.walk }} min walk</span><span>{{ first_bus.n_stops }} stops ({{ first_bus.arrive - first_bus.depart }} min)</span><span>{{ dest.name|truncate(18, True, '…') }}</span></div>
+      {% endif %}
+
+      <div class="live-actions2">
+        <button type="button" class="icon-btn square" data-live-toggle aria-pressed="false" aria-label="Alert me near my stop">{{ icon('bell', 22) }}</button>
+        {% set last_bus = j.legs|selectattr('type', 'equalto', 'bus')|list|last %}
+        <button type="button" class="btn btn-soft" data-live-toggle aria-pressed="false">{% if last_bus %}Get off at {{ last_bus.alight.name|truncate(22, True, '…') }}{% else %}Alert me on arrival{% endif %}</button>
+      </div>
+
+      <div class="mt-lg">{% include "_stops.html" %}</div>
 
       <div class="btn-row">
-        <form method="post" action="{{ url_for('trip_cancel', tid=trip.id) }}"><button class="btn btn-outline btn-block" type="submit">End trip</button></form>
-        <form method="post" action="{{ url_for('trip_arrived', tid=trip.id) }}"><button class="btn btn-primary btn-block" type="submit">{{ icon('flag', 18) }} I've arrived</button></form>
+        <a class="btn btn-outline" href="{{ url_for('trip_ticket', tid=trip.id) }}">{{ icon('ticket', 18) }} Ticket</a>
+        <form method="post" action="{{ url_for('trip_arrived', tid=trip.id) }}"><button class="btn btn-primary btn-block" type="submit">I've arrived</button></form>
       </div>
     </div>
   </section>

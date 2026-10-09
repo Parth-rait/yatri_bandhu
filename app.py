@@ -51,13 +51,11 @@ PLACE_ICON = {"Campus": "cap", "Education": "cap", "Shopping": "bag", "Market": 
               "Junction": "route", "Town": "building"}
 # Which bottom tab is highlighted for each page
 TABS = {
-    "plan": {"app_home", "plan", "search", "routes", "routes_filters", "routes_compare", "routes_other",
-             "journey", "trip_live", "feedback", "welcome"},
-    "stops": {"nearby", "nearby_map", "stop", "stop_map"},
-    "lines": {"lines", "line", "line_map"},
-    "explore": {"explore", "explore_map"},
-    "me": {"me", "saved", "saved_new", "history", "settings", "settings_start", "accessibility", "help",
-           "about", "study", "sus"},
+    "home": {"app_home", "plan", "search", "routes", "routes_filters", "routes_compare", "routes_other",
+             "journey", "trip_live", "trip_ticket", "feedback"},
+    "routes": {"lines", "line", "line_map", "nearby", "nearby_map", "stop", "stop_map", "explore", "explore_map"},
+    "saved": {"saved", "saved_new"},
+    "profile": {"profile", "history", "settings", "settings_start", "accessibility", "help", "about", "study", "sus"},
 }
 
 
@@ -155,9 +153,9 @@ def search_args(**over):
 def journey_map_data(j, origin, dest):
     """Everything the map needs to draw a journey, numbered to match the step list."""
     return dict(origin=origin, dest=dest, legs=[
-        dict(type=l["type"], line=l.get("line"), route=l.get("route"),
-             start=l.get("start") or l.get("board"), end=l.get("end") or l.get("alight"))
-        for l in j["legs"]])
+        dict(type=l["type"], line=l.get("line"), route=l.get("route"), depart=l.get("depart"),
+             arrive=l.get("arrive"), start=l.get("start") or l.get("board"), end=l.get("end") or l.get("alight"))
+        for l in j["legs"]], now=now_min())
 
 
 def default_mode():
@@ -180,9 +178,13 @@ def load_user():
 def inject():
     ep = request.endpoint or ""
     tab = next((t for t, eps in TABS.items() if ep in eps), None)
-    return dict(settings=g.get("settings", store.DEFAULT_SETTINGS), MODES=MODES, fmt_time=fmt_time,
+    s = g.get("settings", store.DEFAULT_SETTINGS)
+    name = (s.get("name") or "").strip()
+    initials = "".join(w[0] for w in name.split()[:2]).upper() or None
+    return dict(settings=s, MODES=MODES, fmt_time=fmt_time,
                 fmt_dur=fmt_dur, active=store.active_trip(g.uid) if g.get("uid") else None, now=now_min(),
-                search_args=search_args, endpoint=ep, tab=tab, saved=g.get("saved", []))
+                search_args=search_args, endpoint=ep, tab=tab, saved=g.get("saved", []),
+                user_name=name, initials=initials, fav_points={x["point"] for x in g.get("saved", []) if x["kind"] == "fav"})
 
 
 @app.template_filter("ago")
@@ -216,20 +218,25 @@ def landing():
 
 @app.route("/welcome", methods=["GET", "POST"])
 def welcome():
+    """Two quick questions: your name, and where home is."""
     step = request.args.get("step", "1")
     if request.method == "POST":
         s = g.settings
-        if request.form.get("default_from"):
-            s["default_from"] = request.form["default_from"]
-        if request.form.get("default_mode") in MODES:
-            s["default_mode"] = request.form["default_mode"]
+        if "name" in request.form:
+            s["name"] = request.form["name"].strip()[:40]
+        home = parse_point(request.form.get("home"))
+        if home:
+            s["default_from"] = home["id"]
+            store.add_saved(g.uid, "Home", "home", home["id"], home["name"], "home")
+        if request.form.get("next") == "2":
+            store.save_settings(g.uid, s)
+            return redirect(url_for("welcome", step="2"))
         s["onboarded"] = True
         store.save_settings(g.uid, s)
-        if request.form.get("next") == "2":
-            return redirect(url_for("welcome", step="2"))
         return redirect(url_for("app_home"))
-    return render_template("welcome.html", step=step, start=parse_point(request.args.get("start")
-                                                                         or g.settings.get("default_from")))
+    home = parse_point(request.args.get("home")) or next(
+        (parse_point(x["point"]) for x in g.saved if x["kind"] == "home"), None)
+    return render_template("welcome.html", step=step, home=home)
 
 
 # ---------------------------------------------------------------- planning flow
@@ -242,11 +249,10 @@ def app_home():
         if k not in seen:
             seen.add(k)
             recent.append(t)
-    popular = [dict(id=f"place:{p['id']}", name=p["name"], icon=place_icon(p), category=p["category"])
-               for p in net.places.values() if not origin or f"place:{p['id']}" != origin["id"]][:6]
-    next_step = "plan" if g.settings.get("ask_priority", True) else "routes"
-    return render_template("app_home.html", origin=origin, recent=recent[:3], popular=popular,
-                           greeting=greeting(), next_step=next_step)
+    home = next((x for x in g.saved if x["kind"] == "home"), None)
+    work = next((x for x in g.saved if x["kind"] == "work"), None)
+    favs = [x for x in g.saved if x["kind"] == "fav"]
+    return render_template("app_home.html", origin=origin, recent=recent[:4], home=home, work=work, favs=favs)
 
 
 @app.route("/search")
@@ -315,7 +321,10 @@ def routes():
         return redirect(url_for("app_home", **search_args()))
     rec = ctx["ranked"]["recommended"]
     n_filters = sum(v is not None for v in ctx["limits"].values())
-    return render_template("routes.html", **ctx, rec=rec,
+    shown = ctx["ranked"]["options"] or ctx["ranked"]["misfits"]
+    return render_template("routes.html", **ctx, rec=rec, via=request.args.get("via", "bus"),
+                           map_data=journey_map_data(shown[0], ctx["origin"], ctx["dest"]) if shown else
+                           dict(origin=ctx["origin"], dest=ctx["dest"], legs=[]),
                            reason=planner.reason(rec, ctx["mode"]) if rec else None,
                            tradeoff=planner.tradeoff(rec, ctx["ranked"]["options"]),
                            n_filters=n_filters, show_all=request.args.get("show") == "all")
@@ -374,10 +383,8 @@ def journey():
     origin, dest, t, j = find_journey()
     if not j:
         return redirect(url_for("routes", **search_args()))
-    is_saved = any(s["point"] == dest["id"] for s in g.saved)
     return render_template("journey.html", origin=origin, dest=dest, t=t, j=j, later=later_buses(j),
-                           map_data=journey_map_data(j, origin, dest), key=request.args.get("key"),
-                           is_saved=is_saved)
+                           map_data=journey_map_data(j, origin, dest), key=request.args.get("key"))
 
 
 @app.route("/trip/start", methods=["POST"])
@@ -405,6 +412,21 @@ def trip_live(tid):
         return redirect(url_for("routes", **{"from": trip["origin"], "to": trip["dest"]}))
     return render_template("trip_live.html", trip=trip, origin=origin, dest=dest, j=j,
                            map_data=journey_map_data(j, origin, dest))
+
+
+@app.route("/trip/<tid>/ticket")
+def trip_ticket(tid):
+    """A trip pass for the conductor's reference. Not a real ticket: fares are paid on the bus."""
+    import qrcode
+    import qrcode.image.svg
+    trip = store.trip(g.uid, tid)
+    if not trip:
+        abort(404)
+    sm = trip["summary"]
+    text = (f"RouteMate trip pass (not a ticket) | Bus {' + '.join(sm['routes']) or 'walk'} | "
+            f"{trip['origin_name']} -> {trip['dest_name']} | Rs {sm['fare']} | {fmt_time(sm['leave'])}")
+    svg = qrcode.make(text, image_factory=qrcode.image.svg.SvgPathImage, box_size=8, border=1).to_string(encoding="unicode")
+    return render_template("trip_ticket.html", trip=trip, sm=sm, qr=svg)
 
 
 @app.route("/trip/<tid>/arrived", methods=["POST"])
@@ -445,22 +467,33 @@ def nearby_rows(lat, lng):
     return here, rows
 
 
+def buses_near(lat, lng):
+    """'Buses near you': the next bus of each line/direction from the closest stops."""
+    t = now_min()
+    seen, buses = set(), []
+    for sid, w in net.stops_near(dict(lat=lat, lng=lng), 15)[:8]:
+        for d in planner.departures(sid, t + w, 75, 1):
+            k = d["pattern"]
+            if k in seen:
+                continue
+            seen.add(k)
+            s = net.stops[sid]
+            buses.append(dict(d, stop=s, walk=w, mins=max(0, d["time"] - t)))
+    return sorted(buses, key=lambda b: b["mins"])[:12]
+
+
 @app.route("/nearby")
 def nearby():
     lat, lng = request.args.get("lat", type=float), request.args.get("lng", type=float)
     if lat is None or lng is None:
         return render_template("nearby.html", located=False, demo=net.places.get("plaksha"))
     here, rows = nearby_rows(lat, lng)
-    return render_template("nearby.html", located=True, here=here, rows=rows)
+    return render_template("nearby.html", located=True, here=here, rows=rows, buses=buses_near(lat, lng))
 
 
 @app.route("/nearby/map")
 def nearby_map():
-    lat, lng = request.args.get("lat", type=float), request.args.get("lng", type=float)
-    if lat is None or lng is None:
-        return redirect(url_for("nearby"))
-    here, rows = nearby_rows(lat, lng)
-    return render_template("nearby_map.html", here=here, rows=rows)
+    return redirect(url_for("nearby", **request.args))
 
 
 def get_stop(sid):
@@ -574,10 +607,23 @@ def explore_map():
 # ---------------------------------------------------------------- me
 @app.route("/me")
 def me():
-    trips = store.trips(g.uid, 200)
-    stats = dict(trips=len([t for t in trips if t["status"] == "done"]),
-                 spent=sum(t["summary"]["fare"] for t in trips if t["status"] == "done"))
-    return render_template("me.html", stats=stats)
+    return redirect(url_for("profile"))
+
+
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+    if request.method == "POST":
+        g.settings["name"] = request.form.get("name", "").strip()[:40]
+        store.save_settings(g.uid, g.settings)
+        return redirect(url_for("profile"))
+    return render_template("profile.html", student_id="RM" + g.uid[:6].upper(), edit=request.args.get("edit"))
+
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    """No accounts: logging out starts a fresh profile on this device."""
+    session.clear()
+    return redirect(url_for("landing"))
 
 
 @app.route("/saved", methods=["GET", "POST"])
@@ -588,16 +634,30 @@ def saved():
     return render_template("saved.html")
 
 
+@app.route("/saved/toggle", methods=["POST"])
+def saved_toggle():
+    """Star / unstar a place as a favourite to visit."""
+    p = parse_point(request.form.get("point"))
+    if p:
+        store.toggle_favourite(g.uid, p["id"], p["name"])
+    return redirect(safe_ret(request.form.get("next"), url_for("saved")))
+
+
 @app.route("/saved/new", methods=["GET", "POST"])
 def saved_new():
+    kind = request.values.get("kind", "fav")
+    kind = kind if kind in ("home", "work", "fav") else "fav"
     if request.method == "POST":
         p = parse_point(request.form.get("point"))
-        label = (request.form.get("label") or "").strip()[:30]
-        icon = request.form.get("icon") if request.form.get("icon") in SAVED_ICONS else "star"
+        label = (request.form.get("label") or "").strip()[:30] or {"home": "Home", "work": "Work"}.get(kind, p["name"] if p else "")
+        icon = {"home": "home", "work": "briefcase"}.get(kind, "star")
         if p and label:
-            store.add_saved(g.uid, label, icon, p["id"], p["name"])
+            store.add_saved(g.uid, label, icon, p["id"], p["name"], kind)
+            if kind == "home":
+                g.settings["default_from"] = p["id"]
+                store.save_settings(g.uid, g.settings)
             return redirect(url_for("saved"))
-    return render_template("saved_new.html", icons=SAVED_ICONS, point=parse_point(request.args.get("point")),
+    return render_template("saved_new.html", kind=kind, point=parse_point(request.args.get("point")),
                            label=request.args.get("label", ""))
 
 

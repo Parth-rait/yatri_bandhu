@@ -1,33 +1,31 @@
 {% extends "base.html" %}
-{% from "_macros.html" import icon, bus_badge, theme_toggle with context %}
-{% block title %}Lines{% endblock %}
+{% from "_macros.html" import icon, bus_ic, theme_toggle with context %}
+{% block title %}Routes{% endblock %}
 {% block content %}
-<header class="topbar">
-  <div class="topbar-title"><h1 style="font-size:1.6rem;font-weight:800;letter-spacing:-.03em">Lines</h1></div>
-  <div class="topbar-actions">{{ theme_toggle() }}</div>
-</header>
-<div class="wrap" data-lines>
-  <label class="search-input-wrap">
-    {{ icon('search', 20) }}<span class="sr">Search lines</span>
-    <input class="search-input" type="search" placeholder="Line number or place, e.g. 38B, PGI" data-lines-q autocomplete="off">
+<div class="page-head"><h1>Routes</h1>{{ theme_toggle() }}</div>
+<div class="wrap" data-lines style="padding:0 20px">
+  <div class="hw" style="margin-top:4px">
+    <a href="{{ url_for('nearby') }}"><span class="row-ic">{{ icon('locate', 20) }}</span><span><b>Nearby</b><small>Buses near you</small></span></a>
+    <a href="{{ url_for('explore') }}"><span class="row-ic">{{ icon('compass', 20) }}</span><span><b>Explore</b><small>By budget or time</small></span></a>
+  </div>
+  <label class="searchbox" style="margin-top:14px">
+    {{ icon('search', 22) }}<span class="sr">Search routes</span>
+    <input class="search-input" type="search" placeholder="Route number or place" data-lines-q autocomplete="off" style="font-weight:500;font-size:1rem">
   </label>
-  <div class="chips chips-scroll mt" role="group" aria-label="Filter lines">
-    {% for key, label in [('all', 'All'), ('plaksha', 'Plaksha'), ('chd', 'Chandigarh'), ('moh', 'Mohali'), ('pkl', 'Panchkula & Zirakpur'), ('night', 'Night')] %}
+  <div class="chips chips-scroll mt" role="group" aria-label="Filter">
+    {% for key, label in [('all', 'All'), ('plaksha', 'Plaksha'), ('chd', 'Chandigarh'), ('moh', 'Mohali'), ('pkl', 'Panchkula'), ('night', 'Night')] %}
     <label class="chip-r"><input type="radio" name="lf" value="{{ key }}" {% if loop.first %}checked{% endif %} data-lines-filter><span>{{ label }}</span></label>
     {% endfor %}
   </div>
-</div>
-<section class="section" style="margin-top:12px">
-  <div class="list" data-lines-list>
+  <div class="list mt" data-lines-list>
     {% for r in rows %}
     <a class="row" href="{{ url_for('line', no=r.no) }}" data-tags="{{ (r.tags + (['plaksha'] if r.plaksha else []))|join(' ') }}" data-search="{{ (r.no ~ ' ' ~ r.name)|lower }}">
-      {{ bus_badge(r.no) }}
-      <span class="row-txt"><b>{{ r.name }}</b><small>Every {{ r.every }} min · {{ r.hours }}</small></span>
-      <span class="row-chev">{{ icon('chevron-right', 18) }}</span>
+      {{ bus_ic() }}
+      <span class="row-txt"><b>Route {{ r.no }}</b><small>{{ r.name }}</small></span>
+      <span class="row-trail" style="font-weight:500;font-size:.84rem">{{ r.every }} min</span>
     </a>
     {% endfor %}
   </div>
-  <p class="hint mt" data-lines-empty hidden>No line matches. Try a number like “22” or a place like “Elante”.</p>
-  <p class="hint mt">{{ rows|length }} CTU lines · timetable as on 25 Jul 2026.</p>
-</section>
+  <p class="hint mt" data-lines-empty hidden>No route found.</p>
+</div>
 {% endblock %}

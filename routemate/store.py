@@ -21,10 +21,13 @@ CREATE TABLE IF NOT EXISTS sus (id TEXT PRIMARY KEY, uid TEXT, participant TEXT,
 
 DEFAULT_SETTINGS = dict(large_text=False, high_contrast=False, simple_ui=False, reduce_motion=False,
                         ask_priority=True, default_mode="balanced", max_walk=None, default_from="place:plaksha",
-                        onboarded=False)
+                        onboarded=False, name="")
 
-DEFAULT_SAVED = [("Campus", "cap", "place:plaksha", "Plaksha University"),
-                 ("PG", "home", "place:ph7", "Mohali Phase 7")]
+# (label, icon, point, place name, kind)   kind: home | work | fav (a favourite place to visit)
+DEFAULT_SAVED = [("Home", "home", "place:plaksha", "Plaksha University", "home"),
+                 ("Elante Mall", "star", "place:elante", "Elante Mall", "fav"),
+                 ("Sukhna Lake", "star", "place:sukhna", "Sukhna Lake", "fav")]
+KIND_ORDER = {"home": 0, "work": 1, "fav": 2}
 
 
 def connect():
@@ -32,6 +35,8 @@ def connect():
     con = sqlite3.connect(DB)
     con.row_factory = sqlite3.Row
     con.executescript(SCHEMA)
+    if "kind" not in {r["name"] for r in con.execute("PRAGMA table_info(saved)")}:
+        con.execute("ALTER TABLE saved ADD COLUMN kind TEXT DEFAULT 'fav'")
     return con
 
 
@@ -59,16 +64,35 @@ def saved_places(uid):
     with connect() as con:
         rows = [dict(r) for r in con.execute("SELECT * FROM saved WHERE uid=? ORDER BY created", (uid,))]
         if not rows and not con.execute("SELECT 1 FROM settings WHERE uid=?", (uid,)).fetchone():
-            for label, icon, point, name in DEFAULT_SAVED:
-                con.execute("INSERT INTO saved VALUES (?,?,?,?,?,?,?)", (new_id(), uid, label, icon, point, name, time.time()))
+            for label, icon, point, name, kind in DEFAULT_SAVED:
+                con.execute("INSERT INTO saved (id, uid, label, icon, point, name, created, kind) VALUES (?,?,?,?,?,?,?,?)",
+                            (new_id(), uid, label, icon, point, name, time.time(), kind))
             con.execute("INSERT OR IGNORE INTO settings VALUES (?,?)", (uid, json.dumps(DEFAULT_SETTINGS)))
             rows = [dict(r) for r in con.execute("SELECT * FROM saved WHERE uid=? ORDER BY created", (uid,))]
-    return rows
+    for r in rows:
+        r["kind"] = r.get("kind") or "fav"
+    return sorted(rows, key=lambda r: KIND_ORDER.get(r["kind"], 2))
 
 
-def add_saved(uid, label, icon, point, name):
+def add_saved(uid, label, icon, point, name, kind="fav"):
+    """Home and Work are unique: saving a new one replaces the old one."""
     with connect() as con:
-        con.execute("INSERT INTO saved VALUES (?,?,?,?,?,?,?)", (new_id(), uid, label, icon, point, name, time.time()))
+        if kind in ("home", "work"):
+            con.execute("DELETE FROM saved WHERE uid=? AND kind=?", (uid, kind))
+        con.execute("INSERT INTO saved (id, uid, label, icon, point, name, created, kind) VALUES (?,?,?,?,?,?,?,?)",
+                    (new_id(), uid, label, icon, point, name, time.time(), kind))
+
+
+def toggle_favourite(uid, point, name):
+    """Star / unstar a place. Returns True if it is now a favourite."""
+    with connect() as con:
+        hit = con.execute("SELECT id FROM saved WHERE uid=? AND point=? AND kind='fav'", (uid, point)).fetchone()
+        if hit:
+            con.execute("DELETE FROM saved WHERE id=?", (hit["id"],))
+            return False
+        con.execute("INSERT INTO saved (id, uid, label, icon, point, name, created, kind) VALUES (?,?,?,?,?,?,?,?)",
+                    (new_id(), uid, name, "star", point, name, time.time(), "fav"))
+        return True
 
 
 def delete_saved(uid, sid):

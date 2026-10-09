@@ -63,6 +63,11 @@
   'download': '<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>',
   'repeat': '<path d="M17 2l3 3-3 3M3 11V9a4 4 0 0 1 4-4h13M7 22l-3-3 3-3M21 13v2a4 4 0 0 1-4 4H4"/>',
   'eye': '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  'bookmark': '<path d="M6 3h12v18l-6-4-6 4z"/>',
+  'more': '<circle cx="12" cy="5" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="19" r="1.3" fill="currentColor"/>',
+  'ticket': '<path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z"/><path d="M14 6v2M14 11v2M14 16v2"/>',
+  'logout': '<path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 17l5-5-5-5M15 12H4"/>',
+  'edit': '<path d="M4 20h4L19 9l-4-4L4 16v4z"/>',
 } -%}
 <svg class="ic {{ cls }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{{ P.get(name, P['pin'])|safe }}</svg>
 {%- endmacro %}
@@ -92,7 +97,7 @@
 {%- endmacro %}
 
 {% macro topbar(title, back=None, sub=None) -%}
-<header class="topbar">
+<header class="topbar {{ 'has-back' if back }}">
   {% if back %}<a class="icon-btn" href="{{ back }}" aria-label="Back">{{ icon('arrow-left', 22) }}</a>{% endif %}
   <div class="topbar-title">
     <h1>{{ title }}</h1>
@@ -100,6 +105,14 @@
   </div>
   <div class="topbar-actions">{% if caller %}{{ caller() }}{% endif %}{{ theme_toggle() }}</div>
 </header>
+{%- endmacro %}
+
+{% macro bus_ic(size=20, alt=False) -%}
+<span class="bus-ic {{ 'alt' if alt }}">{{ icon('bus', size) }}</span>
+{%- endmacro %}
+
+{% macro route_name(routes) -%}
+{%- if routes %}Route {{ routes|join(' + ') }}{% else %}Walk{% endif -%}
 {%- endmacro %}
 
 {% macro theme_toggle() -%}

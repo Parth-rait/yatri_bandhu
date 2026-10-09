@@ -1,0 +1,41 @@
+{# Storyboard-style stop timeline for a journey: every stop with its time. #}
+{% from "_macros.html" import icon with context %}
+{% set ns = namespace(bus=0) %}
+<ol class="stl">
+  {% for l in j.legs %}
+    {% if l.type == 'walk' %}
+    <li class="walk">
+      <span class="stl-dot walk"></span>
+      <span><b>{% if loop.first %}{{ origin.name }}{% else %}Walk to {{ l.end.name }}{% endif %}</b><small>Walk {{ l.minutes }} min{% if loop.first %} to {{ l.end.name }}{% endif %}</small></span>
+      <span class="t">{% if loop.first %}{{ fmt_time(j.leave) }}{% endif %}</span>
+    </li>
+    {% else %}
+    {% set ns.bus = ns.bus + 1 %}
+    {% set color = 'var(--blue)' if ns.bus == 1 else 'var(--violet)' %}
+    {% set st = l.stops_timed %}
+    {% if l.wait is defined %}<li style="--lc:{{ color }}"><span class="stl-dot"></span><span><b class="chg">Change to Route {{ l.route }}</b><small>Wait ~{{ l.wait }} min</small></span><span></span></li>{% endif %}
+    <li style="--lc:{{ color }}">
+      <span class="stl-dot on"></span>
+      <span><a href="{{ url_for('stop', sid=st[0].stop_id) }}"><b>{{ st[0].name }}</b></a><small>Board Route {{ l.route }} · towards {{ l.headsign }}</small></span>
+      <span class="t strong">{{ fmt_time(st[0].time) }}</span>
+    </li>
+    {% set mid = st[1:-1] %}
+    {% if mid|length > 4 %}
+      {% for s in mid[:2] %}<li style="--lc:{{ color }}"><span class="stl-dot"></span><span><b>{{ s.name }}</b></span><span class="t">{{ s.time - st[0].time }} min</span></li>{% endfor %}
+      <li style="--lc:{{ color }}"><span class="stl-dot" style="opacity:0"></span>
+        <details><summary>{{ mid|length - 3 }} more stops</summary>
+          <ol style="list-style:none;padding:0;margin:8px 0 0">{% for s in mid[2:-1] %}<li style="display:flex;justify-content:space-between;padding:6px 0;color:var(--text-2)"><span>{{ s.name }}</span><span>{{ s.time - st[0].time }} min</span></li>{% endfor %}</ol>
+        </details><span></span></li>
+      {% set s = mid[-1] %}<li style="--lc:{{ color }}"><span class="stl-dot"></span><span><b>{{ s.name }}</b><small style="color:var(--brand-text)">Next stop is yours</small></span><span class="t">{{ s.time - st[0].time }} min</span></li>
+    {% else %}
+      {% for s in mid %}<li style="--lc:{{ color }}"><span class="stl-dot"></span><span><b>{{ s.name }}</b></span><span class="t">{{ s.time - st[0].time }} min</span></li>{% endfor %}
+    {% endif %}
+    <li class="{{ 'walk' if not loop.last }}" style="--lc:{{ color }}">
+      <span class="stl-dot on"></span>
+      <span><a href="{{ url_for('stop', sid=st[-1].stop_id) }}"><b>{{ st[-1].name }}</b></a><small>Get off · ₹{{ l.fare }}</small></span>
+      <span class="t strong">{{ fmt_time(st[-1].time) }}</span>
+    </li>
+    {% endif %}
+  {% endfor %}
+  <li><span class="stl-dot end"></span><span><b>{{ dest.name }}</b><small>Arrive</small></span><span class="t strong">{{ fmt_time(j.arrive) }}</span></li>
+</ol>

@@ -17,7 +17,6 @@
       <span class="row-trail"><b style="color:var(--text)">₹{{ o.low }}–{{ o.high }}</b></span></div>
     {% endfor %}
   </div>
-  <div class="notice mt">{{ icon('info', 18) }}<span>These prices are <b>rough estimates</b> from distance, not live prices from Uber, Ola or Rapido. Check the app before booking.</span></div>
   {% if ranked.recommended %}
   <div class="notice ok">{{ icon('bus', 18) }}<span>The bus costs <b>₹{{ ranked.recommended.fare }}</b> for this trip.
     {% set cab = res.others[-1] %}That's about ₹{{ cab.low - ranked.recommended.fare }} less than a cab.</span></div>

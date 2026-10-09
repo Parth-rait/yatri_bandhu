@@ -84,7 +84,7 @@
           if (my !== n) return;
           out.innerHTML = `<section class="section" style="margin-top:8px">${res.length
             ? `<div class="list">${res.map((r) => `<a class="row" href="${esc(fill(r.id))}"><span class="row-ic">${svg(r.icon)}</span><span class="row-txt"><b>${esc(r.name)}</b><small>${esc(r.sub)}</small></span></a>`).join('')}</div>`
-            : `<p class="hint" style="padding:12px 4px">No match for “${esc(q)}”. Try a sector number like “22” or “Sector 35”.</p>`}</section>`;
+            : `<p class="muted" style="padding:12px 4px">No results</p>`}</section>`;
         } catch { /* offline: the form still works by pressing Enter */ }
       }, 120);
     });

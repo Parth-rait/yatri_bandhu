@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, theme_toggle with context %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="page-head"><h1>Profile</h1>{{ theme_toggle() }}</div>
+<div class="wrap" style="padding:0 20px">
+  <div class="prof">
+    <span class="prof-av">{% if initials %}{{ initials }}{% else %}{{ icon('user', 28) }}{% endif %}</span>
+    {% if edit or not user_name %}
+    <form method="post" style="flex:1;display:flex;gap:8px">
+      <label class="sr" for="name">Your name</label>
+      <input class="input" id="name" name="name" value="{{ user_name }}" placeholder="Your name" {% if edit %}autofocus{% endif %}>
+      <button class="btn btn-primary btn-sm" type="submit">Save</button>
+    </form>
+    {% else %}
+    <div style="flex:1;min-width:0"><b>{{ user_name }}</b><small>{{ student_id }}</small></div>
+    <a class="icon-btn" href="{{ url_for('profile', edit=1) }}" aria-label="Edit name">{{ icon('edit', 20) }}</a>
+    {% endif %}
+  </div>
+
+  <nav class="list menu" aria-label="Profile">
+    {% for href, ic, label in [
+      (url_for('settings'), 'sliders', 'Travel Preferences'),
+      (url_for('saved'), 'star', 'Saved Places'),
+      (url_for('history'), 'clock', 'Trip History'),
+      (url_for('accessibility'), 'access', 'Display & Accessibility'),
+      (url_for('help'), 'help', 'Help & Support'),
+      (url_for('about'), 'info', 'About'),
+      (url_for('study'), 'clipboard', 'Usability Study')] %}
+    <a class="row" href="{{ href }}"><span class="row-ic">{{ icon(ic, 21) }}</span><span class="row-txt"><b>{{ label }}</b></span><span class="row-chev">{{ icon('chevron-right', 18) }}</span></a>
+    {% endfor %}
+    <form method="post" action="{{ url_for('logout') }}">
+      <button class="row logout" type="submit"><span class="row-ic" style="color:var(--danger)">{{ icon('logout', 21) }}</span><span class="row-txt"><b>Log Out</b></span></button>
+    </form>
+  </nav>
+</div>
+{% endblock %}

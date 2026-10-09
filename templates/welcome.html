@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import icon, mode_icon, theme_toggle with context %}
+{% from "_macros.html" import icon, theme_toggle with context %}
 {% block title %}Welcome{% endblock %}
 {% block tabbar %}{% endblock %}
 {% block body_class %}site{% endblock %}
@@ -12,35 +12,26 @@
 
   {% if step == '1' %}
   <form method="post" class="onb" style="padding:0;min-height:0;flex:1">
-    <h1>Where do you usually start from?</h1>
-    <p class="lede">We'll use it as your starting point, so most trips need just one tap. You can change it any time.</p>
-    <input type="hidden" name="default_from" value="{{ start.id if start else '' }}">
     <input type="hidden" name="next" value="2">
-    <div class="list">
-      <div class="row"><span class="row-ic brand">{{ icon(start.icon if start else 'cap', 20) }}</span>
-        <span class="row-txt"><b>{{ start.name if start else 'Plaksha University' }}</b><small>{{ start.sub if start else 'Campus' }}</small></span>
-        <span class="row-trail" style="color:var(--ok)">{{ icon('check', 20) }}</span></div>
-      <a class="row" href="{{ url_for('search', title='Your usual starting point', ret='/welcome?start=__PT__') }}">
-        <span class="row-ic">{{ icon('search', 20) }}</span><span class="row-txt"><b>Choose a different place</b><small>A PG, hostel, sector or bus stop</small></span><span class="row-chev">{{ icon('chevron-right', 18) }}</span></a>
-    </div>
+    <h1>What should we call you?</h1>
+    <label class="sr" for="name">Your name</label>
+    <input class="input big" id="name" name="name" value="{{ settings.name }}" placeholder="Your name" autocomplete="given-name" autofocus>
     <div class="onb-foot"><button class="btn btn-primary btn-block" type="submit">Continue {{ icon('arrow-right', 20) }}</button></div>
   </form>
   {% else %}
   <form method="post" class="onb" style="padding:0;min-height:0;flex:1">
-    <h1>What usually matters most to you?</h1>
-    <p class="lede">We'll put routes that match this at the top. You can switch on any trip.</p>
-    <fieldset class="list choice-list">
-      <legend class="sr">Usual priority</legend>
-      {% for key, m in MODES.items() %}
-      <label class="choice m-{{ key }}">
-        <input type="radio" name="default_mode" value="{{ key }}" {% if key == settings.default_mode %}checked{% endif %}>
-        <span class="choice-ic">{{ mode_icon(key, 22) }}</span>
-        <span class="choice-txt"><b>{{ m.situation }}</b><small>{{ m.blurb }}</small></span>
-        <span class="choice-tick">{{ icon('check', 14) }}</span>
-      </label>
-      {% endfor %}
-    </fieldset>
-    <div class="onb-foot"><button class="btn btn-primary btn-block" type="submit">Start using RouteMate</button></div>
+    <h1>Where's home?</h1>
+    <input type="hidden" name="home" value="{{ home.id if home else '' }}">
+    <div class="list">
+      {% if home %}
+      <div class="row"><span class="row-ic dark">{{ icon('home', 20) }}</span>
+        <span class="row-txt"><b>{{ home.name }}</b><small>{{ home.sub }}</small></span>
+        <span style="color:var(--ok)">{{ icon('check', 22) }}</span></div>
+      {% endif %}
+      <a class="row" href="{{ url_for('search', title='Search home', ret='/welcome?step=2&home=__PT__') }}">
+        <span class="row-ic">{{ icon('search', 20) }}</span><span class="row-txt"><b>{{ 'Choose another place' if home else 'Search a place' }}</b><small>Hostel, PG, sector or stop</small></span><span class="row-chev">{{ icon('chevron-right', 18) }}</span></a>
+    </div>
+    <div class="onb-foot"><button class="btn btn-primary btn-block" type="submit">Start {{ icon('arrow-right', 20) }}</button></div>
   </form>
   {% endif %}
 </div>

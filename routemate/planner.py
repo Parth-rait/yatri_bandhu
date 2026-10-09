@@ -61,6 +61,8 @@ class Planner:
             n_stops=j - i, via=[self.net.stops[s]["name"] for s in p.stops[i + 1:j]],
             km=round(km, 1), fare=fare_for_km(km), every=p.every_text,
             last_trip=p.is_last_trip(trip_start), board_i=i,
+            stops_timed=[dict(name=self.net.stops[p.stops[k]]["name"], stop_id=p.stops[k],
+                              time=round(trip_start + p.offsets[k])) for k in range(i, j + 1)],
             line=p.shape[a:b + 1] if b > a else [p.shape[a], p.shape[b]],
         )
 

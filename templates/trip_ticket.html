@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, bus_ic, topbar with context %}
+{% block title %}Ticket{% endblock %}
+{% block content %}
+{{ topbar('Bus Ticket', url_for('trip_live', tid=trip.id) if trip.status == 'active' else url_for('history')) }}
+<div class="wrap">
+  <div class="ticket">
+    <div class="ticket-top">
+      {{ bus_ic(22) }}
+      <div><b>Route {{ sm.routes|join(' + ') or 'Walk' }}</b><small>{{ trip.origin_name }} → {{ trip.dest_name }}</small></div>
+    </div>
+    <div class="qr" role="img" aria-label="Trip QR code">{{ qr|safe }}</div>
+    <p class="ticket-note">Pay the conductor on board</p>
+    <div class="ticket-grid">
+      <div><small>Fare</small><b>₹{{ sm.fare }}</b></div>
+      <div><small>Ticket type</small><b>Single ride</b></div>
+      <div><small>Valid till</small><b>{{ fmt_time(sm.arrive + 30) }}</b></div>
+    </div>
+  </div>
+  <p class="hint" style="margin-top:16px;text-align:center">Trip pass for reference. Not a paid ticket.</p>
+</div>
+{% endblock %}

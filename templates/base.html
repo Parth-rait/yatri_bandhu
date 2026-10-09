@@ -18,13 +18,13 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
   <link rel="icon" href="{{ url_for('static', filename='img/logo.svg') }}" type="image/svg+xml">
-  <meta name="theme-color" content="#E8492A">
+  <meta name="theme-color" content="#111827">
 </head>
 <body class="{% block body_class %}app{% endblock %}" data-endpoint="{{ endpoint }}">
   <a class="skip" href="#main">Skip to content</a>
   <div id="study-bar" class="study-bar" hidden></div>
 
-  {% if active and endpoint not in ('trip_live', 'feedback', 'landing') %}
+  {% if active and endpoint not in ('trip_live', 'trip_ticket', 'feedback', 'landing', 'welcome') %}
   <a class="live-pill" href="{{ url_for('trip_live', tid=active.id) }}">
     <span class="pulse" aria-hidden="true"></span>
     <span>Trip to <b>{{ active.dest_name }}</b></span>
@@ -38,7 +38,7 @@
 
   {% block tabbar %}
   <nav class="tabbar" aria-label="Main">
-    {% for key, ep, ic, label in [('plan','app_home','navigate','Plan'),('stops','nearby','stop','Stops'),('lines','lines','route','Lines'),('explore','explore','compass','Explore'),('me','me','user','Me')] %}
+    {% for key, ep, ic, label in [('home','app_home','home','Home'),('routes','lines','stop','Routes'),('saved','saved','bookmark','Saved'),('profile','profile','user','Profile')] %}
     <a href="{{ url_for(ep) }}" class="tab" {% if tab == key %}aria-current="page"{% endif %}>
       {{ icon(ic, 22) }}<span>{{ label }}</span>
     </a>

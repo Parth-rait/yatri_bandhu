@@ -26,7 +26,6 @@
     {{ chipset('changes', [('', 'Any'), ('0', 'One bus only'), ('1', 'Up to 1 change')], limits.changes) }}
   </fieldset>
 
-  <div class="notice info mt-lg">{{ icon('info', 18) }}<span>Routes outside your filters aren't deleted. They move to the bottom with the reason, so you can still pick one.</span></div>
 
   <div class="action-bar btn-row">
     <a class="btn btn-outline" href="{{ url_for('routes', **search_args(budget='', walk='', changes='')) }}">Reset</a>

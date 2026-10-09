@@ -1,98 +1,115 @@
 {% extends "base.html" %}
-{% from "_macros.html" import icon, mode_icon, chain, label_chips, topbar with context %}
+{% from "_macros.html" import icon, bus_ic, route_name, theme_toggle with context %}
 {% block title %}{{ dest.name }}{% endblock %}
 {% block content %}
 {% set base = search_args() %}
-{{ topbar('Routes', url_for('plan', **base)) }}
-
-<div class="wrap">
-  <a class="od-mini" href="{{ url_for('plan', **base) }}" aria-label="Change trip">
-    <span class="od-mini-lines"><span><i></i>{{ origin.name }}</span><span><i></i>{{ dest.name }}</span></span>
-    <span class="icon-btn">{{ icon('sliders', 20) }}</span>
-  </a>
-
-  <div class="trip-tools">
-    <a class="pill-btn" href="{{ url_for('plan', **base) }}">{{ icon('clock', 16) }} {% if request.args.get('at') %}Leave {{ fmt_time(t) }}{% else %}Leave now{% endif %}</a>
-    <a class="pill-btn" href="{{ url_for('routes_filters', **base) }}">{{ icon('sliders', 16) }} Filters{% if n_filters %} <span class="count">{{ n_filters }}</span>{% endif %}</a>
-    <a class="pill-btn" href="{{ url_for('routes', **search_args(**{'from': dest.id, 'to': origin.id})) }}" aria-label="Reverse direction">{{ icon('swap', 16) }} Return</a>
+{% set names = {'cheapest': 'Cheapest', 'fastest': 'Fastest', 'simplest': 'Fewest changes', 'walking': 'Least walking'} %}
+<div class="od2">
+  <div class="od2-wrap">
+    <a class="icon-btn" href="{{ url_for('app_home') }}" aria-label="Back">{{ icon('arrow-left', 22) }}</a>
+    <div class="od2-fields">
+      <a class="od2-field" href="{{ url_for('search', title='Start from', ret='/routes?to=' ~ (dest.id|urlencode) ~ '&from=__PT__') }}"><i class="od2-dot"></i><span>{{ origin.name }}</span></a>
+      <a class="od2-field" href="{{ url_for('search', ret='/routes?from=' ~ (origin.id|urlencode) ~ '&to=__PT__') }}"><i class="od2-dot b"></i><span>{{ dest.name }}</span></a>
+    </div>
   </div>
-
-  <nav class="seg" aria-label="Sort routes by">
-    {% for key, m in MODES.items() %}
-    <a class="seg-item m-{{ key }}" href="{{ url_for('routes', **search_args(mode=key)) }}" {% if key == mode %}aria-current="true"{% endif %}>{{ mode_icon(key, 16) }} {{ m.label }}</a>
-    {% endfor %}
-  </nav>
+  <a class="icon-btn" href="{{ url_for('routes', **search_args(**{'from': dest.id, 'to': origin.id})) }}" aria-label="Swap">{{ icon('swap', 20) }}</a>
 </div>
 
-<section class="section" style="margin-top:12px" aria-label="Route options">
-  {% if res.walk_only and res.walk_only.time <= 15 %}
-  <div class="notice ok" style="margin-bottom:10px">{{ icon('walk', 18) }}<span><b>Only a {{ res.walk_only.time }} min walk.</b> That may be quicker than waiting for a bus.</span></div>
-  {% endif %}
+<nav class="modes" aria-label="Travel mode">
+  <a href="{{ url_for('routes', **base) }}" {% if via == 'bus' %}aria-current="true"{% endif %}>{{ icon('bus', 18) }} Bus</a>
+  <a href="{{ url_for('routes', via='auto', **base) }}" {% if via == 'auto' %}aria-current="true"{% endif %}>{{ icon('auto', 18) }} Auto</a>
+  <a href="{{ url_for('routes', via='cab', **base) }}" {% if via == 'cab' %}aria-current="true"{% endif %}>{{ icon('car', 18) }} Cab</a>
+</nav>
 
-  {% if rec %}
-  <ul class="results">
-    {% for j in ranked.options %}
-    <li>
-      <a class="result {{ 'best' if loop.first }}" href="{{ url_for('journey', key=j.key, **base) }}">
-        {% if loop.first or j.labels %}
-        <div class="result-tags">{% if loop.first %}<span class="tag tag-best">Best for you</span>{% endif %}{{ label_chips(j.labels) }}</div>
-        {% endif %}
-        <div class="result-top">
-          {{ chain(j) }}
-          <span class="result-time"><b>{{ j.time }}</b><small>min</small></span>
+<div class="map-page">
+  <div class="map-wrap" style="height:36vh;min-height:230px">
+    <div id="routes-map" class="map" role="img" aria-label="Map of the top route"></div>
+    <div class="map-btns"><button type="button" class="icon-btn raised" data-locate aria-label="My location">{{ icon('locate', 20) }}</button></div>
+  </div>
+
+  <section class="sheet">
+    <div class="sheet-in">
+      {% if via == 'bus' %}
+      <div class="opt-head">
+        <h2>Route options</h2>
+        <div class="opt-tools">
+          <form method="get" action="{{ url_for('routes') }}">
+            {% for k, v in base.items() if k != 'mode' %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endfor %}
+            <label class="sr" for="sort">Sort by</label>
+            <select class="sort" id="sort" name="mode" data-autosubmit>
+              {% for key, m in MODES.items() %}<option value="{{ key }}" {% if key == mode %}selected{% endif %}>{{ 'Best' if key == 'balanced' else m.label }}</option>{% endfor %}
+            </select>
+          </form>
+          <a class="icon-btn" href="{{ url_for('routes_filters', **base) }}" aria-label="Filters">{{ icon('sliders', 20) }}{% if n_filters %}<span class="sr">{{ n_filters }} on</span>{% endif %}</a>
         </div>
-        <div class="result-meta">
-          <span>Leave {{ fmt_time(j.leave) }} · arrive {{ fmt_time(j.arrive) }}</span>
-          <b>₹{{ j.fare }}</b>
-        </div>
-        {% if loop.first and (reason or tradeoff) %}
-        <p class="why">{{ icon('info', 16) }}<span>{{ reason }}.{% if tradeoff %} {{ tradeoff }}{% endif %}</span></p>
-        {% endif %}
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
-  {% elif not ranked.misfits %}
-  <div class="card empty">
-    <span class="empty-ic">{{ icon('bus', 30) }}</span>
-    {% if res.near_origin == 0 %}
-      <h2>No bus stop near {{ origin.name }}</h2><p>There's no CTU stop within a 20 minute walk. Try starting from a nearby landmark.</p>
-    {% elif res.near_dest == 0 %}
-      <h2>No bus stop near {{ dest.name }}</h2><p>There's no CTU stop within a 20 minute walk of this place.</p>
-    {% else %}
-      <h2>No buses at {{ fmt_time(t) }}</h2><p>Most CTU routes run from about 5:30 AM to 9:00 PM. Try another time:</p>
-      <div class="chips" style="justify-content:center">
-        {% for at in ['07:30', '09:00', '13:00', '17:30'] %}<a class="chip" href="{{ url_for('routes', **search_args(at=at)) }}">{{ fmt_time(at.split(':')[0]|int * 60 + at.split(':')[1]|int) }}</a>{% endfor %}
       </div>
-    {% endif %}
-  </div>
-  {% endif %}
 
-  {% if ranked.misfits %}
-    {% if show_all or not rec %}
-    <h2 class="mt-lg" style="font-size:1rem;margin-bottom:10px">Outside your filters</h2>
-    <ul class="results">
-      {% for j in ranked.misfits %}
-      <li><a class="result" href="{{ url_for('journey', key=j.key, **base) }}">
-        <div class="result-top">{{ chain(j) }}<span class="result-time"><b>{{ j.time }}</b><small>min</small></span></div>
-        <div class="result-meta"><span>Leave {{ fmt_time(j.leave) }}</span><b>₹{{ j.fare }}</b></div>
-        {% for i in j.issues %}<p class="issue">{{ i }}</p>{% endfor %}
-      </a></li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p class="hint mt" style="text-align:center">{{ ranked.misfits|length }} more route{{ 's' if ranked.misfits|length > 1 }} don't match your filters. <a class="link" href="{{ url_for('routes', show='all', **base) }}">Show</a></p>
-    {% endif %}
-  {% endif %}
-</section>
+      {% if rec %}
+      <ul class="opts">
+        {% for j in ranked.options %}
+        {% set first_bus = j.legs|selectattr('type', 'equalto', 'bus')|first %}
+        <li>
+          <a class="opt {{ 'best' if loop.first }}" href="{{ url_for('journey', key=j.key, **base) }}">
+            {{ bus_ic() }}
+            <span class="opt-main">
+              <b>{{ route_name(j.routes) }}</b>
+              <small>{{ first_bus.every|capitalize if first_bus else '' }}{% if j.changes %} · {{ j.changes }} change{% endif %}{% if j.labels %} · <span class="why-tag">{{ names[j.labels[0]] }}</span>{% endif %}</small>
+            </span>
+            <span class="opt-side"><b>{{ j.time }} min</b><span class="green">₹{{ j.fare }}</span></span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% if ranked.misfits %}
+      <p style="text-align:center;margin-top:12px"><a class="link" href="{{ url_for('routes_filters', **base) }}">{{ ranked.misfits|length }} more outside your filters</a></p>
+      {% endif %}
+      {% if ranked.options|length > 1 %}
+      <p style="text-align:center;margin-top:10px"><a class="link" href="{{ url_for('routes_compare', **base) }}">Compare side by side</a></p>
+      {% endif %}
+      {% elif ranked.misfits %}
+      <ul class="opts">
+        {% for j in ranked.misfits %}
+        <li><a class="opt" href="{{ url_for('journey', key=j.key, **base) }}">{{ bus_ic() }}
+          <span class="opt-main"><b>{{ route_name(j.routes) }}</b><small style="color:var(--warn)">{{ j.issues[0] }}</small></span>
+          <span class="opt-side"><b>{{ j.time }} min</b><span class="green">₹{{ j.fare }}</span></span></a></li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="empty" style="padding:24px 8px">
+        <span class="empty-ic">{{ icon('bus', 28) }}</span>
+        {% if res.near_origin == 0 or res.near_dest == 0 %}
+          <h2>No bus stop nearby</h2>
+          <a class="btn btn-primary btn-block" href="{{ url_for('routes', via='auto', **base) }}">See auto &amp; cab</a>
+        {% else %}
+          <h2>No buses at {{ fmt_time(t) }}</h2>
+          <div class="chips" style="justify-content:center">
+            {% for at in ['07:30', '09:00', '13:00', '17:30'] %}<a class="chip" href="{{ url_for('routes', **search_args(at=at)) }}">{{ fmt_time(at.split(':')[0]|int * 60 + at.split(':')[1]|int) }}</a>{% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      {% endif %}
 
-<section class="section">
-  <div class="list">
-    {% if ranked.options|length > 1 %}
-    <a class="row" href="{{ url_for('routes_compare', **base) }}"><span class="row-ic">{{ icon('table', 20) }}</span><span class="row-txt"><b>Compare side by side</b><small>Cost, time, walking and changes in one table</small></span><span class="row-chev">{{ icon('chevron-right', 18) }}</span></a>
-    {% endif %}
-    <a class="row" href="{{ url_for('routes_other', **base) }}"><span class="row-ic">{{ icon('car', 20) }}</span><span class="row-txt"><b>Other ways to go</b><small>Walk, bike taxi, auto, cab (estimates)</small></span><span class="row-chev">{{ icon('chevron-right', 18) }}</span></a>
-  </div>
-  <p class="hint mt">Times are estimated from the CTU timetable, not live. Fares are approximate.</p>
-</section>
+      {% else %}
+      {% set o = res.others|selectattr('id', 'equalto', 'auto' if via == 'auto' else 'cab')|first %}
+      {% set b = res.others|selectattr('id', 'equalto', 'bike')|first %}
+      <div class="opt-head"><h2>{{ 'Auto' if via == 'auto' else 'Cab' }}</h2><span class="est">Estimate</span></div>
+      <ul class="opts">
+        <li><div class="opt best"><span class="bus-ic">{{ icon('auto' if via == 'auto' else 'car', 20) }}</span>
+          <span class="opt-main"><b>{{ o.label }}</b><small>{{ o.km }} km</small></span>
+          <span class="opt-side"><b>~{{ o.minutes }} min</b><span class="green">₹{{ o.low }}–{{ o.high }}</span></span></div></li>
+        <li><div class="opt"><span class="bus-ic">{{ icon('bike', 20) }}</span>
+          <span class="opt-main"><b>{{ b.label }}</b><small>{{ b.km }} km</small></span>
+          <span class="opt-side"><b>~{{ b.minutes }} min</b><span class="green">₹{{ b.low }}–{{ b.high }}</span></span></div></li>
+        {% if res.walk_only %}
+        <li><a class="opt" href="{{ url_for('journey', key='walk', **base) }}"><span class="bus-ic">{{ icon('walk', 20) }}</span>
+          <span class="opt-main"><b>Walk</b><small>{{ (res.walk_only.legs[0].meters / 1000)|round(1) }} km</small></span>
+          <span class="opt-side"><b>{{ res.walk_only.time }} min</b><span class="green">Free</span></span></a></li>
+        {% endif %}
+      </ul>
+      {% if rec %}<p style="text-align:center;margin-top:12px"><a class="link" href="{{ url_for('routes', **base) }}">Bus from ₹{{ rec.fare }}</a></p>{% endif %}
+      {% endif %}
+    </div>
+  </section>
+</div>
 {% endblock %}
+{% block scripts %}<script>RM.routesMap({{ map_data|tojson }});</script>{% endblock %}
