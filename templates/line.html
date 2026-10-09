@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, bus_badge, topbar with context %}
+{% block title %}Line {{ r.no }}{% endblock %}
+{% block content %}
+{% call topbar('Line ' ~ r.no, url_for('lines'), r.name) %}
+  <a class="icon-btn" href="{{ url_for('line_map', no=r.no, dir=p.direction) }}" aria-label="Show on map">{{ icon('map', 22) }}</a>
+{% endcall %}
+<div class="wrap" style="--rc: var(--line-color)" data-line-color="{{ r.no }}">
+  <div class="line-hero">
+    {{ bus_badge(r.no, 'lg') }}
+    <div class="row-txt"><b style="font-size:1.1rem">{{ 'Circular route' if r.loop else 'To ' ~ p.headsign }}</b></div>
+  </div>
+
+  {% if other %}
+  <div class="toggle-2 mt">
+    <a href="{{ url_for('line', no=r.no, dir='fwd') }}" {% if p.direction == 'fwd' %}aria-current="true"{% endif %}>To {{ fwd_head|truncate(20, True, '…') }}</a>
+    <a href="{{ url_for('line', no=r.no, dir='rev') }}" {% if p.direction == 'rev' %}aria-current="true"{% endif %}>To {{ rev_head|truncate(20, True, '…') }}</a>
+  </div>
+  {% endif %}
+
+  <div class="facts mt">
+    <div class="fact"><small>Every</small><b>{{ p.every_text.replace('every ', '') }}</b></div>
+    <div class="fact"><small>First bus</small><b>{{ fmt_time(p.start) }}</b></div>
+    <div class="fact"><small>Last bus</small><b>{{ fmt_time(p.end) }}</b></div>
+  </div>
+  <p class="hint mt">{{ stops|length }} stops · {{ r.km }} km · {{ r.buses }} bus{{ 'es' if r.buses != 1 }} on this line. Times from the first stop; ride times are estimates.</p>
+</div>
+
+<section class="section" aria-label="Stops on this line">
+  <ol class="stops-diagram" style="--rc: var(--line-color)" data-line-color="{{ r.no }}">
+    {% for s in stops %}
+    <li class="sd-item">
+      <span class="sd-dot"></span>
+      <a class="sd-txt" href="{{ url_for('stop', sid=s.id) }}">
+        <span><b>{{ s.name }}</b>
+          {% if s.others %}<span class="sd-more secondary">{% for o in s.others[:3] %}{{ bus_badge(o) }}{% endfor %}{% if s.others|length > 3 %}<span class="tag" style="height:18px;font-size:.66rem">+{{ s.others|length - 3 }}</span>{% endif %}</span>{% endif %}
+        </span>
+        <small>{{ '+' ~ s.time ~ ' min' if not loop.first else 'Start' }}</small>
+      </a>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon with context %}
+{% block title %}Explore map{% endblock %}
+{% block content %}
+{% set qs = {'from': origin.id if origin else '', 'kind': kind, 'value': value} %}
+<div class="map-full">
+  <div class="map-wrap">
+    <div id="explore-map" class="map" role="img" aria-label="Map of places you can reach. Green pins are within your limit."></div>
+    <div class="map-float">
+      <a class="icon-btn raised" href="{{ url_for('explore', **qs) }}" aria-label="Back to list">{{ icon('arrow-left', 22) }}</a>
+      <span class="legend" style="height:44px"><span><i class="dot"></i>Within {{ ('₹' ~ value) if kind == 'budget' else (value ~ ' min') }}</span><span><i class="dot off"></i>Further</span></span>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+  RM.exploreMap({{ origin|tojson }}, {{ reach|map(attribute='place')|list|tojson }},
+    {{ reach|map(attribute='journey')|map(attribute='fare')|list|tojson }},
+    {{ reach|map(attribute='journey')|map(attribute='time')|list|tojson }},
+    {{ out|map(attribute='place')|list|tojson }}, "{{ kind }}",
+    {{ url_for('routes')|tojson }}, {{ (origin.id if origin else '')|tojson }});
+</script>
+{% endblock %}

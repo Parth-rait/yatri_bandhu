@@ -1,0 +1,5258 @@
+{
+ "Maloya Colony, Chandigarh": [
+  {
+   "place_id": 243823706,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1092593489,
+   "lat": "30.7593709",
+   "lon": "76.7235047",
+   "class": "amenity",
+   "type": "school",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "amenity",
+   "name": "Government High School",
+   "display_name": "Government High School, NH5, Ward 9, Palsora, Chandigarh, 160025, India",
+   "boundingbox": [
+    "30.7586054",
+    "30.7600243",
+    "76.7228372",
+    "76.7240693"
+   ]
+  }
+ ],
+ "Dadu Majra, Chandigarh": [
+  {
+   "place_id": 244942183,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 7111403711,
+   "lat": "30.7552880",
+   "lon": "76.7389200",
+   "class": "amenity",
+   "type": "clinic",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "amenity",
+   "name": "Civil Dispensary -Dadu Majra",
+   "display_name": "Civil Dispensary -Dadu Majra, Dakshin Marg, Ward 8, Chandigarh, 160014, India",
+   "boundingbox": [
+    "30.7552380",
+    "30.7553380",
+    "76.7388700",
+    "76.7389700"
+   ]
+  },
+  {
+   "place_id": 244832186,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1086193806,
+   "lat": "30.7555863",
+   "lon": "76.7380879",
+   "class": "amenity",
+   "type": "school",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "amenity",
+   "name": "Government Senior Secondary School",
+   "display_name": "Government Senior Secondary School, Dakshin Marg, Ward 8, Chandigarh, 160014, India",
+   "boundingbox": [
+    "30.7551144",
+    "30.7560650",
+    "76.7374221",
+    "76.7387537"
+   ]
+  }
+ ],
+ "Sector 25, Chandigarh": [
+  {
+   "place_id": 241817557,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896550,
+   "lat": "30.7516466",
+   "lon": "76.7567324",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 25",
+   "display_name": "Sector 25, Ward 5, Chandigarh, India",
+   "boundingbox": [
+    "30.7450896",
+    "30.7578839",
+    "76.7492498",
+    "76.7645206"
+   ]
+  }
+ ],
+ "Sector 38, Chandigarh": [
+  {
+   "place_id": 244011591,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896580,
+   "lat": "30.7446758",
+   "lon": "76.7457676",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 38",
+   "display_name": "Sector 38, Ward 8, Chandigarh, India",
+   "boundingbox": [
+    "30.7381002",
+    "30.7512168",
+    "76.7379793",
+    "76.7536260"
+   ]
+  }
+ ],
+ "Sector 24, Chandigarh": [
+  {
+   "place_id": 242709695,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7894501,
+   "lat": "30.7457823",
+   "lon": "76.7617321",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 24",
+   "display_name": "Sector 24, Ward 4, Chandigarh, India",
+   "boundingbox": [
+    "30.7389667",
+    "30.7518465",
+    "76.7536260",
+    "76.7692777"
+   ]
+  }
+ ],
+ "Post Graduate Institute of Medical Education and Research, Chandigarh": [],
+ "Sector 15, Chandigarh": [
+  {
+   "place_id": 244935564,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7893054,
+   "lat": "30.7529928",
+   "lon": "76.7726540",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 15",
+   "display_name": "Sector 15, Ward 2, Chandigarh, India",
+   "boundingbox": [
+    "30.7458255",
+    "30.7589238",
+    "76.7645206",
+    "76.7805525"
+   ]
+  }
+ ],
+ "Sector 16, Chandigarh": [
+  {
+   "place_id": 243733599,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7893055,
+   "lat": "30.7467597",
+   "lon": "76.7775249",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 16",
+   "display_name": "Sector 16, Ward 3, Chandigarh, India",
+   "boundingbox": [
+    "30.7397398",
+    "30.7529044",
+    "76.7692777",
+    "76.7856494"
+   ]
+  }
+ ],
+ "Sector 17, Chandigarh": [
+  {
+   "place_id": 243921481,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7893056,
+   "lat": "30.7400652",
+   "lon": "76.7825889",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 17",
+   "display_name": "Sector 17, Ward 3, Chandigarh, India",
+   "boundingbox": [
+    "30.7334212",
+    "30.7466288",
+    "76.7742476",
+    "76.7909706"
+   ]
+  },
+  {
+   "place_id": 243887846,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129774350,
+   "lat": "30.7358134",
+   "lon": "76.7805494",
+   "class": "amenity",
+   "type": "fire_station",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "amenity",
+   "name": "Sector 17",
+   "display_name": "Sector 17, Himalaya Marg, Sector 17, Ward 3, Chandigarh, 160018, India",
+   "boundingbox": [
+    "30.7354292",
+    "30.7361976",
+    "76.7800857",
+    "76.7810130"
+   ]
+  }
+ ],
+ "ISBT Sector 17, Chandigarh": [
+  {
+   "place_id": 244087322,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129774342,
+   "lat": "30.7354368",
+   "lon": "76.7792464",
+   "class": "amenity",
+   "type": "bus_station",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "amenity",
+   "name": "Chandigarh ISBT, Sector 17",
+   "display_name": "Chandigarh ISBT, Sector 17, Udyog Path, Sector 17, Ward 3, Chandigarh, 160017, India",
+   "boundingbox": [
+    "30.7338605",
+    "30.7375933",
+    "76.7772106",
+    "76.7809347"
+   ]
+  }
+ ],
+ "Sector 18, Chandigarh": [
+  {
+   "place_id": 244935446,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7892809,
+   "lat": "30.7344954",
+   "lon": "76.7882538",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 18",
+   "display_name": "Sector 18, Ward 17, Chandigarh, 160018, India",
+   "boundingbox": [
+    "30.7276721",
+    "30.7404678",
+    "76.7797155",
+    "76.7961092"
+   ]
+  }
+ ],
+ "Sector 19, Chandigarh": [
+  {
+   "place_id": 244638630,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7892810,
+   "lat": "30.7282981",
+   "lon": "76.7930603",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 19",
+   "display_name": "Sector 19, Ward 17, Chandigarh, 160019, India",
+   "boundingbox": [
+    "30.7219709",
+    "30.7346956",
+    "76.7848321",
+    "76.8014016"
+   ]
+  }
+ ],
+ "Sector 27, Chandigarh": [
+  {
+   "place_id": 241243207,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7892811,
+   "lat": "30.7227459",
+   "lon": "76.7984247",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 27",
+   "display_name": "Sector 27, Ward 18, Chandigarh, 160027, India",
+   "boundingbox": [
+    "30.7164129",
+    "30.7290226",
+    "76.7900540",
+    "76.8067611"
+   ]
+  }
+ ],
+ "Sector 28, Chandigarh": [
+  {
+   "place_id": 244183544,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7892812,
+   "lat": "30.7171935",
+   "lon": "76.8037247",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 28",
+   "display_name": "Sector 28, Ward 18, Chandigarh, 160028, India",
+   "boundingbox": [
+    "30.7108366",
+    "30.7234503",
+    "76.7954748",
+    "76.8123729"
+   ]
+  }
+ ],
+ "CTU Workshop, Industrial Area Phase 1, Chandigarh": [],
+ "Chandigarh Railway Station": [
+  {
+   "place_id": 243903920,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 345195351,
+   "lat": "30.7021622",
+   "lon": "76.8214533",
+   "class": "railway",
+   "type": "station",
+   "place_rank": 30,
+   "importance": 0.351725953161806,
+   "addresstype": "railway",
+   "name": "Chandigarh Railway Station",
+   "display_name": "Chandigarh Railway Station, Railway Station Road, Ward 24, Daria, Chandigarh, 160101, India",
+   "boundingbox": [
+    "30.6971622",
+    "30.7071622",
+    "76.8164533",
+    "76.8264533"
+   ]
+  },
+  {
+   "place_id": 243822668,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 2914440106,
+   "lat": "30.7028240",
+   "lon": "76.8190972",
+   "class": "amenity",
+   "type": "bus_station",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "amenity",
+   "name": "Chandigarh Railway Station",
+   "display_name": "Chandigarh Railway Station, Railway Station Road, Ward 24, Daria, Chandigarh, 160101, India",
+   "boundingbox": [
+    "30.7027740",
+    "30.7028740",
+    "76.8190472",
+    "76.8191472"
+   ]
+  }
+ ],
+ "Railway Crossing, Manimajra, Chandigarh": [],
+ "Kalagram, Chandigarh": [
+  {
+   "place_id": 244108911,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1100913940,
+   "lat": "30.7103334",
+   "lon": "76.8257057",
+   "class": "tourism",
+   "type": "attraction",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "tourism",
+   "name": "Kalagram",
+   "display_name": "Kalagram, Madhya Marg, Ward 24, Chandigarh, 160101, India",
+   "boundingbox": [
+    "30.7087669",
+    "30.7114182",
+    "76.8243350",
+    "76.8281234"
+   ]
+  }
+ ],
+ "Housing Board Chowk, Chandigarh": [],
+ "Mani Majra, Chandigarh": [],
+ "Indira Colony, Manimajra, Chandigarh": [],
+ "Grain Market, Sector 26, Chandigarh": [],
+ "Sector 7, Chandigarh": [
+  {
+   "place_id": 242474453,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7891216,
+   "lat": "30.7358664",
+   "lon": "76.8042826",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 7",
+   "display_name": "Sector 7, Ward 1, Chandigarh, 160007, India",
+   "boundingbox": [
+    "30.7290226",
+    "30.7415532",
+    "76.7961092",
+    "76.8119610"
+   ]
+  }
+ ],
+ "Sector 8, Chandigarh": [
+  {
+   "place_id": 244233408,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7891215,
+   "lat": "30.7417025",
+   "lon": "76.7994536",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 8",
+   "display_name": "Sector 8, Ward 1, Chandigarh, India",
+   "boundingbox": [
+    "30.7346956",
+    "30.7474462",
+    "76.7909706",
+    "76.8070755"
+   ]
+  }
+ ],
+ "Sector 22, Chandigarh": [
+  {
+   "place_id": 244229328,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7894503,
+   "lat": "30.7334256",
+   "lon": "76.7713451",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 22",
+   "display_name": "Sector 22, Ward 3, Chandigarh, India",
+   "boundingbox": [
+    "30.7263491",
+    "30.7397398",
+    "76.7629635",
+    "76.7797155"
+   ]
+  }
+ ],
+ "Sector 10, Chandigarh": [
+  {
+   "place_id": 242459949,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7892783,
+   "lat": "30.7541885",
+   "lon": "76.7889605",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 10",
+   "display_name": "Sector 10, Ward 1, Chandigarh, 160010, India",
+   "boundingbox": [
+    "30.7466288",
+    "30.7599015",
+    "76.7805525",
+    "76.7969221"
+   ]
+  }
+ ],
+ "Sector 11, Chandigarh": [
+  {
+   "place_id": 244177897,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7892813,
+   "lat": "30.7598707",
+   "lon": "76.7844987",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 11",
+   "display_name": "Sector 11, Ward 1, Chandigarh, 160011, India",
+   "boundingbox": [
+    "30.7529044",
+    "30.7650554",
+    "76.7758376",
+    "76.7917322"
+   ]
+  }
+ ],
+ "Khuda Lahora, Chandigarh": [
+  {
+   "place_id": 241177718,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 1834001353,
+   "lat": "30.7758211",
+   "lon": "76.7718444",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.14673746318760963,
+   "addresstype": "village",
+   "name": "Khuda Lahora",
+   "display_name": "Khuda Lahora, Chandigarh, 160012, India",
+   "boundingbox": [
+    "30.7558211",
+    "30.7958211",
+    "76.7518444",
+    "76.7918444"
+   ]
+  }
+ ],
+ "Sarangpur, Chandigarh": [
+  {
+   "place_id": 243916530,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 1834001352,
+   "lat": "30.7808724",
+   "lon": "76.7575965",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.14673746318760963,
+   "addresstype": "village",
+   "name": "Sarangpur",
+   "display_name": "Sarangpur, Chandigarh, 160014, India",
+   "boundingbox": [
+    "30.7608724",
+    "30.8008724",
+    "76.7375965",
+    "76.7775965"
+   ]
+  }
+ ],
+ "Dhanas, Chandigarh": [
+  {
+   "place_id": 244134589,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 1834001956,
+   "lat": "30.7689995",
+   "lon": "76.7551503",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 1e-10,
+   "addresstype": "village",
+   "name": "Dhanas",
+   "display_name": "Dhanas, Chandigarh, 160014, India",
+   "boundingbox": [
+    "30.7489995",
+    "30.7889995",
+    "76.7351503",
+    "76.7751503"
+   ]
+  }
+ ],
+ "Dadu Majra Colony, Chandigarh": [
+  {
+   "place_id": 244126324,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1086193806,
+   "lat": "30.7555863",
+   "lon": "76.7380879",
+   "class": "amenity",
+   "type": "school",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "amenity",
+   "name": "Government Senior Secondary School",
+   "display_name": "Government Senior Secondary School, Dakshin Marg, Ward 8, Chandigarh, 160014, India",
+   "boundingbox": [
+    "30.7551144",
+    "30.7560650",
+    "76.7374221",
+    "76.7387537"
+   ]
+  }
+ ],
+ "Sector 23, Chandigarh": [
+  {
+   "place_id": 244275621,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7894502,
+   "lat": "30.7399177",
+   "lon": "76.7661953",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 23",
+   "display_name": "Sector 23, Ward 4, Chandigarh, 160023, India",
+   "boundingbox": [
+    "30.7330002",
+    "30.7458255",
+    "76.7582122",
+    "76.7742476"
+   ]
+  }
+ ],
+ "Sector 21, Chandigarh": [
+  {
+   "place_id": 244200738,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7894046,
+   "lat": "30.7268962",
+   "lon": "76.7765379",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 21",
+   "display_name": "Sector 21, Ward 17, Chandigarh, 160021, India",
+   "boundingbox": [
+    "30.7205252",
+    "30.7334212",
+    "76.7683301",
+    "76.7848321"
+   ]
+  }
+ ],
+ "Sector 20, Chandigarh": [
+  {
+   "place_id": 242478416,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7894047,
+   "lat": "30.7211780",
+   "lon": "76.7815804",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 20",
+   "display_name": "Sector 20, Ward 16, Chandigarh, 160020, India",
+   "boundingbox": [
+    "30.7147473",
+    "30.7276721",
+    "76.7733528",
+    "76.7900540"
+   ]
+  }
+ ],
+ "Sector 30, Chandigarh": [
+  {
+   "place_id": 245888621,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7894049,
+   "lat": "30.7156808",
+   "lon": "76.7869663",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 30",
+   "display_name": "Sector 30, Ward 18, Chandigarh, India",
+   "boundingbox": [
+    "30.7090769",
+    "30.7219709",
+    "76.7784813",
+    "76.7954748"
+   ]
+  }
+ ],
+ "Sector 29, Chandigarh": [
+  {
+   "place_id": 243841315,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7894050,
+   "lat": "30.7102571",
+   "lon": "76.7924166",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 29",
+   "display_name": "Sector 29, Ward 20, Chandigarh, 160029, India",
+   "boundingbox": [
+    "30.7039436",
+    "30.7164129",
+    "76.7837422",
+    "76.8010726"
+   ]
+  }
+ ],
+ "Elante Mall, Chandigarh": [
+  {
+   "place_id": 242526423,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 544678737,
+   "lat": "30.7054354",
+   "lon": "76.8009556",
+   "class": "shop",
+   "type": "mall",
+   "place_rank": 30,
+   "importance": 0.04539457909600718,
+   "addresstype": "shop",
+   "name": "Nexus Elante Mall",
+   "display_name": "Nexus Elante Mall, 178-178A, Purv Marg, Ward 20, Chandigarh, 160002, India",
+   "boundingbox": [
+    "30.7043821",
+    "30.7062734",
+    "76.7996266",
+    "76.8026635"
+   ]
+  },
+  {
+   "place_id": 244387615,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 7095083177,
+   "lat": "30.7052553",
+   "lon": "76.8009923",
+   "class": "amenity",
+   "type": "fast_food",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "amenity",
+   "name": "Burger King",
+   "display_name": "Burger King, Elante Mall, Purv Marg, Ward 20, Chandigarh, 160029, India",
+   "boundingbox": [
+    "30.7052053",
+    "30.7053053",
+    "76.8009423",
+    "76.8010423"
+   ]
+  },
+  {
+   "place_id": 244801397,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 7095426394,
+   "lat": "30.7055714",
+   "lon": "76.8011262",
+   "class": "amenity",
+   "type": "fast_food",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "amenity",
+   "name": "KFC",
+   "display_name": "KFC, Elante Mall, Purv Marg, Ward 20, Chandigarh, 160029, India",
+   "boundingbox": [
+    "30.7055214",
+    "30.7056214",
+    "76.8010762",
+    "76.8011762"
+   ]
+  },
+  {
+   "place_id": 244953001,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 7095680042,
+   "lat": "30.7054706",
+   "lon": "76.8005749",
+   "class": "amenity",
+   "type": "restaurant",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "amenity",
+   "name": "Pizza Hut",
+   "display_name": "Pizza Hut, Elante Mall, Purv Marg, Ward 20, Chandigarh, 160029, India",
+   "boundingbox": [
+    "30.7054206",
+    "30.7055206",
+    "76.8005249",
+    "76.8006249"
+   ]
+  }
+ ],
+ "Colony Number 4, Chandigarh": [],
+ "Sector 26, Chandigarh": [
+  {
+   "place_id": 242479063,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7891218,
+   "lat": "30.7300088",
+   "lon": "76.8091117",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 26",
+   "display_name": "Sector 26, Ward 19, Chandigarh, India",
+   "boundingbox": [
+    "30.7234503",
+    "30.7357008",
+    "76.8014016",
+    "76.8152678"
+   ]
+  }
+ ],
+ "Inter State Bus Terminal Sector 43, Chandigarh": [],
+ "Sector 43, Chandigarh": [
+  {
+   "place_id": 246423898,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896575,
+   "lat": "30.7190935",
+   "lon": "76.7487931",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 43",
+   "display_name": "Sector 43, Ward 12, Atawa, Chandigarh, 160043, India",
+   "boundingbox": [
+    "30.7122332",
+    "30.7259207",
+    "76.7404063",
+    "76.7571415"
+   ]
+  }
+ ],
+ "Sector 44, Chandigarh": [
+  {
+   "place_id": 242472503,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896574,
+   "lat": "30.7128952",
+   "lon": "76.7541146",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 44",
+   "display_name": "Sector 44, Ward 15, Chandigarh, 160044, India",
+   "boundingbox": [
+    "30.7064343",
+    "30.7193483",
+    "76.7458806",
+    "76.7621315"
+   ]
+  }
+ ],
+ "Sector 34, Chandigarh": [
+  {
+   "place_id": 242366781,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896548,
+   "lat": "30.7199236",
+   "lon": "76.7652082",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 34",
+   "display_name": "Sector 34, Ward 15, Chandigarh, India",
+   "boundingbox": [
+    "30.7134936",
+    "30.7263491",
+    "76.7571415",
+    "76.7733528"
+   ]
+  },
+  {
+   "place_id": 241241973,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 514023180,
+   "lat": "30.7189837",
+   "lon": "76.7647784",
+   "class": "landuse",
+   "type": "religious",
+   "place_rank": 24,
+   "importance": 0.08007079652094298,
+   "addresstype": "religious",
+   "name": "Sector 34",
+   "display_name": "Sector 34, Ward 15, Chandigarh, India",
+   "boundingbox": [
+    "30.7185745",
+    "30.7193929",
+    "76.7643276",
+    "76.7652291"
+   ]
+  }
+ ],
+ "Sector 35, Chandigarh": [
+  {
+   "place_id": 245042327,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896549,
+   "lat": "30.7261215",
+   "lon": "76.7598867",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 35",
+   "display_name": "Sector 35, Ward 15, Chandigarh, 160035, India",
+   "boundingbox": [
+    "30.7193483",
+    "30.7330002",
+    "76.7517313",
+    "76.7683301"
+   ]
+  }
+ ],
+ "Aroma Light Point, Chandigarh": [],
+ "Zakir Hussain Rose Garden, Chandigarh": [],
+ "New OPD, PGIMER, Chandigarh": [],
+ "Maloya, Chandigarh": [
+  {
+   "place_id": 244639125,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 3066381165,
+   "lat": "30.7531478",
+   "lon": "76.7171336",
+   "class": "place",
+   "type": "neighbourhood",
+   "place_rank": 24,
+   "importance": 0.08007079652094298,
+   "addresstype": "neighbourhood",
+   "name": "Maloya",
+   "display_name": "Maloya, Ward 7, Chandigarh, 160025, India",
+   "boundingbox": [
+    "30.7431478",
+    "30.7631478",
+    "76.7071336",
+    "76.7271336"
+   ]
+  }
+ ],
+ "Phase 6, Mohali": [
+  {
+   "place_id": 421067794,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 125904109,
+   "lat": "30.6908804",
+   "lon": "76.7114879",
+   "class": "place",
+   "type": "city",
+   "place_rank": 16,
+   "importance": 0.47334347766189616,
+   "addresstype": "city",
+   "name": "Mohali",
+   "display_name": "Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140062, India",
+   "boundingbox": [
+    "30.5308804",
+    "30.8508804",
+    "76.5514879",
+    "76.8714879"
+   ]
+  }
+ ],
+ "Badheri, Chandigarh": [
+  {
+   "place_id": 242453979,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 1426239116,
+   "lat": "30.7319514",
+   "lon": "76.7349309",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.14673746318760963,
+   "addresstype": "village",
+   "name": "Badheri",
+   "display_name": "Badheri, Chandigarh, 160040, India",
+   "boundingbox": [
+    "30.7119514",
+    "30.7519514",
+    "76.7149309",
+    "76.7549309"
+   ]
+  },
+  {
+   "place_id": 242454362,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896589,
+   "lat": "30.7318463",
+   "lon": "76.7347906",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.13340412985427633,
+   "addresstype": "suburb",
+   "name": "Badheri",
+   "display_name": "Badheri, Ward 10, Badheri, Chandigarh, India",
+   "boundingbox": [
+    "30.7305529",
+    "30.7333795",
+    "76.7331424",
+    "76.7366803"
+   ]
+  }
+ ],
+ "Sector 40, Chandigarh": [
+  {
+   "place_id": 242819540,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896578,
+   "lat": "30.7379842",
+   "lon": "76.7354046",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 40",
+   "display_name": "Sector 40, Ward 9, Badheri, Chandigarh, 160040, India",
+   "boundingbox": [
+    "30.7309489",
+    "30.7441263",
+    "76.7265986",
+    "76.7424013"
+   ]
+  }
+ ],
+ "Sector 41, Chandigarh": [
+  {
+   "place_id": 243907979,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896577,
+   "lat": "30.7325449",
+   "lon": "76.7378014",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 41",
+   "display_name": "Sector 41, Ward 10, Buterla, Chandigarh, 160041, India",
+   "boundingbox": [
+    "30.7273641",
+    "30.7381002",
+    "76.7310939",
+    "76.7470233"
+   ]
+  }
+ ],
+ "Sector 42, Chandigarh": [
+  {
+   "place_id": 249927392,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896576,
+   "lat": "30.7260846",
+   "lon": "76.7431497",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 42",
+   "display_name": "Sector 42, Ward 10, Buterla, Chandigarh, 160042, India",
+   "boundingbox": [
+    "30.7189033",
+    "30.7319780",
+    "76.7337649",
+    "76.7517313"
+   ]
+  }
+ ],
+ "Ram Darbar, Chandigarh": [
+  {
+   "place_id": 244042986,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 12597030425,
+   "lat": "30.6945874",
+   "lon": "76.7808066",
+   "class": "office",
+   "type": "educational_institution",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "office",
+   "name": "Allen Institute",
+   "display_name": "Allen Institute, 808, Phase, 2, Ram Darbar Rd, Industrial Area Phase II, Purv Marg, Phase 2, Ward 22, Chandigarh, 160002, India",
+   "boundingbox": [
+    "30.6945374",
+    "30.6946374",
+    "76.7807566",
+    "76.7808566"
+   ]
+  }
+ ],
+ "Sector 47, Chandigarh": [
+  {
+   "place_id": 244253349,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896571,
+   "lat": "30.6958109",
+   "lon": "76.7690491",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 47",
+   "display_name": "Sector 47, Ward 22, Chandigarh, India",
+   "boundingbox": [
+    "30.6892513",
+    "30.7020352",
+    "76.7611607",
+    "76.7777020"
+   ]
+  }
+ ],
+ "Sector 46, Chandigarh": [
+  {
+   "place_id": 244196321,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896495,
+   "lat": "30.7014028",
+   "lon": "76.7642252",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 46",
+   "display_name": "Sector 46, Ward 21, Chandigarh, 160047, India",
+   "boundingbox": [
+    "30.6949829",
+    "30.7077510",
+    "76.7559860",
+    "76.7724769"
+   ]
+  }
+ ],
+ "Sector 31, Chandigarh": [
+  {
+   "place_id": 242478005,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896570,
+   "lat": "30.7028775",
+   "lon": "76.7810869",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 31",
+   "display_name": "Sector 31, Ward 22, Chandigarh, India",
+   "boundingbox": [
+    "30.6965997",
+    "30.7090769",
+    "76.7724769",
+    "76.7899974"
+   ]
+  }
+ ],
+ "Sector 32, Chandigarh": [
+  {
+   "place_id": 244993962,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896496,
+   "lat": "30.7083938",
+   "lon": "76.7752933",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 32",
+   "display_name": "Sector 32, Ward 21, Chandigarh, India",
+   "boundingbox": [
+    "30.7020352",
+    "30.7147473",
+    "76.7672472",
+    "76.7837422"
+   ]
+  }
+ ],
+ "Sector 9, Chandigarh": [
+  {
+   "place_id": 249954264,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7892784,
+   "lat": "30.7474038",
+   "lon": "76.7939268",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 9",
+   "display_name": "Sector 9, Ward 1, Chandigarh, India",
+   "boundingbox": [
+    "30.7404678",
+    "30.7537025",
+    "76.7856494",
+    "76.8021499"
+   ]
+  }
+ ],
+ "Panjab University, Sector 14, Chandigarh": [
+  {
+   "place_id": 243859561,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 469362962,
+   "lat": "30.7559842",
+   "lon": "76.7675856",
+   "class": "tourism",
+   "type": "attraction",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "tourism",
+   "name": "Panjab University Market",
+   "display_name": "Panjab University Market, Vidya Marg, Sector 14, Ward 2, Chandigarh, 160014, India",
+   "boundingbox": [
+    "30.7546856",
+    "30.7571665",
+    "76.7664802",
+    "76.7688258"
+   ]
+  }
+ ],
+ "Sector 14, Chandigarh": [
+  {
+   "place_id": 244240175,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7897141,
+   "lat": "30.7598462",
+   "lon": "76.7668339",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.13340412985427633,
+   "addresstype": "suburb",
+   "name": "Sector 14",
+   "display_name": "Sector 14, Ward 2, Chandigarh, 160014, India",
+   "boundingbox": [
+    "30.7518465",
+    "30.7682071",
+    "76.7571562",
+    "76.7758376"
+   ]
+  }
+ ],
+ "Sector 37, Chandigarh": [
+  {
+   "place_id": 244712729,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896579,
+   "lat": "30.7385345",
+   "lon": "76.7503381",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 37",
+   "display_name": "Sector 37, Ward 8, Chandigarh, India",
+   "boundingbox": [
+    "30.7319780",
+    "30.7450896",
+    "76.7424013",
+    "76.7582122"
+   ]
+  }
+ ],
+ "Sector 39, Chandigarh": [
+  {
+   "place_id": 244153729,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896569,
+   "lat": "30.7437353",
+   "lon": "76.7302751",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 39",
+   "display_name": "Sector 39, Ward 9, Chandigarh, India",
+   "boundingbox": [
+    "30.7371248",
+    "30.7503972",
+    "76.7222305",
+    "76.7379793"
+   ]
+  }
+ ],
+ "Sector 45, Chandigarh": [
+  {
+   "place_id": 241255460,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896573,
+   "lat": "30.7065858",
+   "lon": "76.7569256",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 45",
+   "display_name": "Sector 45, Ward 14, Chandigarh, India",
+   "boundingbox": [
+    "30.7006096",
+    "30.7134936",
+    "76.7508961",
+    "76.7672472"
+   ]
+  }
+ ],
+ "Sector 36, Chandigarh": [
+  {
+   "place_id": 244222270,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7894499,
+   "lat": "30.7324665",
+   "lon": "76.7549085",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 36",
+   "display_name": "Sector 36, Ward 4, Chandigarh, India",
+   "boundingbox": [
+    "30.7259207",
+    "30.7389667",
+    "76.7470233",
+    "76.7629635"
+   ]
+  }
+ ],
+ "Sector 33, Chandigarh": [
+  {
+   "place_id": 244479555,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7894060,
+   "lat": "30.7141312",
+   "lon": "76.7701435",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 33",
+   "display_name": "Sector 33, Ward 16, Chandigarh, India",
+   "boundingbox": [
+    "30.7077510",
+    "30.7205252",
+    "76.7621315",
+    "76.7784813"
+   ]
+  }
+ ],
+ "Tribune Chowk, Chandigarh": [
+  {
+   "place_id": 244187076,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129450481,
+   "lat": "30.7042626",
+   "lon": "76.7897403",
+   "class": "highway",
+   "type": "trunk",
+   "place_rank": 26,
+   "importance": 0.053404129854276304,
+   "addresstype": "road",
+   "name": "Tribune Chowk",
+   "display_name": "Tribune Chowk, Sector 29, Ward 20, Chandigarh, 160002, India",
+   "boundingbox": [
+    "30.7040738",
+    "30.7043397",
+    "76.7895816",
+    "76.7899761"
+   ]
+  },
+  {
+   "place_id": 244183106,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1215033747,
+   "lat": "30.7036330",
+   "lon": "76.7902785",
+   "class": "highway",
+   "type": "trunk",
+   "place_rank": 26,
+   "importance": 0.053404129854276304,
+   "addresstype": "road",
+   "name": "Tribune Chowk",
+   "display_name": "Tribune Chowk, Ward 22, Chandigarh, 160002, India",
+   "boundingbox": [
+    "30.7035594",
+    "30.7038176",
+    "76.7900422",
+    "76.7904413"
+   ]
+  },
+  {
+   "place_id": 243468068,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1215094082,
+   "lat": "30.7036986",
+   "lon": "76.7896768",
+   "class": "highway",
+   "type": "trunk",
+   "place_rank": 26,
+   "importance": 0.053404129854276304,
+   "addresstype": "road",
+   "name": "Tribune Chowk",
+   "display_name": "Tribune Chowk, Sector 31, Ward 22, Chandigarh, 160002, India",
+   "boundingbox": [
+    "30.7035764",
+    "30.7039011",
+    "76.7895616",
+    "76.7898773"
+   ]
+  },
+  {
+   "place_id": 244575251,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1215094083,
+   "lat": "30.7038902",
+   "lon": "76.7904623",
+   "class": "highway",
+   "type": "trunk",
+   "place_rank": 26,
+   "importance": 0.053404129854276304,
+   "addresstype": "road",
+   "name": "Tribune Chowk",
+   "display_name": "Tribune Chowk, Ward 20, Chandigarh, 160002, India",
+   "boundingbox": [
+    "30.7038176",
+    "30.7039654",
+    "76.7904413",
+    "76.7904677"
+   ]
+  }
+ ],
+ "Hallomajra, Chandigarh": [
+  {
+   "place_id": 244081975,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 7111403706,
+   "lat": "30.6922961",
+   "lon": "76.7999692",
+   "class": "amenity",
+   "type": "clinic",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "amenity",
+   "name": "Civil Dispensary-Hallomajra",
+   "display_name": "Civil Dispensary-Hallomajra, Dakshin Marg, Ward 23, Chandigarh, 160002, India",
+   "boundingbox": [
+    "30.6922461",
+    "30.6923461",
+    "76.7999192",
+    "76.8000192"
+   ]
+  },
+  {
+   "place_id": 243813991,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1092592666,
+   "lat": "30.6909948",
+   "lon": "76.8004684",
+   "class": "amenity",
+   "type": "school",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "amenity",
+   "name": "Government High School",
+   "display_name": "Government High School, Dakshin Marg, Ward 23, Chandigarh, 160002, India",
+   "boundingbox": [
+    "30.6908355",
+    "30.6912288",
+    "76.8002258",
+    "76.8007116"
+   ]
+  }
+ ],
+ "Raipur Kalan, Chandigarh": [
+  {
+   "place_id": 242471858,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 7983529353,
+   "lat": "30.6836796",
+   "lon": "76.8253571",
+   "class": "healthcare",
+   "type": "centre",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "healthcare",
+   "name": "SubCentre, Raipur Kalan",
+   "display_name": "SubCentre, Raipur Kalan, Dakshin Marg, Reserved Area, Raipur Khurd, Chandigarh, 160102, India",
+   "boundingbox": [
+    "30.6836296",
+    "30.6837296",
+    "76.8253071",
+    "76.8254071"
+   ]
+  },
+  {
+   "place_id": 242467757,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1266845498,
+   "lat": "30.6853221",
+   "lon": "76.8261146",
+   "class": "amenity",
+   "type": "school",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "amenity",
+   "name": "Government Model Senior Secondary School",
+   "display_name": "Government Model Senior Secondary School, Guru Ravidas Chowk, Sector 16, Chandigarh, Panchkula, Haryana, 160102, India",
+   "boundingbox": [
+    "30.6844897",
+    "30.6865660",
+    "76.8253372",
+    "76.8270394"
+   ]
+  }
+ ],
+ "Government Medical College and Hospital, Sector 32, Chandigarh": [],
+ "Industrial Area Phase 2, Chandigarh": [
+  {
+   "place_id": 243932930,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129450339,
+   "lat": "30.6981312",
+   "lon": "76.7880056",
+   "class": "landuse",
+   "type": "industrial",
+   "place_rank": 24,
+   "importance": 0.08007079652094298,
+   "addresstype": "industrial",
+   "name": "Phase 2",
+   "display_name": "Phase 2, Ward 22, Chandigarh, India",
+   "boundingbox": [
+    "30.6942665",
+    "30.7031788",
+    "76.7781346",
+    "76.7967062"
+   ]
+  }
+ ],
+ "Mata Mansa Devi Mandir, Panchkula": [],
+ "Sector 49, Chandigarh": [
+  {
+   "place_id": 244831551,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7897143,
+   "lat": "30.6940288",
+   "lon": "76.7521386",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 49",
+   "display_name": "Sector 49, Ward 13, Chandigarh, India",
+   "boundingbox": [
+    "30.6875237",
+    "30.7006096",
+    "76.7445538",
+    "76.7611607"
+   ]
+  },
+  {
+   "place_id": 244959533,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129142051,
+   "lat": "30.6939083",
+   "lon": "76.7522320",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08007079652094298,
+   "addresstype": "residential",
+   "name": "Sector 49",
+   "display_name": "Sector 49, Ward 13, Chandigarh, India",
+   "boundingbox": [
+    "30.6878283",
+    "30.6998656",
+    "76.7446010",
+    "76.7598769"
+   ]
+  }
+ ],
+ "Sector 50, Chandigarh": [
+  {
+   "place_id": 244132969,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7897144,
+   "lat": "30.6999953",
+   "lon": "76.7477452",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 50",
+   "display_name": "Sector 50, Ward 13, Chandigarh, India",
+   "boundingbox": [
+    "30.6934881",
+    "30.7064343",
+    "76.7396092",
+    "76.7559860"
+   ]
+  }
+ ],
+ "Sector 51, Chandigarh": [
+  {
+   "place_id": 244198172,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7897146,
+   "lat": "30.7056233",
+   "lon": "76.7427610",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 51",
+   "display_name": "Sector 51, Ward 13, Kajheri, Chandigarh, India",
+   "boundingbox": [
+    "30.6993073",
+    "30.7122332",
+    "76.7357253",
+    "76.7508961"
+   ]
+  },
+  {
+   "place_id": 244274018,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129142055,
+   "lat": "30.7059088",
+   "lon": "76.7428731",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08007079652094298,
+   "addresstype": "residential",
+   "name": "Sector 51",
+   "display_name": "Sector 51, Ward 13, Kajheri, Chandigarh, India",
+   "boundingbox": [
+    "30.6995602",
+    "30.7117762",
+    "76.7349908",
+    "76.7504145"
+   ]
+  }
+ ],
+ "Sector 62, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 245001956,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054502266,
+   "lat": "30.6986523",
+   "lon": "76.7301679",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 62",
+   "display_name": "Sector 62, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160062, India",
+   "boundingbox": [
+    "30.6786523",
+    "30.7186523",
+    "76.7101679",
+    "76.7501679"
+   ]
+  },
+  {
+   "place_id": 244829711,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129040908,
+   "lat": "30.6996886",
+   "lon": "76.7298856",
+   "class": "landuse",
+   "type": "commercial",
+   "place_rank": 24,
+   "importance": 0.08007079652094298,
+   "addresstype": "commercial",
+   "name": "Sector 62",
+   "display_name": "Sector 62, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160062, India",
+   "boundingbox": [
+    "30.6925238",
+    "30.7048747",
+    "76.7235776",
+    "76.7364149"
+   ]
+  }
+ ],
+ "Sector 63, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 242457972,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054502266,
+   "lat": "30.6986523",
+   "lon": "76.7301679",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 62",
+   "display_name": "Sector 62, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160062, India",
+   "boundingbox": [
+    "30.6786523",
+    "30.7186523",
+    "76.7101679",
+    "76.7501679"
+   ]
+  },
+  {
+   "place_id": 244033135,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489894,
+   "lat": "30.6496903",
+   "lon": "76.7214775",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 83",
+   "display_name": "Sector 83, Manauli, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6296903",
+    "30.6696903",
+    "76.7014775",
+    "76.7414775"
+   ]
+  },
+  {
+   "place_id": 242459846,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489869,
+   "lat": "30.6498933",
+   "lon": "76.6787338",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 108",
+   "display_name": "Sector 108, Sukhgarh, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140308, India",
+   "boundingbox": [
+    "30.6298933",
+    "30.6698933",
+    "76.6587338",
+    "76.6987338"
+   ]
+  },
+  {
+   "place_id": 242466728,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489867,
+   "lat": "30.6703448",
+   "lon": "76.6657948",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 110",
+   "display_name": "Sector 110, Bhago Majra, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140307, India",
+   "boundingbox": [
+    "30.6503448",
+    "30.6903448",
+    "76.6457948",
+    "76.6857948"
+   ]
+  },
+  {
+   "place_id": 244125686,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489865,
+   "lat": "30.6786313",
+   "lon": "76.6628122",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 111",
+   "display_name": "Sector 111, Bhago Majra, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140307, India",
+   "boundingbox": [
+    "30.6586313",
+    "30.6986313",
+    "76.6428122",
+    "76.6828122"
+   ]
+  }
+ ],
+ "Sector 63, Mohali": [
+  {
+   "place_id": 244012877,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054502266,
+   "lat": "30.6986523",
+   "lon": "76.7301679",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 62",
+   "display_name": "Sector 62, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160062, India",
+   "boundingbox": [
+    "30.6786523",
+    "30.7186523",
+    "76.7101679",
+    "76.7501679"
+   ]
+  },
+  {
+   "place_id": 243681986,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489906,
+   "lat": "30.6856806",
+   "lon": "76.7241490",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 68",
+   "display_name": "Sector 68, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 145308, India",
+   "boundingbox": [
+    "30.6656806",
+    "30.7056806",
+    "76.7041490",
+    "76.7441490"
+   ]
+  },
+  {
+   "place_id": 243860024,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489905,
+   "lat": "30.6915855",
+   "lon": "76.7199325",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 69",
+   "display_name": "Sector 69, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140062, India",
+   "boundingbox": [
+    "30.6715855",
+    "30.7115855",
+    "76.6999325",
+    "76.7399325"
+   ]
+  },
+  {
+   "place_id": 243813820,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1194479496,
+   "lat": "30.6652315",
+   "lon": "76.7066394",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 85",
+   "display_name": "Sector 85, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, India",
+   "boundingbox": [
+    "30.6586698",
+    "30.6712392",
+    "76.6983584",
+    "76.7140576"
+   ]
+  },
+  {
+   "place_id": 243901418,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489886,
+   "lat": "30.7035417",
+   "lon": "76.6730260",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 91",
+   "display_name": "Sector 91, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160057, India",
+   "boundingbox": [
+    "30.6835417",
+    "30.7235417",
+    "76.6530260",
+    "76.6930260"
+   ]
+  }
+ ],
+ "Sector 63, Chandigarh": [
+  {
+   "place_id": 244716201,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7897145,
+   "lat": "30.6929694",
+   "lon": "76.7364764",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 63",
+   "display_name": "Sector 63, Ward 13, Chandigarh, India",
+   "boundingbox": [
+    "30.6918715",
+    "30.7009356",
+    "76.7363289",
+    "76.7443031"
+   ]
+  },
+  {
+   "place_id": 244353317,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129040910,
+   "lat": "30.6929293",
+   "lon": "76.7364740",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08005353246356905,
+   "addresstype": "residential",
+   "name": "Sector 63",
+   "display_name": "Sector 63, Ward 13, Chandigarh, India",
+   "boundingbox": [
+    "30.6867187",
+    "30.6992434",
+    "76.7285728",
+    "76.7442938"
+   ]
+  }
+ ],
+ "Phase 8, Mohali": [
+  {
+   "place_id": 241235656,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129029632,
+   "lat": "30.7178072",
+   "lon": "76.6985062",
+   "class": "landuse",
+   "type": "industrial",
+   "place_rank": 24,
+   "importance": 0.08005353246356905,
+   "addresstype": "industrial",
+   "name": "Sector 73",
+   "display_name": "Sector 73, F-297, Sector 73, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160055, India",
+   "boundingbox": [
+    "30.7093480",
+    "30.7256310",
+    "76.6897137",
+    "76.7078053"
+   ]
+  },
+  {
+   "place_id": 244439043,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 8171418091,
+   "lat": "30.6942606",
+   "lon": "76.7279733",
+   "class": "amenity",
+   "type": "police",
+   "place_rank": 30,
+   "importance": 5.353246356903971e-05,
+   "addresstype": "amenity",
+   "name": "Police Station phase 8",
+   "display_name": "Police Station phase 8, SH12A, Sector 62, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160062, India",
+   "boundingbox": [
+    "30.6942106",
+    "30.6943106",
+    "76.7279233",
+    "76.7280233"
+   ]
+  },
+  {
+   "place_id": 241224818,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 11836523880,
+   "lat": "30.7107797",
+   "lon": "76.7091193",
+   "class": "place",
+   "type": "house",
+   "place_rank": 30,
+   "importance": 5.353246356903971e-05,
+   "addresstype": "place",
+   "name": "",
+   "display_name": "Unit No, C-136, Phase-8, Industrial Area, Sector 73, Sahibzada Ajit Singh Nagar, Punjab 160071, edge 22, Sector 74, Sector 72, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160071, India",
+   "boundingbox": [
+    "30.7107297",
+    "30.7108297",
+    "76.7090693",
+    "76.7091693"
+   ]
+  }
+ ],
+ "Punjab School Education Board, Mohali": [
+  {
+   "place_id": 243887213,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 410544187,
+   "lat": "30.6967240",
+   "lon": "76.7341563",
+   "class": "office",
+   "type": "government",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "office",
+   "name": "Punjab School Education Board",
+   "display_name": "Punjab School Education Board, Sarovar Path, Sector 51, Ward 13, Mohali, Chandigarh, 160063, India",
+   "boundingbox": [
+    "30.6955681",
+    "30.6978446",
+    "76.7325481",
+    "76.7357593"
+   ]
+  }
+ ],
+ "Sector 64, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 244018983,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054502264,
+   "lat": "30.6867140",
+   "lon": "76.7409181",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 64",
+   "display_name": "Sector 64, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160063, India",
+   "boundingbox": [
+    "30.6667140",
+    "30.7067140",
+    "76.7209181",
+    "76.7609181"
+   ]
+  },
+  {
+   "place_id": 244016038,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129040911,
+   "lat": "30.6870262",
+   "lon": "76.7413165",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08005353246356905,
+   "addresstype": "residential",
+   "name": "Sector 64",
+   "display_name": "Sector 64, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160063, India",
+   "boundingbox": [
+    "30.6808971",
+    "30.6932413",
+    "76.7333855",
+    "76.7491136"
+   ]
+  }
+ ],
+ "Sector 67, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 242459591,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489907,
+   "lat": "30.6801999",
+   "lon": "76.7294490",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 67",
+   "display_name": "Sector 67, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 145308, India",
+   "boundingbox": [
+    "30.6601999",
+    "30.7001999",
+    "76.7094490",
+    "76.7494490"
+   ]
+  },
+  {
+   "place_id": 242473940,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129020020,
+   "lat": "30.6803705",
+   "lon": "76.7305587",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08005353246356905,
+   "addresstype": "residential",
+   "name": "Sector 67",
+   "display_name": "Sector 67, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, India",
+   "boundingbox": [
+    "30.6734068",
+    "30.6873069",
+    "76.7216288",
+    "76.7375970"
+   ]
+  }
+ ],
+ "Sector 68, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 243494529,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489906,
+   "lat": "30.6856806",
+   "lon": "76.7241490",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 68",
+   "display_name": "Sector 68, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 145308, India",
+   "boundingbox": [
+    "30.6656806",
+    "30.7056806",
+    "76.7041490",
+    "76.7441490"
+   ]
+  },
+  {
+   "place_id": 244030100,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129020021,
+   "lat": "30.6862576",
+   "lon": "76.7251291",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08005353246356905,
+   "addresstype": "residential",
+   "name": "Sector 68",
+   "display_name": "Sector 68, Kumbra, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, India",
+   "boundingbox": [
+    "30.6792763",
+    "30.6920584",
+    "76.7166841",
+    "76.7320791"
+   ]
+  }
+ ],
+ "Sector 80, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 242463345,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054502259,
+   "lat": "30.6722089",
+   "lon": "76.7180228",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 80",
+   "display_name": "Sector 80, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 145308, India",
+   "boundingbox": [
+    "30.6522089",
+    "30.6922089",
+    "76.6980228",
+    "76.7380228"
+   ]
+  }
+ ],
+ "Sector 66, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 245001956,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054502266,
+   "lat": "30.6986523",
+   "lon": "76.7301679",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 62",
+   "display_name": "Sector 62, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160062, India",
+   "boundingbox": [
+    "30.6786523",
+    "30.7186523",
+    "76.7101679",
+    "76.7501679"
+   ]
+  },
+  {
+   "place_id": 244717409,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054502262,
+   "lat": "30.6610241",
+   "lon": "76.7461967",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 66A",
+   "display_name": "Sector 66A, Kambala, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6410241",
+    "30.6810241",
+    "76.7261967",
+    "76.7661967"
+   ]
+  },
+  {
+   "place_id": 245017382,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489882,
+   "lat": "30.6318563",
+   "lon": "76.7158126",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 101A",
+   "display_name": "Sector 101A, Chao Majra, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6118563",
+    "30.6518563",
+    "76.6958126",
+    "76.7358126"
+   ]
+  },
+  {
+   "place_id": 242675321,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489895,
+   "lat": "30.6371736",
+   "lon": "76.7316055",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 83A",
+   "display_name": "Sector 83A, Saini Majra, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6171736",
+    "30.6571736",
+    "76.7116055",
+    "76.7516055"
+   ]
+  },
+  {
+   "place_id": 244793614,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489888,
+   "lat": "30.6889284",
+   "lon": "76.6864156",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 89",
+   "display_name": "Sector 89, Lakhnaur, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160057, India",
+   "boundingbox": [
+    "30.6689284",
+    "30.7089284",
+    "76.6664156",
+    "76.7064156"
+   ]
+  }
+ ],
+ "Sector 81, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 244992457,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489898,
+   "lat": "30.6645495",
+   "lon": "76.7250609",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 81",
+   "display_name": "Sector 81, Chilla, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 145308, India",
+   "boundingbox": [
+    "30.6445495",
+    "30.6845495",
+    "76.7050609",
+    "76.7450609"
+   ]
+  }
+ ],
+ "Industrial Area Phase 9, Mohali": [
+  {
+   "place_id": 244839372,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129029632,
+   "lat": "30.7178072",
+   "lon": "76.6985062",
+   "class": "landuse",
+   "type": "industrial",
+   "place_rank": 24,
+   "importance": 0.08005353246356905,
+   "addresstype": "industrial",
+   "name": "Sector 73",
+   "display_name": "Sector 73, F-297, Sector 73, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160055, India",
+   "boundingbox": [
+    "30.7093480",
+    "30.7256310",
+    "76.6897137",
+    "76.7078053"
+   ]
+  }
+ ],
+ "Phase 11, Mohali": [
+  {
+   "place_id": 421067794,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 125904109,
+   "lat": "30.6908804",
+   "lon": "76.7114879",
+   "class": "place",
+   "type": "city",
+   "place_rank": 16,
+   "importance": 0.47334347766189616,
+   "addresstype": "city",
+   "name": "Mohali",
+   "display_name": "Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140062, India",
+   "boundingbox": [
+    "30.5308804",
+    "30.8508804",
+    "76.5514879",
+    "76.8714879"
+   ]
+  }
+ ],
+ "Jagatpura, Chandigarh": [],
+ "Transport Chowk, Chandigarh": [],
+ "Rock Garden of Chandigarh": [],
+ "Bird Park, Chandigarh": [
+  {
+   "place_id": 244834428,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1284450692,
+   "lat": "30.7506232",
+   "lon": "76.8116146",
+   "class": "tourism",
+   "type": "zoo",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "tourism",
+   "name": "Bird Park",
+   "display_name": "Bird Park, Uttar Marg, Sector 5, Ward 1, Chandigarh, 160001, India",
+   "boundingbox": [
+    "30.7488067",
+    "30.7524787",
+    "76.8101916",
+    "76.8132734"
+   ]
+  }
+ ],
+ "Sukhna Lake, Chandigarh": [
+  {
+   "place_id": 242477678,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 8421510,
+   "lat": "30.7419776",
+   "lon": "76.8176747",
+   "class": "water",
+   "type": "lake",
+   "place_rank": 20,
+   "importance": 0.23648094285300414,
+   "addresstype": "lake",
+   "name": "Sukhna Lake",
+   "display_name": "Sukhna Lake, Ward 1, Kishangarh, Chandigarh, India",
+   "boundingbox": [
+    "30.7361276",
+    "30.7478982",
+    "76.8099330",
+    "76.8329964"
+   ]
+  }
+ ],
+ "Matka Chowk, Chandigarh": [
+  {
+   "place_id": 243827206,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1075484403,
+   "lat": "30.7467113",
+   "lon": "76.7856236",
+   "class": "junction",
+   "type": "roundabout",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "junction",
+   "name": "Matka Chowk",
+   "display_name": "Matka Chowk, Madhya Marg, Sector 16, Ward 3, Chandigarh, 160016, India",
+   "boundingbox": [
+    "30.7460851",
+    "30.7472302",
+    "76.7849571",
+    "76.7862910"
+   ]
+  }
+ ],
+ "Government Multi Specialty Hospital, Sector 16, Chandigarh": [],
+ "Naya Gaon, Punjab": [],
+ "Karoran, Punjab": [
+  {
+   "place_id": 244789754,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 62061382,
+   "lat": "30.7711085",
+   "lon": "76.7928093",
+   "class": "highway",
+   "type": "residential",
+   "place_rank": 26,
+   "importance": 0.053404129854276304,
+   "addresstype": "road",
+   "name": "Karoran",
+   "display_name": "Karoran, Nayagaon, Kharar Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160103, India",
+   "boundingbox": [
+    "30.7692337",
+    "30.7729959",
+    "76.7920594",
+    "76.7935265"
+   ]
+  }
+ ],
+ "Mullanpur Garibdass, Punjab": [],
+ "Omaxe New Chandigarh": [],
+ "Rani Majra, Punjab": [
+  {
+   "place_id": 244832158,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 5998436796,
+   "lat": "30.8074131",
+   "lon": "76.6994834",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.14670416800183103,
+   "addresstype": "village",
+   "name": "Rani Majra",
+   "display_name": "Rani Majra, Kharar Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140901, India",
+   "boundingbox": [
+    "30.7874131",
+    "30.8274131",
+    "76.6794834",
+    "76.7194834"
+   ]
+  }
+ ],
+ "Attawa, Chandigarh": [],
+ "UT Secretariat, Sector 9, Chandigarh": [],
+ "MLA Hostel, Sector 4, Chandigarh": [],
+ "Punjab and Haryana High Court, Chandigarh": [
+  {
+   "place_id": 243849596,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129779703,
+   "lat": "30.7573002",
+   "lon": "76.8067372",
+   "class": "amenity",
+   "type": "courthouse",
+   "place_rank": 30,
+   "importance": 0.4294998771350777,
+   "addresstype": "amenity",
+   "name": "Punjab and Haryana High Court",
+   "display_name": "Punjab and Haryana High Court, Jan Marg, Sector 1, Ward 1, Chandigarh, 160001, India",
+   "boundingbox": [
+    "30.7568668",
+    "30.7576794",
+    "76.8060024",
+    "76.8072155"
+   ]
+  }
+ ],
+ "Jayanti Majri, Punjab": [
+  {
+   "place_id": 242415214,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 557857824,
+   "lat": "30.8163788",
+   "lon": "76.7842983",
+   "class": "water",
+   "type": "reservoir",
+   "place_rank": 20,
+   "importance": 0.13337083466849772,
+   "addresstype": "reservoir",
+   "name": "Jayanti Majri Dam",
+   "display_name": "Jayanti Majri Dam, Majrian, Kharar Tahsil, Sahibzada Ajit Singh Nagar, Punjab, India",
+   "boundingbox": [
+    "30.8137919",
+    "30.8188412",
+    "76.7797244",
+    "76.7870897"
+   ]
+  }
+ ],
+ "Sector 2, Chandigarh": [
+  {
+   "place_id": 244156721,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7890826,
+   "lat": "30.7637889",
+   "lon": "76.7913651",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 2",
+   "display_name": "Sector 2, Ward 1, Chandigarh, India",
+   "boundingbox": [
+    "30.7599015",
+    "30.7670890",
+    "76.7873975",
+    "76.7953139"
+   ]
+  }
+ ],
+ "Sector 8, Panchkula": [
+  {
+   "place_id": 243772174,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15297367,
+   "lat": "30.7002851",
+   "lon": "76.8445269",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 8",
+   "display_name": "Sector 8, Panchkula, Haryana, India",
+   "boundingbox": [
+    "30.6966022",
+    "30.7033196",
+    "76.8387877",
+    "76.8502112"
+   ]
+  }
+ ],
+ "Sector 17, Panchkula": [
+  {
+   "place_id": 244291515,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15321875,
+   "lat": "30.6990450",
+   "lon": "76.8363924",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 17",
+   "display_name": "Sector 17, Panchkula, Haryana, India",
+   "boundingbox": [
+    "30.6953296",
+    "30.7026863",
+    "76.8315096",
+    "76.8401257"
+   ]
+  }
+ ],
+ "Sector 9, Panchkula": [
+  {
+   "place_id": 243832145,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15297372,
+   "lat": "30.6946814",
+   "lon": "76.8454891",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 9",
+   "display_name": "Sector 9, Panchkula, Haryana, 134108, India",
+   "boundingbox": [
+    "30.6907419",
+    "30.6982786",
+    "76.8401257",
+    "76.8508938"
+   ]
+  }
+ ],
+ "Sector 16, Panchkula": [
+  {
+   "place_id": 246847705,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15321863,
+   "lat": "30.6931797",
+   "lon": "76.8372290",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 16",
+   "display_name": "Sector 16, Panchkula, Haryana, India",
+   "boundingbox": [
+    "30.6878897",
+    "30.6966022",
+    "76.8318131",
+    "76.8420524"
+   ]
+  }
+ ],
+ "Sector 10, Panchkula": [
+  {
+   "place_id": 244082877,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15297380,
+   "lat": "30.6898511",
+   "lon": "76.8479088",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 10",
+   "display_name": "Sector 10, Panchkula, Haryana, 134119, India",
+   "boundingbox": [
+    "30.6846754",
+    "30.6939366",
+    "76.8420524",
+    "76.8530929"
+   ]
+  }
+ ],
+ "Sector 15, Panchkula": [
+  {
+   "place_id": 244850168,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15315682,
+   "lat": "30.6854618",
+   "lon": "76.8404094",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 15",
+   "display_name": "Sector 15, Panchkula, Haryana, 134113, India",
+   "boundingbox": [
+    "30.6788937",
+    "30.6907419",
+    "76.8342446",
+    "76.8464887"
+   ]
+  }
+ ],
+ "Sector 11, Panchkula": [
+  {
+   "place_id": 244652853,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15297395,
+   "lat": "30.6847538",
+   "lon": "76.8523970",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 11",
+   "display_name": "Sector 11, Panchkula, Haryana, India",
+   "boundingbox": [
+    "30.6799483",
+    "30.6902964",
+    "76.8464887",
+    "76.8578986"
+   ]
+  }
+ ],
+ "Sector 12, Panchkula": [
+  {
+   "place_id": 244940000,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15297422,
+   "lat": "30.6812724",
+   "lon": "76.8577882",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 12",
+   "display_name": "Sector 12, Maheshpur, Panchkula, Haryana, 134112, India",
+   "boundingbox": [
+    "30.6754346",
+    "30.6859531",
+    "76.8517063",
+    "76.8632487"
+   ]
+  },
+  {
+   "place_id": 244839795,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 10000277124,
+   "lat": "30.6802356",
+   "lon": "76.8522033",
+   "class": "highway",
+   "type": "bus_stop",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "highway",
+   "name": "Sector 12",
+   "display_name": "Sector 12, Bhagwan Valmiki Chowk, Sector 12, Ralli, Panchkula, Haryana, 134112, India",
+   "boundingbox": [
+    "30.6801856",
+    "30.6802856",
+    "76.8521533",
+    "76.8522533"
+   ]
+  }
+ ],
+ "Panchkula Bus Stand, Sector 5, Panchkula": [
+  {
+   "place_id": 243965233,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129878486,
+   "lat": "30.6918235",
+   "lon": "76.8530909",
+   "class": "amenity",
+   "type": "bus_station",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "amenity",
+   "name": "Panchkula Interstate Bus Stand",
+   "display_name": "Panchkula Interstate Bus Stand, Shahid Udham Singh Chowk, Sector 5, Panchkula, Haryana, 134119, India",
+   "boundingbox": [
+    "30.6908577",
+    "30.6931054",
+    "76.8518223",
+    "76.8541513"
+   ]
+  }
+ ],
+ "Sector 4, Panchkula": [
+  {
+   "place_id": 244143853,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15261436,
+   "lat": "30.6902599",
+   "lon": "76.8606995",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 4",
+   "display_name": "Sector 4, Haripur, Panchkula, Haryana, 134115, India",
+   "boundingbox": [
+    "30.6830751",
+    "30.6952786",
+    "76.8530929",
+    "76.8681254"
+   ]
+  }
+ ],
+ "Sector 21, Panchkula": [
+  {
+   "place_id": 245044621,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15094108,
+   "lat": "30.6764443",
+   "lon": "76.8644665",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 21",
+   "display_name": "Sector 21, Maheshpur, Panchkula, Haryana, India",
+   "boundingbox": [
+    "30.6681966",
+    "30.6846993",
+    "76.8559071",
+    "76.8757707"
+   ]
+  },
+  {
+   "place_id": 244008556,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 130282188,
+   "lat": "30.6762841",
+   "lon": "76.8641178",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08005485999847407,
+   "addresstype": "residential",
+   "name": "Sector 21",
+   "display_name": "Sector 21, Maheshpur, Panchkula, Haryana, India",
+   "boundingbox": [
+    "30.6680103",
+    "30.6844193",
+    "76.8562562",
+    "76.8716636"
+   ]
+  }
+ ],
+ "Sector 20, Panchkula": [
+  {
+   "place_id": 244625841,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 130282187,
+   "lat": "30.6655635",
+   "lon": "76.8572556",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08005485999847407,
+   "addresstype": "residential",
+   "name": "Sector 20",
+   "display_name": "Sector 20, Kundi, Panchkula, Haryana, 134117, India",
+   "boundingbox": [
+    "30.6585470",
+    "30.6735629",
+    "76.8497782",
+    "76.8651171"
+   ]
+  }
+ ],
+ "Dhakoli, Zirakpur": [
+  {
+   "place_id": 243955450,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 444099893,
+   "lat": "30.6617408",
+   "lon": "76.8381028",
+   "class": "building",
+   "type": "house",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "building",
+   "name": "16/ Mr Sohan Lal Sharma",
+   "display_name": "16/ Mr Sohan Lal Sharma, 16/ Gulmohar Complex,Dhakoli, Gulmohar Complex, Ananapuri Colony, Zirakpur, Dera Bassi Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140603, India",
+   "boundingbox": [
+    "30.6616617",
+    "30.6618148",
+    "76.8380106",
+    "76.8381935"
+   ]
+  },
+  {
+   "place_id": 243950390,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 444099248,
+   "lat": "30.6617929",
+   "lon": "76.8380450",
+   "class": "building",
+   "type": "house",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "building",
+   "name": "17 / Mr Baldev Raj Sond",
+   "display_name": "17 / Mr Baldev Raj Sond, 17/Gulmohar Complex,Dhakoli, Gulmohar Complex, Ananapuri Colony, Zirakpur, Dera Bassi Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140603, India",
+   "boundingbox": [
+    "30.6617192",
+    "30.6618654",
+    "76.8379584",
+    "76.8381329"
+   ]
+  },
+  {
+   "place_id": 243870564,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 7153345573,
+   "lat": "30.6544646",
+   "lon": "76.8436512",
+   "class": "healthcare",
+   "type": "centre",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "healthcare",
+   "name": "CHC Dhakoli",
+   "display_name": "CHC Dhakoli, Gulmohar Complex, Ananapuri Colony, Zirakpur, Dera Bassi Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160104, India",
+   "boundingbox": [
+    "30.6544146",
+    "30.6545146",
+    "76.8436012",
+    "76.8437012"
+   ]
+  }
+ ],
+ "Sector 48, Chandigarh": [
+  {
+   "place_id": 243846405,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7897142,
+   "lat": "30.6879366",
+   "lon": "76.7573244",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 48",
+   "display_name": "Sector 48, Ward 22, Chandigarh, India",
+   "boundingbox": [
+    "30.6843174",
+    "30.6949829",
+    "76.7493371",
+    "76.7666352"
+   ]
+  },
+  {
+   "place_id": 244001494,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129142047,
+   "lat": "30.6879872",
+   "lon": "76.7572589",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08007079652094298,
+   "addresstype": "residential",
+   "name": "Sector 48",
+   "display_name": "Sector 48, Ward 22, Chandigarh, India",
+   "boundingbox": [
+    "30.6818474",
+    "30.6941300",
+    "76.7495264",
+    "76.7649935"
+   ]
+  },
+  {
+   "place_id": 244018726,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 12223608,
+   "lat": "30.6741923",
+   "lon": "76.7909851",
+   "class": "aeroway",
+   "type": "aerodrome",
+   "place_rank": 30,
+   "importance": 0.45952151608557235,
+   "addresstype": "aeroway",
+   "name": "Chandigarh International Airport",
+   "display_name": "Chandigarh International Airport, NH5, Sector 48, Ward 22, Chandigarh, 160047, India",
+   "boundingbox": [
+    "30.6568629",
+    "30.6915566",
+    "76.7652445",
+    "76.8137589"
+   ]
+  }
+ ],
+ "Punjab Engineering College, Chandigarh": [
+  {
+   "place_id": 244156522,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129857583,
+   "lat": "30.7664869",
+   "lon": "76.7850788",
+   "class": "amenity",
+   "type": "college",
+   "place_rank": 30,
+   "importance": 0.31620884567581686,
+   "addresstype": "amenity",
+   "name": "Punjab Engineering College",
+   "display_name": "Punjab Engineering College, Vidya Marg, Sector 12, Ward 2, Chandigarh, 160012, India",
+   "boundingbox": [
+    "30.7623896",
+    "30.7707690",
+    "76.7794594",
+    "76.7916031"
+   ]
+  }
+ ],
+ "Poultry Farm Chowk, Chandigarh": [],
+ "Punjab Civil Secretariat, Chandigarh": [],
+ "Behlana, Chandigarh": [
+  {
+   "place_id": 243763568,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 2457887911,
+   "lat": "30.6779496",
+   "lon": "76.7994100",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.14673746318760963,
+   "addresstype": "village",
+   "name": "Behlana",
+   "display_name": "Behlana, Chandigarh, 160003, India",
+   "boundingbox": [
+    "30.6579496",
+    "30.6979496",
+    "76.7794100",
+    "76.8194100"
+   ]
+  }
+ ],
+ "Kaimbwala, Chandigarh": [
+  {
+   "place_id": 244205444,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 5998436435,
+   "lat": "30.7584694",
+   "lon": "76.8260622",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.14673746318760963,
+   "addresstype": "village",
+   "name": "Kaimbwala",
+   "display_name": "Kaimbwala, Chandigarh, 160001, India",
+   "boundingbox": [
+    "30.7384694",
+    "30.7784694",
+    "76.8060622",
+    "76.8460622"
+   ]
+  }
+ ],
+ "Kishangarh, Chandigarh": [
+  {
+   "place_id": 243954472,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 1819740738,
+   "lat": "30.7344276",
+   "lon": "76.8282124",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.14673746318760963,
+   "addresstype": "village",
+   "name": "Kishangarh",
+   "display_name": "Kishangarh, Chandigarh, 160101, India",
+   "boundingbox": [
+    "30.7144276",
+    "30.7544276",
+    "76.8082124",
+    "76.8482124"
+   ]
+  }
+ ],
+ "Rajiv Gandhi Chandigarh Technology Park": [],
+ "YPS Chowk, Mohali": [],
+ "Phase 7, Mohali": [
+  {
+   "place_id": 244344267,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 5201494823,
+   "lat": "30.7206417",
+   "lon": "76.7028864",
+   "class": "office",
+   "type": "company",
+   "place_rank": 30,
+   "importance": 5.353246356903971e-05,
+   "addresstype": "office",
+   "name": "ANESTHATIC GASES, C106, phase 7",
+   "display_name": "ANESTHATIC GASES, C106, phase 7, C106 Phase 7, edge 29, Sector 73, Sector 74, Sector 73, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160055, India",
+   "boundingbox": [
+    "30.7205917",
+    "30.7206917",
+    "76.7028364",
+    "76.7029364"
+   ]
+  }
+ ],
+ "Sohana, Mohali": [
+  {
+   "place_id": 244438841,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 393942825,
+   "lat": "30.6879593",
+   "lon": "76.7062746",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "village",
+   "name": "sohana",
+   "display_name": "sohana, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, India",
+   "boundingbox": [
+    "30.6847866",
+    "30.6912242",
+    "76.7026123",
+    "76.7096003"
+   ]
+  },
+  {
+   "place_id": 244233468,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 1323253937,
+   "lat": "30.6901520",
+   "lon": "76.7105757",
+   "class": "amenity",
+   "type": "place_of_worship",
+   "place_rank": 30,
+   "importance": 5.353246356903971e-05,
+   "addresstype": "amenity",
+   "name": "SOHANA GURUDWARA",
+   "display_name": "SOHANA GURUDWARA, SH12A, Sector 78, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140062, India",
+   "boundingbox": [
+    "30.6901020",
+    "30.6902020",
+    "76.7105257",
+    "76.7106257"
+   ]
+  },
+  {
+   "place_id": 241224239,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9857905217,
+   "lat": "30.6904159",
+   "lon": "76.7121523",
+   "class": "highway",
+   "type": "bus_stop",
+   "place_rank": 30,
+   "importance": 5.353246356903971e-05,
+   "addresstype": "highway",
+   "name": "Sohana Singh",
+   "display_name": "Sohana Singh, SH12A, Sector 78, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140062, India",
+   "boundingbox": [
+    "30.6903659",
+    "30.6904659",
+    "76.7121023",
+    "76.7122023"
+   ]
+  }
+ ],
+ "Lakhnaur, Mohali": [
+  {
+   "place_id": 243951067,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1313450281,
+   "lat": "30.6973083",
+   "lon": "76.6986631",
+   "class": "landuse",
+   "type": "religious",
+   "place_rank": 24,
+   "importance": 0.08005353246356905,
+   "addresstype": "religious",
+   "name": "Radha Soami Satsang Beas, Mohali",
+   "display_name": "Radha Soami Satsang Beas, Mohali, Sector 77, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160071, India",
+   "boundingbox": [
+    "30.6914803",
+    "30.7026040",
+    "76.6910065",
+    "76.7053474"
+   ]
+  },
+  {
+   "place_id": 243984701,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 1834036537,
+   "lat": "30.6935746",
+   "lon": "76.6860415",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "village",
+   "name": "Lakhnaur",
+   "display_name": "Lakhnaur, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160057, India",
+   "boundingbox": [
+    "30.6735746",
+    "30.7135746",
+    "76.6660415",
+    "76.7060415"
+   ]
+  },
+  {
+   "place_id": 428024249,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1542869750,
+   "lat": "30.7915336",
+   "lon": "76.5847362",
+   "class": "highway",
+   "type": "trunk",
+   "place_rank": 26,
+   "importance": 0.053370834668497714,
+   "addresstype": "road",
+   "name": "Mohali-Kharar-Kurali Bypass",
+   "display_name": "Mohali-Kharar-Kurali Bypass, Barauli, Kharar Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140413, India",
+   "boundingbox": [
+    "30.7883187",
+    "30.7947856",
+    "76.5837208",
+    "76.5858820"
+   ]
+  },
+  {
+   "place_id": 428024245,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1542869746,
+   "lat": "30.7866154",
+   "lon": "76.5864886",
+   "class": "highway",
+   "type": "trunk",
+   "place_rank": 26,
+   "importance": 0.053370834668497714,
+   "addresstype": "road",
+   "name": "Mohali-Kharar-Kurali Bypass",
+   "display_name": "Mohali-Kharar-Kurali Bypass, Hasanpur, Kharar Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140413, India",
+   "boundingbox": [
+    "30.7851491",
+    "30.7880780",
+    "76.5859643",
+    "76.5870024"
+   ]
+  },
+  {
+   "place_id": 428024170,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1484614027,
+   "lat": "30.8078164",
+   "lon": "76.5952637",
+   "class": "highway",
+   "type": "trunk",
+   "place_rank": 26,
+   "importance": 0.053370834668497714,
+   "addresstype": "road",
+   "name": "Mohali-Kharar-Kurali Bypass",
+   "display_name": "Mohali-Kharar-Kurali Bypass, Padiala, Kharar Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140104, India",
+   "boundingbox": [
+    "30.8076535",
+    "30.8079792",
+    "76.5950160",
+    "76.5955114"
+   ]
+  }
+ ],
+ "Landran, Punjab": [
+  {
+   "place_id": 244611288,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 426761633,
+   "lat": "30.6937417",
+   "lon": "76.6646779",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "village",
+   "name": "Landran",
+   "display_name": "Landran, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140307, India",
+   "boundingbox": [
+    "30.6737417",
+    "30.7137417",
+    "76.6446779",
+    "76.6846779"
+   ]
+  }
+ ],
+ "Chappar Chiri, Punjab": [
+  {
+   "place_id": 242451037,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 6059041699,
+   "lat": "30.7094915",
+   "lon": "76.6612351",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "village",
+   "name": "Chappar Chiri",
+   "display_name": "Chappar Chiri, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140307, India",
+   "boundingbox": [
+    "30.6894915",
+    "30.7294915",
+    "76.6412351",
+    "76.6812351"
+   ]
+  }
+ ],
+ "Sante Majra, Kharar": [],
+ "Fortis Hospital, Mohali": [
+  {
+   "place_id": 421076380,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 410543291,
+   "lat": "30.6947989",
+   "lon": "76.7310699",
+   "class": "amenity",
+   "type": "hospital",
+   "place_rank": 30,
+   "importance": 5.353246356903971e-05,
+   "addresstype": "amenity",
+   "name": "Fortis Hospital",
+   "display_name": "Fortis Hospital, SH12A, Sector 62, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160062, India",
+   "boundingbox": [
+    "30.6935956",
+    "30.6960010",
+    "76.7294485",
+    "76.7327123"
+   ]
+  },
+  {
+   "place_id": 243763245,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 8261156234,
+   "lat": "30.6944377",
+   "lon": "76.7309690",
+   "class": "amenity",
+   "type": "clinic",
+   "place_rank": 30,
+   "importance": 5.353246356903971e-05,
+   "addresstype": "amenity",
+   "name": "Dr. Deepak Joshi/ Spine Surgeon",
+   "display_name": "Dr. Deepak Joshi/ Spine Surgeon, Fortis Hospital,, SH12A, Sector 62, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160062, India",
+   "boundingbox": [
+    "30.6943877",
+    "30.6944877",
+    "76.7309190",
+    "76.7310190"
+   ]
+  }
+ ],
+ "Kumbra, Mohali": [
+  {
+   "place_id": 244406393,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129020019,
+   "lat": "30.6881526",
+   "lon": "76.7256240",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "village",
+   "name": "Kumbra",
+   "display_name": "Kumbra, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, India",
+   "boundingbox": [
+    "30.6861970",
+    "30.6902159",
+    "76.7235088",
+    "76.7279064"
+   ]
+  },
+  {
+   "place_id": 244940015,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 8166350966,
+   "lat": "30.6883771",
+   "lon": "76.7245339",
+   "class": "healthcare",
+   "type": "centre",
+   "place_rank": 30,
+   "importance": 5.353246356903971e-05,
+   "addresstype": "healthcare",
+   "name": "SubCentre, Kumbra",
+   "display_name": "SubCentre, Kumbra, SH12A, Sector 69, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160062, India",
+   "boundingbox": [
+    "30.6883271",
+    "30.6884271",
+    "76.7244839",
+    "76.7245839"
+   ]
+  }
+ ],
+ "Sector 69, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 243860024,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489905,
+   "lat": "30.6915855",
+   "lon": "76.7199325",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 69",
+   "display_name": "Sector 69, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140062, India",
+   "boundingbox": [
+    "30.6715855",
+    "30.7115855",
+    "76.6999325",
+    "76.7399325"
+   ]
+  },
+  {
+   "place_id": 243886877,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129020024,
+   "lat": "30.6916911",
+   "lon": "76.7202560",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08005353246356905,
+   "addresstype": "residential",
+   "name": "Sector 69",
+   "display_name": "Sector 69, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140062, India",
+   "boundingbox": [
+    "30.6850361",
+    "30.6979937",
+    "76.7121997",
+    "76.7281625"
+   ]
+  }
+ ],
+ "Khuda Ali Sher, Chandigarh": [
+  {
+   "place_id": 242411924,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 5998436866,
+   "lat": "30.7750633",
+   "lon": "76.8120289",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.14670416800183103,
+   "addresstype": "village",
+   "name": "Khuda Ali Sher",
+   "display_name": "Khuda Ali Sher, Chandigarh, 160103, India",
+   "boundingbox": [
+    "30.7550633",
+    "30.7950633",
+    "76.7920289",
+    "76.8320289"
+   ]
+  }
+ ],
+ "Airport Road Chowk, Chandigarh": [],
+ "Zirakpur, Punjab": [
+  {
+   "place_id": 244461075,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 2914440107,
+   "lat": "30.6557257",
+   "lon": "76.8200648",
+   "class": "place",
+   "type": "town",
+   "place_rank": 18,
+   "importance": 0.2869812649426343,
+   "addresstype": "town",
+   "name": "Zirakpur",
+   "display_name": "Zirakpur, Dera Bassi Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140603, India",
+   "boundingbox": [
+    "30.6157257",
+    "30.6957257",
+    "76.7800648",
+    "76.8600648"
+   ]
+  }
+ ],
+ "Command Hospital Chandimandir": [],
+ "Majri Chowk, Panchkula": [
+  {
+   "place_id": 244093154,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1127667561,
+   "lat": "30.6997828",
+   "lon": "76.8716654",
+   "class": "junction",
+   "type": "yes",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "junction",
+   "name": "Majri Chowk",
+   "display_name": "Majri Chowk, NH7, Sector 3, Panchkula, Haryana, 134115, India",
+   "boundingbox": [
+    "30.6994912",
+    "30.7000742",
+    "76.8713064",
+    "76.8720244"
+   ]
+  },
+  {
+   "place_id": 244938684,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 10593821463,
+   "lat": "30.6994773",
+   "lon": "76.8732761",
+   "class": "highway",
+   "type": "bus_stop",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "highway",
+   "name": "Majri Chowk",
+   "display_name": "Majri Chowk, NH7, Sector 3, Panchkula, Haryana, 134115, India",
+   "boundingbox": [
+    "30.6994273",
+    "30.6995273",
+    "76.8732261",
+    "76.8733261"
+   ]
+  },
+  {
+   "place_id": 245008055,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 10593821464,
+   "lat": "30.6998288",
+   "lon": "76.8738318",
+   "class": "highway",
+   "type": "bus_stop",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "highway",
+   "name": "Majri Chowk",
+   "display_name": "Majri Chowk, NH7, Panchkula, Haryana, 134115, India",
+   "boundingbox": [
+    "30.6997788",
+    "30.6998788",
+    "76.8737818",
+    "76.8738818"
+   ]
+  }
+ ],
+ "Gurudwara Nada Sahib, Panchkula": [],
+ "Kisan Bhawan, Sector 35, Chandigarh": [
+  {
+   "place_id": 242367293,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 838474424,
+   "lat": "30.7318949",
+   "lon": "76.7628591",
+   "class": "building",
+   "type": "yes",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "building",
+   "name": "kisan bhawan",
+   "display_name": "kisan bhawan, Lane 9/g, Sector 35, Ward 15, Chandigarh, 160035, India",
+   "boundingbox": [
+    "30.7316027",
+    "30.7322301",
+    "76.7624025",
+    "76.7632387"
+   ]
+  }
+ ],
+ "Fun Republic, Manimajra, Chandigarh": [],
+ "Chandimandir Cantonment": [
+  {
+   "place_id": 244082475,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 17394914,
+   "lat": "30.7262897",
+   "lon": "76.8775801",
+   "class": "landuse",
+   "type": "military",
+   "place_rank": 24,
+   "importance": 0.21822785325192331,
+   "addresstype": "military",
+   "name": "Chandimandir Cantonment",
+   "display_name": "Chandimandir Cantonment, Panchkula, Haryana, 134107, India",
+   "boundingbox": [
+    "30.7066366",
+    "30.7458838",
+    "76.8497867",
+    "76.9013501"
+   ]
+  }
+ ],
+ "Ramgarh, Panchkula": [
+  {
+   "place_id": 244283359,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1023896043,
+   "lat": "30.6591002",
+   "lon": "76.9140278",
+   "class": "landuse",
+   "type": "military",
+   "place_rank": 24,
+   "importance": 0.09078915819201436,
+   "addresstype": "military",
+   "name": "Ramgarh Test Range",
+   "display_name": "Ramgarh Test Range, Billa, Barwala, Panchkula, Haryana, India",
+   "boundingbox": [
+    "30.6337754",
+    "30.6862765",
+    "76.8876428",
+    "76.9382280"
+   ]
+  }
+ ],
+ "Old Panchkula": [
+  {
+   "place_id": 242457332,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 103164971,
+   "lat": "30.8281413",
+   "lon": "76.9300674",
+   "class": "highway",
+   "type": "primary",
+   "place_rank": 26,
+   "importance": 0.05338056076905467,
+   "addresstype": "road",
+   "name": "old NH22",
+   "display_name": "old NH22, Kalka, Panchkula, Haryana, 133302, India",
+   "boundingbox": [
+    "30.8245236",
+    "30.8330054",
+    "76.9240639",
+    "76.9352678"
+   ]
+  },
+  {
+   "place_id": 243795078,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 227364091,
+   "lat": "30.8055677",
+   "lon": "76.9161558",
+   "class": "highway",
+   "type": "primary",
+   "place_rank": 26,
+   "importance": 0.05338056076905467,
+   "addresstype": "road",
+   "name": "old NH22",
+   "display_name": "old NH22, Pinjore, Kalka, Panchkula, Haryana, 134102, India",
+   "boundingbox": [
+    "30.7991293",
+    "30.8122580",
+    "76.9147255",
+    "76.9175198"
+   ]
+  }
+ ],
+ "Mubarakpur, Dera Bassi": [],
+ "Dera Bassi, Punjab": [
+  {
+   "place_id": 243792285,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 1435993201,
+   "lat": "30.5882408",
+   "lon": "76.8438542",
+   "class": "place",
+   "type": "town",
+   "place_rank": 18,
+   "importance": 0.16004000076295108,
+   "addresstype": "town",
+   "name": "Dera Bassi",
+   "display_name": "Dera Bassi, Dera Bassi Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140412, India",
+   "boundingbox": [
+    "30.5482408",
+    "30.6282408",
+    "76.8038542",
+    "76.8838542"
+   ]
+  }
+ ],
+ "Sector 24, Panchkula": [
+  {
+   "place_id": 244350769,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15088914,
+   "lat": "30.6681221",
+   "lon": "76.8791509",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 24",
+   "display_name": "Sector 24, Panchkula, Haryana, India",
+   "boundingbox": [
+    "30.6662575",
+    "30.6731876",
+    "76.8761908",
+    "76.8810517"
+   ]
+  },
+  {
+   "place_id": 244229219,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 11088452432,
+   "lat": "30.6667253",
+   "lon": "76.8808476",
+   "class": "highway",
+   "type": "bus_stop",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "highway",
+   "name": "Sector 24",
+   "display_name": "Sector 24, Ambedkar Chowk, Sector 24, Panchkula, Haryana, 134116, India",
+   "boundingbox": [
+    "30.6666753",
+    "30.6667753",
+    "76.8807976",
+    "76.8808976"
+   ]
+  }
+ ],
+ "Sector 25, Panchkula": [
+  {
+   "place_id": 244086549,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15088831,
+   "lat": "30.6708336",
+   "lon": "76.8851526",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 25",
+   "display_name": "Sector 25, Panchkula, Haryana, 134116, India",
+   "boundingbox": [
+    "30.6660650",
+    "30.6760145",
+    "76.8799480",
+    "76.8900114"
+   ]
+  },
+  {
+   "place_id": 244958553,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 11088452425,
+   "lat": "30.6699904",
+   "lon": "76.8847331",
+   "class": "highway",
+   "type": "bus_stop",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "highway",
+   "name": "Sector 25",
+   "display_name": "Sector 25, Ambedkar Chowk, Sector 25, Panchkula, Haryana, 134116, India",
+   "boundingbox": [
+    "30.6699404",
+    "30.6700404",
+    "76.8846831",
+    "76.8847831"
+   ]
+  }
+ ],
+ "Sector 26, Panchkula": [
+  {
+   "place_id": 244036954,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15088869,
+   "lat": "30.6614182",
+   "lon": "76.8818533",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 26",
+   "display_name": "Sector 26, Panchkula, Haryana, India",
+   "boundingbox": [
+    "30.6571696",
+    "30.6663970",
+    "76.8759161",
+    "76.8900161"
+   ]
+  }
+ ],
+ "Sector 27, Panchkula": [
+  {
+   "place_id": 241785034,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15088916,
+   "lat": "30.6542025",
+   "lon": "76.8806798",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 27",
+   "display_name": "Sector 27, Panchkula, Haryana, India",
+   "boundingbox": [
+    "30.6505755",
+    "30.6573052",
+    "76.8736695",
+    "76.8877037"
+   ]
+  }
+ ],
+ "Sector 28, Panchkula": [
+  {
+   "place_id": 243945535,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 15088918,
+   "lat": "30.6476774",
+   "lon": "76.8789608",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.1467215266651407,
+   "addresstype": "suburb",
+   "name": "Sector 28",
+   "display_name": "Sector 28, Panchkula, Haryana, India",
+   "boundingbox": [
+    "30.6420444",
+    "30.6507324",
+    "76.8734335",
+    "76.8856355"
+   ]
+  }
+ ],
+ "Piccadilly Chowk, Chandigarh": [],
+ "Bhankharpur, Punjab": [],
+ "Furniture Market, Mohali": [],
+ "Phase 2, Mohali": [
+  {
+   "place_id": 421842542,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 125904109,
+   "lat": "30.6908804",
+   "lon": "76.7114879",
+   "class": "place",
+   "type": "city",
+   "place_rank": 16,
+   "importance": 0.47334347766189616,
+   "addresstype": "city",
+   "name": "Mohali",
+   "display_name": "Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140062, India",
+   "boundingbox": [
+    "30.5308804",
+    "30.8508804",
+    "76.5514879",
+    "76.8714879"
+   ]
+  }
+ ],
+ "Balongi, Mohali": [],
+ "Daun, Mohali": [],
+ "Desu Majra, Kharar": [],
+ "Kharar Bus Stand": [
+  {
+   "place_id": 244943463,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 1323302644,
+   "lat": "30.6583627",
+   "lon": "76.5644216",
+   "class": "highway",
+   "type": "bus_stop",
+   "place_rank": 30,
+   "importance": 3.750133516437045e-05,
+   "addresstype": "highway",
+   "name": "BUS STAND CHUNNI",
+   "display_name": "BUS STAND CHUNNI, NH205AG, Chunni Kalan, Basian, Bassi Pathana Tahsil, Fatehgarh Sahib, Punjab, India",
+   "boundingbox": [
+    "30.6583127",
+    "30.6584127",
+    "76.5643716",
+    "76.5644716"
+   ]
+  }
+ ],
+ "Sector 123, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 245001956,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054502266,
+   "lat": "30.6986523",
+   "lon": "76.7301679",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 62",
+   "display_name": "Sector 62, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160062, India",
+   "boundingbox": [
+    "30.6786523",
+    "30.7186523",
+    "76.7101679",
+    "76.7501679"
+   ]
+  },
+  {
+   "place_id": 245017382,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489882,
+   "lat": "30.6318563",
+   "lon": "76.7158126",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 101A",
+   "display_name": "Sector 101A, Chao Majra, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6118563",
+    "30.6518563",
+    "76.6958126",
+    "76.7358126"
+   ]
+  },
+  {
+   "place_id": 242675321,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489895,
+   "lat": "30.6371736",
+   "lon": "76.7316055",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 83A",
+   "display_name": "Sector 83A, Saini Majra, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6171736",
+    "30.6571736",
+    "76.7116055",
+    "76.7516055"
+   ]
+  },
+  {
+   "place_id": 243949749,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489864,
+   "lat": "30.6845366",
+   "lon": "76.6611814",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 112",
+   "display_name": "Sector 112, Landran, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140307, India",
+   "boundingbox": [
+    "30.6645366",
+    "30.7045366",
+    "76.6411814",
+    "76.6811814"
+   ]
+  },
+  {
+   "place_id": 244504412,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489897,
+   "lat": "30.6549697",
+   "lon": "76.7329788",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 82",
+   "display_name": "Sector 82, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6349697",
+    "30.6749697",
+    "76.7129788",
+    "76.7529788"
+   ]
+  }
+ ],
+ "Sector 123, Mohali": [
+  {
+   "place_id": 242457972,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054502266,
+   "lat": "30.6986523",
+   "lon": "76.7301679",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 62",
+   "display_name": "Sector 62, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160062, India",
+   "boundingbox": [
+    "30.6786523",
+    "30.7186523",
+    "76.7101679",
+    "76.7501679"
+   ]
+  },
+  {
+   "place_id": 242465703,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489891,
+   "lat": "30.6709170",
+   "lon": "76.7016077",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 86",
+   "display_name": "Sector 86, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140308, India",
+   "boundingbox": [
+    "30.6509170",
+    "30.6909170",
+    "76.6816077",
+    "76.7216077"
+   ]
+  },
+  {
+   "place_id": 242460579,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489880,
+   "lat": "30.6637559",
+   "lon": "76.6904925",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 98",
+   "display_name": "Sector 98, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140308, India",
+   "boundingbox": [
+    "30.6437559",
+    "30.6837559",
+    "76.6704925",
+    "76.7104925"
+   ]
+  },
+  {
+   "place_id": 242474654,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489893,
+   "lat": "30.6573694",
+   "lon": "76.7119932",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 84",
+   "display_name": "Sector 84, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140308, India",
+   "boundingbox": [
+    "30.6373694",
+    "30.6773694",
+    "76.6919932",
+    "76.7319932"
+   ]
+  },
+  {
+   "place_id": 242463256,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489890,
+   "lat": "30.6767489",
+   "lon": "76.6968870",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 87",
+   "display_name": "Sector 87, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140308, India",
+   "boundingbox": [
+    "30.6567489",
+    "30.6967489",
+    "76.6768870",
+    "76.7168870"
+   ]
+  }
+ ],
+ "Sector 123, Chandigarh": [
+  {
+   "place_id": 244117984,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896575,
+   "lat": "30.7190935",
+   "lon": "76.7487931",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 43",
+   "display_name": "Sector 43, Ward 12, Atawa, Chandigarh, 160043, India",
+   "boundingbox": [
+    "30.7122332",
+    "30.7259207",
+    "76.7404063",
+    "76.7571415"
+   ]
+  },
+  {
+   "place_id": 242477190,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7893056,
+   "lat": "30.7400652",
+   "lon": "76.7825889",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 17",
+   "display_name": "Sector 17, Ward 3, Chandigarh, India",
+   "boundingbox": [
+    "30.7334212",
+    "30.7466288",
+    "76.7742476",
+    "76.7909706"
+   ]
+  },
+  {
+   "place_id": 245888621,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7894049,
+   "lat": "30.7156808",
+   "lon": "76.7869663",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 30",
+   "display_name": "Sector 30, Ward 18, Chandigarh, India",
+   "boundingbox": [
+    "30.7090769",
+    "30.7219709",
+    "76.7784813",
+    "76.7954748"
+   ]
+  },
+  {
+   "place_id": 253476972,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7894060,
+   "lat": "30.7141312",
+   "lon": "76.7701435",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 33",
+   "display_name": "Sector 33, Ward 16, Chandigarh, India",
+   "boundingbox": [
+    "30.7077510",
+    "30.7205252",
+    "76.7621315",
+    "76.7784813"
+   ]
+  },
+  {
+   "place_id": 242472743,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7896579,
+   "lat": "30.7385345",
+   "lon": "76.7503381",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 37",
+   "display_name": "Sector 37, Ward 8, Chandigarh, India",
+   "boundingbox": [
+    "30.7319780",
+    "30.7450896",
+    "76.7424013",
+    "76.7582122"
+   ]
+  }
+ ],
+ "Sector 52, Chandigarh": [
+  {
+   "place_id": 242626712,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7897148,
+   "lat": "30.7121667",
+   "lon": "76.7372512",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 52",
+   "display_name": "Sector 52, Ward 12, Kajheri, Chandigarh, India",
+   "boundingbox": [
+    "30.7059751",
+    "30.7189033",
+    "76.7294153",
+    "76.7458806"
+   ]
+  },
+  {
+   "place_id": 244237054,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129142058,
+   "lat": "30.7121267",
+   "lon": "76.7375355",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08007079652094298,
+   "addresstype": "residential",
+   "name": "Sector 52",
+   "display_name": "Sector 52, Ward 12, Kajheri, Chandigarh, India",
+   "boundingbox": [
+    "30.7057490",
+    "30.7185578",
+    "76.7294607",
+    "76.7452545"
+   ]
+  }
+ ],
+ "Sector 61, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 243450931,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054502267,
+   "lat": "30.7050453",
+   "lon": "76.7260373",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 61",
+   "display_name": "Sector 61, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160061, India",
+   "boundingbox": [
+    "30.6850453",
+    "30.7250453",
+    "76.7060373",
+    "76.7460373"
+   ]
+  }
+ ],
+ "Sector 70, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 244840119,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489904,
+   "lat": "30.6975638",
+   "lon": "76.7148685",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 70",
+   "display_name": "Sector 70, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160070, India",
+   "boundingbox": [
+    "30.6775638",
+    "30.7175638",
+    "76.6948685",
+    "76.7348685"
+   ]
+  }
+ ],
+ "Sector 79, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 244824876,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054502260,
+   "lat": "30.6781330",
+   "lon": "76.7131412",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 79",
+   "display_name": "Sector 79, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140308, India",
+   "boundingbox": [
+    "30.6581330",
+    "30.6981330",
+    "76.6931412",
+    "76.7331412"
+   ]
+  },
+  {
+   "place_id": 244903979,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 732509609,
+   "lat": "30.6781572",
+   "lon": "76.7129661",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08005353246356905,
+   "addresstype": "residential",
+   "name": "Sector 79",
+   "display_name": "Sector 79, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140308, India",
+   "boundingbox": [
+    "30.6715427",
+    "30.6847823",
+    "76.7045966",
+    "76.7213285"
+   ]
+  }
+ ],
+ "IISER Mohali": [
+  {
+   "place_id": 245014478,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 760710072,
+   "lat": "30.6628687",
+   "lon": "76.7276402",
+   "class": "amenity",
+   "type": "university",
+   "place_rank": 30,
+   "importance": 0.30663527500158994,
+   "addresstype": "amenity",
+   "name": "IISER Mohali",
+   "display_name": "IISER Mohali, IISER Mohali Main road (out), Sector 81, Chilla, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6592429",
+    "30.6670111",
+    "76.7202920",
+    "76.7337406"
+   ]
+  }
+ ],
+ "Sector 82, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 241227185,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 9054489897,
+   "lat": "30.6549697",
+   "lon": "76.7329788",
+   "class": "place",
+   "type": "suburb",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "suburb",
+   "name": "Sector 82",
+   "display_name": "Sector 82, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6349697",
+    "30.6749697",
+    "76.7129788",
+    "76.7529788"
+   ]
+  }
+ ],
+ "Aerocity, Mohali": [
+  {
+   "place_id": 243986496,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 822193669,
+   "lat": "30.6462439",
+   "lon": "76.7535538",
+   "class": "leisure",
+   "type": "park",
+   "place_rank": 24,
+   "importance": 0.08005353246356905,
+   "addresstype": "park",
+   "name": "Park 10 in C-Block of Aerocity",
+   "display_name": "Park 10 in C-Block of Aerocity, Sector 66B, Rurka, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, India",
+   "boundingbox": [
+    "30.6457429",
+    "30.6467396",
+    "76.7528969",
+    "76.7542187"
+   ]
+  }
+ ],
+ "Amity University Punjab, Mohali": [],
+ "Plaksha University": [
+  {
+   "place_id": 243497993,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 12752164667,
+   "lat": "30.6316513",
+   "lon": "76.7260704",
+   "class": "amenity",
+   "type": "university",
+   "place_rank": 30,
+   "importance": 5.353246356903971e-05,
+   "addresstype": "amenity",
+   "name": "Plaksha University",
+   "display_name": "Plaksha University, Airport Rd, Sector 82A, Matran, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6316013",
+    "30.6317013",
+    "76.7260204",
+    "76.7261204"
+   ]
+  }
+ ],
+ "Tangori, Punjab": [],
+ "Sahibzada Ajit Singh Nagar railway station": [
+  {
+   "place_id": 243941959,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 1424479531,
+   "lat": "30.6659824",
+   "lon": "76.7396095",
+   "class": "railway",
+   "type": "station",
+   "place_rank": 30,
+   "importance": 0.2782362227145218,
+   "addresstype": "railway",
+   "name": "Sahibzada Ajitsingh Nagar (Mohali)",
+   "display_name": "Sahibzada Ajitsingh Nagar (Mohali), Airport Road, Sector 82, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6609824",
+    "30.6709824",
+    "76.7346095",
+    "76.7446095"
+   ]
+  }
+ ],
+ "Chawla Chowk, Mohali": [],
+ "Sector 61, Chandigarh": [
+  {
+   "place_id": 243691520,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7897147,
+   "lat": "30.7088948",
+   "lon": "76.7307604",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.13340412985427633,
+   "addresstype": "suburb",
+   "name": "Sector 61",
+   "display_name": "Sector 61, Ward 12, Kajheri, Chandigarh, India",
+   "boundingbox": [
+    "30.7065989",
+    "30.7113971",
+    "76.7293015",
+    "76.7334603"
+   ]
+  }
+ ],
+ "Parol, Punjab": [
+  {
+   "place_id": 244233754,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 5998436727,
+   "lat": "30.8322441",
+   "lon": "76.7390299",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.14670416800183103,
+   "addresstype": "village",
+   "name": "Parol",
+   "display_name": "Parol, Kharar Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140901, India",
+   "boundingbox": [
+    "30.8122441",
+    "30.8522441",
+    "76.7190299",
+    "76.7590299"
+   ]
+  }
+ ],
+ "Boothgarh, Punjab": [
+  {
+   "place_id": 243960928,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 7153345565,
+   "lat": "30.8343856",
+   "lon": "76.6867849",
+   "class": "healthcare",
+   "type": "centre",
+   "place_rank": 30,
+   "importance": 3.750133516437045e-05,
+   "addresstype": "healthcare",
+   "name": "PHC BOOTHGARH",
+   "display_name": "PHC BOOTHGARH, MDR31, Sultanpur, Buthgarh, Kharar Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140110, India",
+   "boundingbox": [
+    "30.8343356",
+    "30.8344356",
+    "76.6867349",
+    "76.6868349"
+   ]
+  }
+ ],
+ "Khizrabad, Punjab": [
+  {
+   "place_id": 242787111,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 6052708687,
+   "lat": "30.8783234",
+   "lon": "76.6568899",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.14670416800183103,
+   "addresstype": "village",
+   "name": "Khizrabad",
+   "display_name": "Khizrabad, Kharar Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140109, India",
+   "boundingbox": [
+    "30.8583234",
+    "30.8983234",
+    "76.6368899",
+    "76.6768899"
+   ]
+  }
+ ],
+ "Saketri, Panchkula": [
+  {
+   "place_id": 244083631,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 279584848,
+   "lat": "30.7284313",
+   "lon": "76.8592371",
+   "class": "amenity",
+   "type": "place_of_worship",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "amenity",
+   "name": "VMRK Branch, Saketri",
+   "display_name": "VMRK Branch, Saketri, Tarapore Setu, Panchkula, Haryana, 134114, India",
+   "boundingbox": [
+    "30.7279378",
+    "30.7288486",
+    "76.8587393",
+    "76.8597331"
+   ]
+  }
+ ],
+ "Mahendra Chaudhary Zoological Park, Chhatbir": [],
+ "Mauli Jagran, Chandigarh": [
+  {
+   "place_id": 244313862,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 7111403692,
+   "lat": "30.6970270",
+   "lon": "76.8290060",
+   "class": "amenity",
+   "type": "clinic",
+   "place_rank": 30,
+   "importance": 7.079652094296204e-05,
+   "addresstype": "amenity",
+   "name": "Civil Dispensary Mauli Jagran",
+   "display_name": "Civil Dispensary Mauli Jagran, Railway Station Road, Ward 24, Daria, Chandigarh, 160102, India",
+   "boundingbox": [
+    "30.6969770",
+    "30.6970770",
+    "76.8289560",
+    "76.8290560"
+   ]
+  }
+ ],
+ "Baltana, Zirakpur": [
+  {
+   "place_id": 417691648,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1514265954,
+   "lat": "30.6606533",
+   "lon": "76.8281038",
+   "class": "building",
+   "type": "commercial",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "building",
+   "name": "Homziio",
+   "display_name": "Homziio, SCO 7 Kalgidhar enclave baltana sec 19, NH5;NH7, Ananapuri Colony, Zirakpur, Dera Bassi Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140603, India",
+   "boundingbox": [
+    "30.6606277",
+    "30.6606832",
+    "76.8280554",
+    "76.8281523"
+   ]
+  }
+ ],
+ "Manauli, Mohali": [
+  {
+   "place_id": 249937501,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 636508108,
+   "lat": "30.6437071",
+   "lon": "76.7242328",
+   "class": "historic",
+   "type": "fort",
+   "place_rank": 30,
+   "importance": 0.10540294855860563,
+   "addresstype": "historic",
+   "name": "Manauli Fort",
+   "display_name": "Manauli Fort, Airport Rd, Sector 82, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6432286",
+    "30.6441428",
+    "76.7236862",
+    "76.7247783"
+   ]
+  },
+  {
+   "place_id": 243999499,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 3742421762,
+   "lat": "30.6434815",
+   "lon": "76.7220116",
+   "class": "place",
+   "type": "village",
+   "place_rank": 19,
+   "importance": 0.1467201991302357,
+   "addresstype": "village",
+   "name": "Manauli",
+   "display_name": "Manauli, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6234815",
+    "30.6634815",
+    "76.7020116",
+    "76.7420116"
+   ]
+  }
+ ],
+ "Sector 65, Sahibzada Ajit Singh Nagar": [
+  {
+   "place_id": 244583667,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129134328,
+   "lat": "30.6812588",
+   "lon": "76.7463589",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08005353246356905,
+   "addresstype": "residential",
+   "name": "Sector 65",
+   "display_name": "Sector 65, Sec 65, Sector 64, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160062, India",
+   "boundingbox": [
+    "30.6749040",
+    "30.6873504",
+    "76.7384297",
+    "76.7540248"
+   ]
+  }
+ ],
+ "Industrial Area Phase 1, Chandigarh": [
+  {
+   "place_id": 244997732,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129573773,
+   "lat": "30.7054046",
+   "lon": "76.8009569",
+   "class": "landuse",
+   "type": "industrial",
+   "place_rank": 24,
+   "importance": 0.08007079652094298,
+   "addresstype": "industrial",
+   "name": "Phase 1",
+   "display_name": "Phase 1, Ward 20, Chandigarh, 160002, India",
+   "boundingbox": [
+    "30.6917474",
+    "30.7173233",
+    "76.7907977",
+    "76.8177008"
+   ]
+  }
+ ],
+ "Bhabat, Zirakpur": [
+  {
+   "place_id": 244023974,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 12596245432,
+   "lat": "30.6424349",
+   "lon": "76.8266751",
+   "class": "shop",
+   "type": "car_repair",
+   "place_rank": 30,
+   "importance": 5.48599984740523e-05,
+   "addresstype": "shop",
+   "name": "Zirakpur Service Station",
+   "display_name": "Zirakpur Service Station, Gazipur Road, Zirakpur, Dera Bassi Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140603, India",
+   "boundingbox": [
+    "30.6423849",
+    "30.6424849",
+    "76.8266251",
+    "76.8267251"
+   ]
+  }
+ ],
+ "Sector 53, Chandigarh": [
+  {
+   "place_id": 244400830,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7897152,
+   "lat": "30.7192448",
+   "lon": "76.7321463",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 53",
+   "display_name": "Sector 53, Ward 11, Kajheri, Chandigarh, India",
+   "boundingbox": [
+    "30.7129383",
+    "30.7273641",
+    "76.7288683",
+    "76.7404063"
+   ]
+  },
+  {
+   "place_id": 244720567,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129148248,
+   "lat": "30.7199626",
+   "lon": "76.7338013",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08007079652094298,
+   "addresstype": "residential",
+   "name": "Sector 53",
+   "display_name": "Sector 53, Ward 11, Kajheri, Chandigarh, India",
+   "boundingbox": [
+    "30.7120087",
+    "30.7269823",
+    "76.7245442",
+    "76.7400014"
+   ]
+  }
+ ],
+ "Sector 55, Chandigarh": [
+  {
+   "place_id": 243944525,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7897150,
+   "lat": "30.7300807",
+   "lon": "76.7228290",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 55",
+   "display_name": "Sector 55, Ward 11, Palsora, Chandigarh, India",
+   "boundingbox": [
+    "30.7273181",
+    "30.7371248",
+    "76.7190361",
+    "76.7310939"
+   ]
+  },
+  {
+   "place_id": 249926885,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129167817,
+   "lat": "30.7301331",
+   "lon": "76.7223731",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08007079652094298,
+   "addresstype": "residential",
+   "name": "Sector 55",
+   "display_name": "Sector 55, Ward 11, Palsora, Chandigarh, India",
+   "boundingbox": [
+    "30.7238370",
+    "30.7367301",
+    "76.7151049",
+    "76.7307299"
+   ]
+  }
+ ],
+ "Sector 56, Chandigarh": [
+  {
+   "place_id": 243791372,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7897149,
+   "lat": "30.7366451",
+   "lon": "76.7188952",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 56",
+   "display_name": "Sector 56, Ward 11, Palsora, Chandigarh, 160056, India",
+   "boundingbox": [
+    "30.7323913",
+    "30.7433647",
+    "76.7145883",
+    "76.7265986"
+   ]
+  },
+  {
+   "place_id": 243972657,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129167818,
+   "lat": "30.7369016",
+   "lon": "76.7189877",
+   "class": "landuse",
+   "type": "residential",
+   "place_rank": 24,
+   "importance": 0.08007079652094298,
+   "addresstype": "residential",
+   "name": "Sector 56",
+   "display_name": "Sector 56, Ward 11, Palsora, Chandigarh, 160056, India",
+   "boundingbox": [
+    "30.7307634",
+    "30.7430198",
+    "76.7097172",
+    "76.7261455"
+   ]
+  }
+ ],
+ "Mohali Bus Stand": [],
+ "Madanpur, Mohali": [],
+ "Phase 5, Mohali": [
+  {
+   "place_id": 421067794,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 125904109,
+   "lat": "30.6908804",
+   "lon": "76.7114879",
+   "class": "place",
+   "type": "city",
+   "place_rank": 16,
+   "importance": 0.47334347766189616,
+   "addresstype": "city",
+   "name": "Mohali",
+   "display_name": "Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140062, India",
+   "boundingbox": [
+    "30.5308804",
+    "30.8508804",
+    "76.5514879",
+    "76.8714879"
+   ]
+  }
+ ],
+ "Ivy Hospital, Sector 71, Mohali": [
+  {
+   "place_id": 243684680,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129023343,
+   "lat": "30.7066327",
+   "lon": "76.7083158",
+   "class": "amenity",
+   "type": "hospital",
+   "place_rank": 30,
+   "importance": 5.353246356903971e-05,
+   "addresstype": "amenity",
+   "name": "Ivy Health and Life Sciences Pvt. Ltd",
+   "display_name": "Ivy Health and Life Sciences Pvt. Ltd, SH12A, Sector 77, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160071, India",
+   "boundingbox": [
+    "30.7058722",
+    "30.7073844",
+    "76.7075953",
+    "76.7090419"
+   ]
+  },
+  {
+   "place_id": 243945752,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 6896428448,
+   "lat": "30.7067472",
+   "lon": "76.7083199",
+   "class": "amenity",
+   "type": "hospital",
+   "place_rank": 30,
+   "importance": 5.353246356903971e-05,
+   "addresstype": "amenity",
+   "name": "Ivy Health and Life Sciences Private Limited",
+   "display_name": "Ivy Health and Life Sciences Private Limited, SH12A, Sector 77, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 160071, India",
+   "boundingbox": [
+    "30.7066972",
+    "30.7067972",
+    "76.7082699",
+    "76.7083699"
+   ]
+  }
+ ],
+ "Kurali, Punjab": [
+  {
+   "place_id": 243904687,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 125906063,
+   "lat": "30.8314536",
+   "lon": "76.5784763",
+   "class": "place",
+   "type": "town",
+   "place_rank": 18,
+   "importance": 0.1600375013351644,
+   "addresstype": "town",
+   "name": "Kurali",
+   "display_name": "Kurali, Kharar Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140103, India",
+   "boundingbox": [
+    "30.7914536",
+    "30.8714536",
+    "76.5384763",
+    "76.6184763"
+   ]
+  }
+ ],
+ "Airport Road, Sector 82, Mohali": [
+  {
+   "place_id": 243941959,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "node",
+   "osm_id": 1424479531,
+   "lat": "30.6659824",
+   "lon": "76.7396095",
+   "class": "railway",
+   "type": "station",
+   "place_rank": 30,
+   "importance": 0.2782362227145218,
+   "addresstype": "railway",
+   "name": "Sahibzada Ajitsingh Nagar (Mohali)",
+   "display_name": "Sahibzada Ajitsingh Nagar (Mohali), Airport Road, Sector 82, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6609824",
+    "30.6709824",
+    "76.7346095",
+    "76.7446095"
+   ]
+  },
+  {
+   "place_id": 243982278,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 1102518138,
+   "lat": "30.6604817",
+   "lon": "76.7360182",
+   "class": "highway",
+   "type": "primary",
+   "place_rank": 26,
+   "importance": 0.05338686579690238,
+   "addresstype": "road",
+   "name": "Airport Road",
+   "display_name": "Airport Road, Sector 82, Mohali, S.A.S. Nagar (Mohali) Tahsil, Sahibzada Ajit Singh Nagar, Punjab, 140306, India",
+   "boundingbox": [
+    "30.6546951",
+    "30.6664545",
+    "76.7316383",
+    "76.7405744"
+   ]
+  }
+ ],
+ "Jhurheri, Mohali": [],
+ "Chandigarh International Airport": [
+  {
+   "place_id": 242472008,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 12223608,
+   "lat": "30.6741923",
+   "lon": "76.7909851",
+   "class": "aeroway",
+   "type": "aerodrome",
+   "place_rank": 30,
+   "importance": 0.45952151608557235,
+   "addresstype": "aeroway",
+   "name": "Chandigarh International Airport",
+   "display_name": "Chandigarh International Airport, Parv Marg, Sector 47, Ward 22, Chandigarh, 160047, India",
+   "boundingbox": [
+    "30.6568629",
+    "30.6915566",
+    "76.7652445",
+    "76.8137589"
+   ]
+  }
+ ],
+ "Sector 3, Chandigarh": [
+  {
+   "place_id": 243838417,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7890825,
+   "lat": "30.7582850",
+   "lon": "76.7961609",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 3",
+   "display_name": "Sector 3, Ward 1, Chandigarh, India",
+   "boundingbox": [
+    "30.7537025",
+    "30.7621468",
+    "76.7917322",
+    "76.8005344"
+   ]
+  }
+ ],
+ "Sector 4, Chandigarh": [
+  {
+   "place_id": 243881595,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7891143,
+   "lat": "30.7518570",
+   "lon": "76.8014146",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.14673746318760963,
+   "addresstype": "suburb",
+   "name": "Sector 4",
+   "display_name": "Sector 4, Ward 1, Chandigarh, India",
+   "boundingbox": [
+    "30.7474462",
+    "30.7559538",
+    "76.7969221",
+    "76.8057777"
+   ]
+  }
+ ],
+ "Sector 1, Chandigarh": [
+  {
+   "place_id": 244220547,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "relation",
+   "osm_id": 7897139,
+   "lat": "30.7611554",
+   "lon": "76.8021541",
+   "class": "boundary",
+   "type": "administrative",
+   "place_rank": 20,
+   "importance": 0.13340412985427633,
+   "addresstype": "suburb",
+   "name": "Sector 1",
+   "display_name": "Sector 1, Ward 1, Chandigarh, 160001, India",
+   "boundingbox": [
+    "30.7520523",
+    "30.7712653",
+    "76.7910433",
+    "76.8111008"
+   ]
+  },
+  {
+   "place_id": 241178361,
+   "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+   "osm_type": "way",
+   "osm_id": 129779633,
+   "lat": "30.7618019",
+   "lon": "76.8017020",
+   "class": "landuse",
+   "type": "commercial",
+   "place_rank": 24,
+   "importance": 0.08007079652094298,
+   "addresstype": "commercial",
+   "name": "Sector 1",
+   "display_name": "Sector 1, Ward 1, Chandigarh, 160001, India",
+   "boundingbox": [
+    "30.7532958",
+    "30.7711227",
+    "76.7913110",
+    "76.8109815"
+   ]
+  }
+ ]
+}

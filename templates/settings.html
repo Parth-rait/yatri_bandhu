@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, mode_icon, topbar with context %}
+{% block title %}Route settings{% endblock %}
+{% block content %}
+{{ topbar('Route settings', url_for('me')) }}
+<div class="wrap">
+  {% if just_saved %}<p class="notice ok" role="status">{{ icon('check', 18) }} Saved</p>{% endif %}
+
+  <p class="field-label mt">Appearance</p>
+  <div class="toggle-2 toggle-3" role="group" aria-label="Theme">
+    <button type="button" class="link" style="color:inherit" data-set-theme="light">{{ icon('sun', 18) }} Light</button>
+    <button type="button" class="link" style="color:inherit" data-set-theme="dark">{{ icon('moon', 18) }} Dark</button>
+    <button type="button" class="link" style="color:inherit" data-set-theme="system">{{ icon('layout', 18) }} Auto</button>
+  </div>
+
+  <p class="field-label mt-lg">Usual starting point</p>
+  <a class="ex-from" href="{{ url_for('search', title='Usual starting point', ret='/settings/start?point=__PT__') }}">
+    <span class="row-ic brand">{{ icon(default_point.icon if default_point else 'pin', 20) }}</span>
+    <span><small>Start trips from</small><b>{{ default_point.name if default_point else 'Not set' }}</b></span>
+    <span class="link">Change</span>
+  </a>
+
+  <form method="post" class="mt-lg">
+    <div class="list">
+      <label class="switch-row">
+        <span class="row-txt"><b>Ask what matters before each search</b><small>Off = go straight to routes using your usual priority</small></span>
+        <input class="switch" type="checkbox" name="ask_priority" {% if settings.ask_priority %}checked{% endif %}>
+      </label>
+      <label class="switch-row">
+        <span class="row-txt"><b>Usual priority</b></span>
+        <select class="select" name="default_mode">
+          {% for key, m in MODES.items() %}<option value="{{ key }}" {% if settings.default_mode == key %}selected{% endif %}>{{ m.label }}</option>{% endfor %}
+        </select>
+      </label>
+      <label class="switch-row">
+        <span class="row-txt"><b>Most walking I can do</b><small>Longer walks are flagged</small></span>
+        <select class="select" name="max_walk">
+          {% for v, t in [('', 'No limit'), ('5', '5 min'), ('10', '10 min'), ('15', '15 min')] %}
+          <option value="{{ v }}" {% if (settings.max_walk|string if settings.max_walk else '') == v %}selected{% endif %}>{{ t }}</option>{% endfor %}
+        </select>
+      </label>
+    </div>
+    <div class="action-bar"><button class="btn btn-primary btn-block" type="submit">Save</button></div>
+  </form>
+</div>
+{% endblock %}

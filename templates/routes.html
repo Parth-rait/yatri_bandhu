@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, mode_icon, chain, label_chips, topbar with context %}
+{% block title %}{{ dest.name }}{% endblock %}
+{% block content %}
+{% set base = search_args() %}
+{{ topbar('Routes', url_for('plan', **base)) }}
+
+<div class="wrap">
+  <a class="od-mini" href="{{ url_for('plan', **base) }}" aria-label="Change trip">
+    <span class="od-mini-lines"><span><i></i>{{ origin.name }}</span><span><i></i>{{ dest.name }}</span></span>
+    <span class="icon-btn">{{ icon('sliders', 20) }}</span>
+  </a>
+
+  <div class="trip-tools">
+    <a class="pill-btn" href="{{ url_for('plan', **base) }}">{{ icon('clock', 16) }} {% if request.args.get('at') %}Leave {{ fmt_time(t) }}{% else %}Leave now{% endif %}</a>
+    <a class="pill-btn" href="{{ url_for('routes_filters', **base) }}">{{ icon('sliders', 16) }} Filters{% if n_filters %} <span class="count">{{ n_filters }}</span>{% endif %}</a>
+    <a class="pill-btn" href="{{ url_for('routes', **search_args(**{'from': dest.id, 'to': origin.id})) }}" aria-label="Reverse direction">{{ icon('swap', 16) }} Return</a>
+  </div>
+
+  <nav class="seg" aria-label="Sort routes by">
+    {% for key, m in MODES.items() %}
+    <a class="seg-item m-{{ key }}" href="{{ url_for('routes', **search_args(mode=key)) }}" {% if key == mode %}aria-current="true"{% endif %}>{{ mode_icon(key, 16) }} {{ m.label }}</a>
+    {% endfor %}
+  </nav>
+</div>
+
+<section class="section" style="margin-top:12px" aria-label="Route options">
+  {% if res.walk_only and res.walk_only.time <= 15 %}
+  <div class="notice ok" style="margin-bottom:10px">{{ icon('walk', 18) }}<span><b>Only a {{ res.walk_only.time }} min walk.</b> That may be quicker than waiting for a bus.</span></div>
+  {% endif %}
+
+  {% if rec %}
+  <ul class="results">
+    {% for j in ranked.options %}
+    <li>
+      <a class="result {{ 'best' if loop.first }}" href="{{ url_for('journey', key=j.key, **base) }}">
+        {% if loop.first or j.labels %}
+        <div class="result-tags">{% if loop.first %}<span class="tag tag-best">Best for you</span>{% endif %}{{ label_chips(j.labels) }}</div>
+        {% endif %}
+        <div class="result-top">
+          {{ chain(j) }}
+          <span class="result-time"><b>{{ j.time }}</b><small>min</small></span>
+        </div>
+        <div class="result-meta">
+          <span>Leave {{ fmt_time(j.leave) }} · arrive {{ fmt_time(j.arrive) }}</span>
+          <b>₹{{ j.fare }}</b>
+        </div>
+        {% if loop.first and (reason or tradeoff) %}
+        <p class="why">{{ icon('info', 16) }}<span>{{ reason }}.{% if tradeoff %} {{ tradeoff }}{% endif %}</span></p>
+        {% endif %}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% elif not ranked.misfits %}
+  <div class="card empty">
+    <span class="empty-ic">{{ icon('bus', 30) }}</span>
+    {% if res.near_origin == 0 %}
+      <h2>No bus stop near {{ origin.name }}</h2><p>There's no CTU stop within a 20 minute walk. Try starting from a nearby landmark.</p>
+    {% elif res.near_dest == 0 %}
+      <h2>No bus stop near {{ dest.name }}</h2><p>There's no CTU stop within a 20 minute walk of this place.</p>
+    {% else %}
+      <h2>No buses at {{ fmt_time(t) }}</h2><p>Most CTU routes run from about 5:30 AM to 9:00 PM. Try another time:</p>
+      <div class="chips" style="justify-content:center">
+        {% for at in ['07:30', '09:00', '13:00', '17:30'] %}<a class="chip" href="{{ url_for('routes', **search_args(at=at)) }}">{{ fmt_time(at.split(':')[0]|int * 60 + at.split(':')[1]|int) }}</a>{% endfor %}
+      </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if ranked.misfits %}
+    {% if show_all or not rec %}
+    <h2 class="mt-lg" style="font-size:1rem;margin-bottom:10px">Outside your filters</h2>
+    <ul class="results">
+      {% for j in ranked.misfits %}
+      <li><a class="result" href="{{ url_for('journey', key=j.key, **base) }}">
+        <div class="result-top">{{ chain(j) }}<span class="result-time"><b>{{ j.time }}</b><small>min</small></span></div>
+        <div class="result-meta"><span>Leave {{ fmt_time(j.leave) }}</span><b>₹{{ j.fare }}</b></div>
+        {% for i in j.issues %}<p class="issue">{{ i }}</p>{% endfor %}
+      </a></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="hint mt" style="text-align:center">{{ ranked.misfits|length }} more route{{ 's' if ranked.misfits|length > 1 }} don't match your filters. <a class="link" href="{{ url_for('routes', show='all', **base) }}">Show</a></p>
+    {% endif %}
+  {% endif %}
+</section>
+
+<section class="section">
+  <div class="list">
+    {% if ranked.options|length > 1 %}
+    <a class="row" href="{{ url_for('routes_compare', **base) }}"><span class="row-ic">{{ icon('table', 20) }}</span><span class="row-txt"><b>Compare side by side</b><small>Cost, time, walking and changes in one table</small></span><span class="row-chev">{{ icon('chevron-right', 18) }}</span></a>
+    {% endif %}
+    <a class="row" href="{{ url_for('routes_other', **base) }}"><span class="row-ic">{{ icon('car', 20) }}</span><span class="row-txt"><b>Other ways to go</b><small>Walk, bike taxi, auto, cab (estimates)</small></span><span class="row-chev">{{ icon('chevron-right', 18) }}</span></a>
+  </div>
+  <p class="hint mt">Times are estimated from the CTU timetable, not live. Fares are approximate.</p>
+</section>
+{% endblock %}

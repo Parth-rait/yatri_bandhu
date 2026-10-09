@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, topbar with context %}
+{% block title %}SUS questionnaire{% endblock %}
+{% block content %}
+{{ topbar('System Usability Scale', url_for('me')) }}
+<div class="wrap">
+  {% if score is not none %}
+  <div class="empty">
+    <p style="font-size:3.6rem;font-weight:800;letter-spacing:-.05em;color:var(--brand-text)">{{ score|round(1) }}</p>
+    <h2>{% if score >= 80.3 %}Excellent (top 10%){% elif score >= 68 %}Above average{% elif score >= 51 %}Below average{% else %}Poor, needs redesign{% endif %}</h2>
+    <p>68 is the usual average SUS score.</p>
+    <a class="btn btn-primary btn-block" href="{{ url_for('sus') }}">Next participant</a>
+    <a class="btn btn-ghost btn-block" href="{{ url_for('export', name='sus') }}">{{ icon('download', 18) }} Download all scores</a>
+  </div>
+  {% else %}
+  <p class="muted">For each statement, choose how much you agree. 1 = strongly disagree, 5 = strongly agree.</p>
+  <form method="post" class="mt-lg">
+    <label class="field-label" for="participant">Participant ID</label>
+    <input class="input" id="participant" name="participant" placeholder="e.g. P01">
+    <div class="mt-lg">
+    {% for q in questions %}
+    <fieldset class="likert">
+      <legend><span class="muted">{{ loop.index }}.</span> {{ q }}</legend>
+      {% set qi = loop.index0 %}
+      <div class="likert-row">
+        <small aria-hidden="true">Disagree</small>
+        {% for v in range(1, 6) %}<label><input type="radio" name="q{{ qi }}" value="{{ v }}" required><span>{{ v }}</span></label>{% endfor %}
+        <small aria-hidden="true">Agree</small>
+      </div>
+    </fieldset>
+    {% endfor %}
+    </div>
+    <div class="action-bar"><button class="btn btn-primary btn-block" type="submit">Calculate score</button></div>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}

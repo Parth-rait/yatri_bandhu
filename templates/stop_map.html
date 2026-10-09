@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon with context %}
+{% block title %}{{ s.name }} map{% endblock %}
+{% block content %}
+<div class="map-full">
+  <div class="map-wrap">
+    <div id="stop-map" class="map" role="img" aria-label="Map of {{ s.name }} and the bus lines that stop here"></div>
+    <div class="map-float">
+      <a class="icon-btn raised" href="{{ url_for('stop', sid=s.id) }}" aria-label="Back">{{ icon('arrow-left', 22) }}</a>
+      <span class="legend" style="height:44px;font-size:.9rem;color:var(--text)"><b>{{ s.name }}</b></span>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script>RM.stopMap({{ s|tojson }}, {{ lines|tojson }});</script>{% endblock %}

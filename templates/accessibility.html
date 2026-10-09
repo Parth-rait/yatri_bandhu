@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, topbar with context %}
+{% block title %}Accessibility{% endblock %}
+{% block content %}
+{{ topbar('Accessibility', url_for('me')) }}
+<form class="wrap" method="post">
+  {% if just_saved %}<p class="notice ok" role="status" style="margin-bottom:12px">{{ icon('check', 18) }} Saved. Changes apply on every screen.</p>{% endif %}
+  <div class="list">
+    {% for k, ic, title, desc in [
+      ('large_text', 'type', 'Larger text', 'Bigger text and buttons everywhere'),
+      ('high_contrast', 'contrast', 'High contrast', 'Stronger colours, outlines and a full-colour map'),
+      ('simple_ui', 'layout', 'Simplified screens', 'Hides extra details and shows fewer route options'),
+      ('reduce_motion', 'pause', 'Reduce motion', 'No animations or moving maps')] %}
+    <label class="switch-row">
+      <span class="row-ic">{{ icon(ic, 20) }}</span>
+      <span class="row-txt"><b>{{ title }}</b><small>{{ desc }}</small></span>
+      <input class="switch" type="checkbox" name="{{ k }}" {% if settings[k] %}checked{% endif %}>
+    </label>
+    {% endfor %}
+  </div>
+  <p class="hint mt">Also: maps are never the only way to see information. Every map has the same steps as text, for screen readers.
+    Least-walking routes are under <b>Plan → What matters most</b>.</p>
+  <div class="action-bar"><button class="btn btn-primary btn-block" type="submit">Save</button></div>
+</form>
+{% endblock %}

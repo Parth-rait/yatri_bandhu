@@ -1,0 +1,127 @@
+{# Shared building blocks so every screen shows things the same way (consistency). #}
+
+{% macro icon(name, size=20, cls='') -%}
+{%- set P = {
+  'search': '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+  'pin': '<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+  'locate': '<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>',
+  'navigate': '<path d="M3 11 21 3l-8 18-2-8-8-2z"/>',
+  'home': '<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/>',
+  'briefcase': '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/>',
+  'cap': '<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5M22 10v5"/>',
+  'star': '<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>',
+  'clock': '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  'bus': '<path d="M6 17h12M6 17a2 2 0 0 1-2-2V6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v9a2 2 0 0 1-2 2M6 17v3M18 17v3M4 11h16"/><path d="M8 14h.01M16 14h.01"/>',
+  'walk': '<circle cx="13" cy="4" r="2"/><path d="M9 21l2.5-6.5L14 17v4M7.5 12.5 9 8.5l4-1 2.5 3.5 3 1M11.5 14.5 10.5 10"/>',
+  'arrow-right': '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  'arrow-left': '<path d="M19 12H5M11 6l-6 6 6 6"/>',
+  'chevron-right': '<path d="m9 6 6 6-6 6"/>',
+  'chevron-down': '<path d="m6 9 6 6 6-6"/>',
+  'swap': '<path d="M7 4v16M3 8l4-4 4 4M17 20V4M13 16l4 4 4-4"/>',
+  'sliders': '<path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/>',
+  'user': '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  'compass': '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>',
+  'route': '<circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h7a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7"/>',
+  'stop': '<path d="M12 11v10M9 21h6"/><rect x="5" y="3" width="14" height="8" rx="2"/><path d="M9 7h6"/>',
+  'map': '<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/>',
+  'list': '<path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/>',
+  'x': '<path d="M6 6l12 12M18 6 6 18"/>',
+  'sun': '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  'moon': '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+  'info': '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
+  'alert': '<path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/>',
+  'check': '<path d="m5 12 5 5 9-10"/>',
+  'flag': '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+  'rupee': '<path d="M6 4h12M6 9h12M6 4h3a5 5 0 0 1 0 10H6l8 7"/>',
+  'zap': '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>',
+  'balance': '<path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7l-3 6a3 3 0 0 0 6 0L5 7zM19 7l-3 6a3 3 0 0 0 6 0l-3-6z"/>',
+  'simple': '<circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="12" r="2.5"/><path d="M7.5 12h9"/>',
+  'bell': '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 21a2 2 0 0 0 4 0"/>',
+  'access': '<circle cx="12" cy="4.5" r="1.5"/><path d="M5 8l7 1 7-1M12 9v5l-3 7M12 14l3 7"/>',
+  'help': '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/>',
+  'trash': '<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>',
+  'plus': '<path d="M12 5v14M5 12h14"/>',
+  'refresh': '<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>',
+  'table': '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16M15 4v16"/>',
+  'car': '<path d="M5 17h14M5 17a2 2 0 0 1-2-2v-3l2-5h14l2 5v3a2 2 0 0 1-2 2M5 17v2M19 17v2M3 12h18"/><path d="M7.5 14.5h.01M16.5 14.5h.01"/>',
+  'bike': '<circle cx="6" cy="16" r="3.5"/><circle cx="18" cy="16" r="3.5"/><path d="M6 16l4-7h5l3 7M10 9 8 5H6M15 9l-2 7"/>',
+  'auto': '<path d="M4 17V9a5 5 0 0 1 5-5h4l5 6h2v7H4z"/><circle cx="8" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M4 10h14"/>',
+  'bag': '<path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
+  'train': '<rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 21l2-4M16 21l-2-4M9 14h.01M15 14h.01"/>',
+  'hospital': '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/>',
+  'plane': '<path d="M21 15.5 13 11V5.5a1.5 1.5 0 0 0-3 0V11l-8 4.5V17l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-4.5l8 2.5z"/>',
+  'tree': '<path d="M12 22v-6M12 2 5 12h4l-3 4h12l-3-4h4L12 2z"/>',
+  'food': '<path d="M7 2v9M5 2v5a2 2 0 0 0 4 0V2M7 11v11M17 2c-2 2-3 5-3 8h3v12"/>',
+  'building': '<rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h.01M15 15h.01M10 21v-3h4v3"/>',
+  'clipboard': '<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/>',
+  'sparkle': '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17l.6 1.4L21 19l-1.4.6L19 21l-.6-1.4L17 19l1.4-.6z"/>',
+  'shield': '<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/>',
+  'type': '<path d="M4 7V5h16v2M9 19h6M12 5v14"/>',
+  'contrast': '<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>',
+  'pause': '<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>',
+  'layout': '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>',
+  'download': '<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>',
+  'repeat': '<path d="M17 2l3 3-3 3M3 11V9a4 4 0 0 1 4-4h13M7 22l-3-3 3-3M21 13v2a4 4 0 0 1-4 4H4"/>',
+  'eye': '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+} -%}
+<svg class="ic {{ cls }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{{ P.get(name, P['pin'])|safe }}</svg>
+{%- endmacro %}
+
+{% macro mode_icon(key, size=20) -%}
+{{ icon({'balanced': 'balance', 'fastest': 'zap', 'cheapest': 'rupee', 'simplest': 'simple', 'walking': 'walk'}[key], size) }}
+{%- endmacro %}
+
+{% macro bus_badge(no, size='') -%}
+<span class="line-badge {{ size }}" data-route="{{ no }}">{{ icon('bus', 14) }}<b>{{ no }}</b></span>
+{%- endmacro %}
+
+{# Moovit-style journey chain: walk › 38B › 22 › walk #}
+{% macro chain(j) -%}
+<span class="chain" role="img" aria-label="{% for l in j.legs %}{{ 'walk ' ~ l.minutes ~ ' min' if l.type == 'walk' else 'bus ' ~ l.route }}{{ ', then ' if not loop.last }}{% endfor %}">
+  {%- for l in j.legs -%}
+    {%- if not loop.first %}<span class="chain-sep">{{ icon('chevron-right', 14) }}</span>{% endif -%}
+    {%- if l.type == 'walk' -%}<span class="chain-walk">{{ icon('walk', 16) }}<small>{{ l.minutes }}</small></span>
+    {%- else -%}{{ bus_badge(l.route) }}{%- endif -%}
+  {%- endfor -%}
+</span>
+{%- endmacro %}
+
+{% macro label_chips(labels) -%}
+{%- set names = {'cheapest': 'Cheapest', 'fastest': 'Fastest', 'simplest': 'Simplest', 'walking': 'Least walking'} -%}
+{%- for l in labels %}<span class="tag tag-{{ l }}">{{ names[l] }}</span>{% endfor -%}
+{%- endmacro %}
+
+{% macro topbar(title, back=None, sub=None) -%}
+<header class="topbar">
+  {% if back %}<a class="icon-btn" href="{{ back }}" aria-label="Back">{{ icon('arrow-left', 22) }}</a>{% endif %}
+  <div class="topbar-title">
+    <h1>{{ title }}</h1>
+    {% if sub %}<p>{{ sub }}</p>{% endif %}
+  </div>
+  <div class="topbar-actions">{% if caller %}{{ caller() }}{% endif %}{{ theme_toggle() }}</div>
+</header>
+{%- endmacro %}
+
+{% macro theme_toggle() -%}
+<button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-label="Switch between light and dark mode" title="Light / dark mode">
+  <span class="when-light">{{ icon('moon', 20) }}</span><span class="when-dark">{{ icon('sun', 20) }}</span>
+</button>
+{%- endmacro %}
+
+{% macro row_link(href, ic, title, sub=None, trailing=None, tone='') -%}
+<a class="row {{ tone }}" href="{{ href }}">
+  <span class="row-ic">{{ icon(ic, 20) }}</span>
+  <span class="row-txt"><b>{{ title }}</b>{% if sub %}<small>{{ sub }}</small>{% endif %}</span>
+  {% if trailing %}<span class="row-trail">{{ trailing }}</span>{% endif %}
+  <span class="row-chev">{{ icon('chevron-right', 18) }}</span>
+</a>
+{%- endmacro %}
+
+{% macro empty(ic, title, text=None) -%}
+<div class="empty">
+  <span class="empty-ic">{{ icon(ic, 30) }}</span>
+  <h2>{{ title }}</h2>
+  {% if text %}<p>{{ text }}</p>{% endif %}
+  {% if caller %}{{ caller() }}{% endif %}
+</div>
+{%- endmacro %}

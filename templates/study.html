@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, topbar with context %}
+{% block title %}Usability test console{% endblock %}
+{% block content %}
+{{ topbar('Usability test console', url_for('me'), 'For the observer') }}
+<div class="wrap">
+  <p class="muted">Pick a participant and task, then hand over the phone. A purple bar times the task and counts taps on every screen.
+    Tap <b>Done</b> when they finish and ask how confident they felt.</p>
+  <form class="mt-lg" data-study-start>
+    <label class="field-label" for="participant">Participant ID</label>
+    <input class="input" id="participant" name="participant" placeholder="e.g. P01" required>
+    <fieldset class="mt-lg" style="border:0;padding:0;margin-left:0;margin-right:0">
+      <legend class="field-label">Task</legend>
+      <div class="list choice-list">
+        {% for t in tasks %}
+        <label class="choice"><input type="radio" name="task" value="{{ t.id }}" data-text="{{ t.text }}" {% if loop.first %}checked{% endif %}>
+          <span class="choice-ic"><b>{{ t.id }}</b></span><span class="choice-txt"><small style="color:var(--text)">{{ t.text }}</small></span>
+          <span class="choice-tick">{{ icon('check', 14) }}</span></label>
+        {% endfor %}
+      </div>
+    </fieldset>
+    <button class="btn btn-primary btn-block mt-lg" type="submit">Start task</button>
+  </form>
+</div>
+<section class="section">
+  <div class="section-head"><h2>Recent sessions</h2>
+    <span><a class="link" href="{{ url_for('export', name='study') }}">CSV</a> · <a class="link" href="{{ url_for('export', name='sus') }}">SUS</a> · <a class="link" href="{{ url_for('export', name='feedback') }}">Feedback</a></span></div>
+  {% if results %}
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Recent sessions">
+    <table class="compare">
+      <thead><tr><th>Who</th><th>Task</th><th>Time</th><th>Taps</th><th>Errors</th><th>Result</th><th>Conf.</th></tr></thead>
+      <tbody>{% for r in results|reverse %}<tr><td>{{ r.participant }}</td><td>{{ r.task }}</td><td>{{ r.seconds|round|int }} s</td><td>{{ r.clicks }}</td><td>{{ r.errors }}</td><td>{{ r.outcome }}</td><td>{{ r.confidence or '–' }}/5</td></tr>{% endfor %}</tbody>
+    </table>
+  </div>
+  {% else %}<p class="hint">No sessions recorded yet.</p>{% endif %}
+</section>
+{% endblock %}

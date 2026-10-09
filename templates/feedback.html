@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, topbar with context %}
+{% block title %}How was your trip?{% endblock %}
+{% block content %}
+{% if done %}
+<div class="wrap">
+  <div class="empty" style="padding-top:70px">
+    <span class="empty-ic">{{ icon('check', 32) }}</span>
+    <h2>Thanks for the feedback!</h2>
+    <p>It helps us make routes clearer for other students.</p>
+    <a class="btn btn-primary btn-block" href="{{ url_for('app_home') }}">Plan another trip</a>
+  </div>
+</div>
+{% else %}
+{{ topbar('Trip feedback', url_for('app_home'), trip.origin_name ~ ' → ' ~ trip.dest_name) }}
+<form class="wrap" method="post" data-feedback>
+  <h1 class="page-title" style="padding:4px 0 0;text-align:center">How was your route?</h1>
+  <fieldset class="stars">
+    <legend class="sr">Rating out of 5</legend>
+    {% for i in range(5, 0, -1) %}
+    <input type="radio" id="star{{ i }}" name="rating" value="{{ i }}" required>
+    <label for="star{{ i }}" title="{{ i }} star{{ 's' if i > 1 }}"><span class="sr">{{ i }} star{{ 's' if i > 1 }}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></label>
+    {% endfor %}
+  </fieldset>
+
+  <fieldset style="border:0;padding:0;margin:0">
+    <legend class="field-label">Was the information accurate?</legend>
+    <div class="toggle-2">
+      <label><input type="radio" name="accurate" value="yes" data-acc> Yes</label>
+      <label><input type="radio" name="accurate" value="no" data-acc> No</label>
+    </div>
+  </fieldset>
+
+  <fieldset class="mt-lg" style="border:0;padding:0;margin-left:0;margin-right:0" data-issues>
+    <legend class="field-label">What went wrong?</legend>
+    <div class="chips">
+      {% for i in issues %}<label class="chip-r"><input type="checkbox" name="issues" value="{{ i }}"><span>{{ i }}</span></label>{% endfor %}
+    </div>
+  </fieldset>
+
+  <div class="mt-lg">
+    <label class="field-label" for="comment">Anything else? <small>optional</small></label>
+    <textarea class="input" id="comment" name="comment" rows="3" maxlength="1000" placeholder="e.g. The stop is behind the petrol pump"></textarea>
+  </div>
+
+  <div class="action-bar btn-row">
+    <a class="btn btn-outline" href="{{ url_for('app_home') }}">Skip</a>
+    <button class="btn btn-primary" type="submit">Send</button>
+  </div>
+</form>
+{% endif %}
+{% endblock %}

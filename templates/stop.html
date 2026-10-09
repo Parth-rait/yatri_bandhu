@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, bus_badge, topbar with context %}
+{% block title %}{{ s.name }}{% endblock %}
+{% block content %}
+{% call topbar(s.name, url_for('nearby'), 'Bus stop · ' ~ s.area) %}
+  <a class="icon-btn" href="{{ url_for('stop_map', sid=s.id) }}" aria-label="Show on map">{{ icon('map', 22) }}</a>
+{% endcall %}
+<div class="wrap">
+  <div class="line-badges" style="align-items:center">{% for no in lines[:8] %}<a href="{{ url_for('line', no=no) }}" style="text-decoration:none">{{ bus_badge(no) }}</a>{% endfor %}
+    {% if lines|length > 8 %}<a class="tag" href="{{ url_for('stop', sid=s.id, view='lines') }}" style="text-decoration:none">+{{ lines|length - 8 }} lines</a>{% endif %}</div>
+  <div class="btn-row mt">
+    <a class="btn btn-primary btn-sm" href="{{ url_for('plan', to='stop:' ~ s.id) }}">{{ icon('navigate', 18) }} Go here</a>
+    <a class="btn btn-sm" href="{{ url_for('search', ret='/plan?from=stop:' ~ s.id ~ '&to=__PT__') }}">Start here</a>
+  </div>
+  <div class="toggle-2 mt-lg">
+    <a href="{{ url_for('stop', sid=s.id) }}" {% if view != 'lines' %}aria-current="true"{% endif %}>Departures</a>
+    <a href="{{ url_for('stop', sid=s.id, view='lines') }}" {% if view == 'lines' %}aria-current="true"{% endif %}>Lines here</a>
+  </div>
+</div>
+
+{% if view != 'lines' %}
+<section class="section" style="margin-top:14px" aria-label="Next buses">
+  {% if deps %}
+  <div class="list">
+    {% for d in deps[:10] %}
+    <a class="row" href="{{ url_for('line', no=d.route, dir=d.pattern.split(':')[1]) }}">
+      <span class="dep-time"><b>{{ fmt_time(d.time) }}</b><small>{% if d.time - t <= 0 %}now{% else %}in {{ fmt_dur(d.time - t) }}{% endif %}</small></span>
+      {{ bus_badge(d.route) }}
+      <span class="row-txt"><b>{{ d.headsign }}</b><small>{{ d.every }}{% if d.last %} · last bus{% endif %}</small></span>
+    </a>
+    {% endfor %}
+  </div>
+  <p class="hint mt">Estimated from the timetable frequency. Buses can be a few minutes early or late.</p>
+  {% else %}
+  <div class="empty"><span class="empty-ic">{{ icon('clock', 30) }}</span><h2>No buses in the next 90 min</h2><p>Most CTU routes run from about 5:30 AM to 9:00 PM.</p></div>
+  {% endif %}
+</section>
+{% else %}
+<section class="section" style="margin-top:14px" aria-label="Lines at this stop">
+  <div class="list">
+    {% for r in routes_here %}
+    <a class="row" href="{{ url_for('line', no=r.route, dir=r.pattern.split(':')[1]) }}">
+      {{ bus_badge(r.route) }}
+      <span class="row-txt"><b>to {{ r.headsign }}</b><small>{{ r.every }} · {{ fmt_time(r.first) }}–{{ fmt_time(r.last) }}</small></span>
+      <span class="row-chev">{{ icon('chevron-right', 18) }}</span>
+    </a>
+    {% endfor %}
+  </div>
+  {% if reach_places %}
+  <h2 class="mt-lg" style="font-size:1rem;margin-bottom:10px">One bus from here to</h2>
+  <div class="list">
+    {% for r in reach_places %}
+    <a class="row" href="{{ url_for('routes', **{'from': 'stop:' ~ s.id, 'to': 'place:' ~ r.place.id, 'mode': 'simplest'}) }}">
+      <span class="row-ic">{{ icon(r.icon, 20) }}</span>
+      <span class="row-txt"><b>{{ r.place.name }}</b><small>Bus {{ r.routes|join(', ') }}</small></span>
+      <span class="row-chev">{{ icon('chevron-right', 18) }}</span>
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>
+{% endif %}
+{% endblock %}

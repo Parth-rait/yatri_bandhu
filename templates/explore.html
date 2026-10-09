@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, chain, theme_toggle with context %}
+{% block title %}Explore{% endblock %}
+{% block content %}
+{% set qs = {'from': origin.id if origin else '', 'kind': kind, 'value': value} %}
+<header class="topbar">
+  <div class="topbar-title"><h1 style="font-size:1.6rem;font-weight:800;letter-spacing:-.03em">Where can I go?</h1></div>
+  <div class="topbar-actions">
+    <a class="icon-btn" href="{{ url_for('explore_map', **qs) }}" aria-label="Show on map">{{ icon('map', 22) }}</a>
+    {{ theme_toggle() }}
+  </div>
+</header>
+<form class="wrap" method="get" action="{{ url_for('explore') }}" data-autoform>
+  <input type="hidden" name="from" value="{{ origin.id if origin else '' }}">
+  <a class="ex-from" href="{{ url_for('search', title='Explore from', ret='/explore?kind=' ~ kind ~ '&value=' ~ value ~ '&from=__PT__') }}">
+    <span class="row-ic brand">{{ icon(origin.icon if origin else 'pin', 20) }}</span>
+    <span><small>Starting from</small><b>{{ origin.name if origin else 'Choose a place' }}</b></span>
+    <span class="link">Change</span>
+  </a>
+  <div class="toggle-2 mt" role="radiogroup" aria-label="I have">
+    <label><input type="radio" name="kind" value="budget" {% if kind == 'budget' %}checked{% endif %} data-kind> {{ icon('rupee', 18) }} Money</label>
+    <label><input type="radio" name="kind" value="time" {% if kind == 'time' %}checked{% endif %} data-kind> {{ icon('clock', 18) }} Time</label>
+  </div>
+  <div class="chips chips-scroll mt" role="radiogroup" aria-label="{{ 'Budget' if kind == 'budget' else 'Time' }}">
+    {% for v in ([10, 20, 25, 40] if kind == 'budget' else [20, 30, 45, 60, 90]) %}
+    <label class="chip-r"><input type="radio" name="value" value="{{ v }}" {% if v == value %}checked{% endif %} data-autosubmit><span>{{ ('₹' ~ v) if kind == 'budget' else (v ~ ' min') }}</span></label>
+    {% endfor %}
+  </div>
+  <noscript><button class="btn btn-primary mt" type="submit">Show places</button></noscript>
+</form>
+
+{% if origin %}
+<section class="section">
+  <div class="section-head"><h2>{{ reach|length }} place{{ 's' if reach|length != 1 }} within {{ ('₹' ~ value) if kind == 'budget' else (value ~ ' min') }}</h2><small class="muted">leaving {{ fmt_time(t) }}</small></div>
+  {% if reach %}
+  <div class="list">
+    {% for r in reach %}
+    <a class="row" href="{{ url_for('routes', **{'from': origin.id, 'to': 'place:' ~ r.place.id, 'mode': 'cheapest' if kind == 'budget' else 'fastest'}) }}">
+      <span class="row-ic">{{ icon(r.icon, 20) }}</span>
+      <span class="row-txt"><b>{{ r.place.name }}</b><small>{{ fmt_dur(r.journey.time) }} · {{ 'direct' if r.journey.changes == 0 else r.journey.changes ~ ' change' }}</small></span>
+      <span class="row-trail"><b style="color:var(--text)">{% if r.journey.fare %}₹{{ r.journey.fare }}{% else %}Free{% endif %}</b></span>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty"><span class="empty-ic">{{ icon('compass', 30) }}</span><h2>Nothing within {{ ('₹' ~ value) if kind == 'budget' else (value ~ ' min') }}</h2><p>Try a bigger amount, or check if buses are running at this time.</p></div>
+  {% endif %}
+  {% if out %}
+  <p class="hint mt" style="text-align:center">{{ out|length }} more popular place{{ 's' if out|length != 1 }} need more {{ 'money' if kind == 'budget' else 'time' }}.</p>
+  {% endif %}
+</section>
+{% endif %}
+{% endblock %}

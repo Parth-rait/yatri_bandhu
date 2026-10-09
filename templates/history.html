@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, bus_badge, topbar with context %}
+{% block title %}Trip history{% endblock %}
+{% block content %}
+{{ topbar('Trip history', url_for('me')) }}
+<div class="wrap">
+  {% if not groups %}
+  <div class="empty"><span class="empty-ic">{{ icon('clock', 30) }}</span><h2>No trips yet</h2>
+    <p>When you tap <b>Start trip</b> on a route, it shows up here so you can repeat it.</p>
+    <a class="btn btn-primary" href="{{ url_for('app_home') }}">Plan a trip</a></div>
+  {% endif %}
+</div>
+{% for day, ts in groups.items() %}
+<section class="section">
+  <h2>{{ day }}</h2>
+  <div class="list">
+    {% for t in ts %}
+    <div class="row">
+      <span class="row-txt">
+        <b>{{ t.dest_name }}</b>
+        <small>from {{ t.origin_name }}</small>
+        <span class="line-badges" style="margin-top:6px;align-items:center">
+          {% for r in t.summary.routes %}{{ bus_badge(r) }}{% else %}<span class="tag">Walk</span>{% endfor %}
+          <span class="tag">{{ fmt_dur(t.summary.time) }}</span><span class="tag">₹{{ t.summary.fare }}</span>
+          {% if t.status == 'active' %}<span class="tag tag-ok">In progress</span>{% elif t.status == 'cancelled' %}<span class="tag">Ended early</span>{% endif %}
+          {% if t.rating %}<span class="tag tag-warn">{{ t.rating }}★</span>{% endif %}
+        </span>
+      </span>
+      <span style="display:grid;gap:6px">
+        <a class="btn btn-sm" href="{{ url_for('routes', **{'from': t.origin, 'to': t.dest, 'mode': t.mode}) }}">{{ icon('repeat', 16) }} Repeat</a>
+        {% if t.status == 'done' and not t.rating %}<a class="btn btn-sm btn-ghost" href="{{ url_for('feedback', tid=t.id) }}">Rate</a>{% endif %}
+      </span>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endfor %}
+{% endblock %}

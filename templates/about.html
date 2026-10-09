@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, topbar with context %}
+{% block title %}About the data{% endblock %}
+{% block content %}
+{{ topbar('About the data', url_for('me')) }}
+<div class="wrap prose">
+  <p>RouteMate is an HCI course prototype. It turns the CTU bus timetable into simple choices for students.</p>
+</div>
+<section class="section">
+  <h2>Where it comes from</h2>
+  <div class="list">
+    <div class="row"><span class="row-ic">{{ icon('bus', 20) }}</span><span class="row-txt"><b>Routes &amp; timings</b><small class="wrap-text">{{ source }}. {{ n_routes }} routes, {{ n_stops }} stops.</small></span></div>
+    <div class="row"><span class="row-ic">{{ icon('pin', 20) }}</span><span class="row-txt"><b>Stop locations</b><small class="wrap-text">OpenStreetMap. Junctions like “Sector 22/17” sit between the two sector centres, so pins can be 100–300 m off.</small></span></div>
+    <div class="row"><span class="row-ic">{{ icon('map', 20) }}</span><span class="row-txt"><b>Maps &amp; road shapes</b><small class="wrap-text">© OpenStreetMap contributors, roads via OSRM.</small></span></div>
+  </div>
+</section>
+<section class="section">
+  <h2>What is estimated</h2>
+  <div class="list">
+    <div class="row"><span class="row-ic">{{ icon('clock', 20) }}</span><span class="row-txt"><b>Bus times aren't live</b><small class="wrap-text">Departures are spread evenly between the first and last bus. Ride time assumes about 21 km/h.</small></span></div>
+    <div class="row"><span class="row-ic">{{ icon('rupee', 20) }}</span><span class="row-txt"><b>Fares are approximate</b><small class="wrap-text">CTU non-AC slabs: ₹10 up to 5 km, ₹20 for 5–10 km, ₹25 above 10 km.</small></span></div>
+    <div class="row"><span class="row-ic">{{ icon('car', 20) }}</span><span class="row-txt"><b>Cab prices are rough guesses</b><small class="wrap-text">Distance-based estimates, not prices from Uber, Ola or Rapido.</small></span></div>
+  </div>
+</section>
+<section class="section">
+  <h2>Privacy</h2>
+  <div class="notice info">{{ icon('shield', 18) }}<span>Your location is used in the browser only to find nearby stops and plan from where you are. It isn't stored. Saved places, trips and feedback are kept on this prototype's server for the course evaluation.</span></div>
+</section>
+{% endblock %}

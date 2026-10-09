@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, chain, label_chips, theme_toggle with context %}
+{% block title %}Bus travel, made simple{% endblock %}
+{% block body_class %}site{% endblock %}
+{% block tabbar %}{% endblock %}
+{% block content %}
+<nav class="site-nav" aria-label="Site">
+  <div class="site-nav-in">
+    <a class="brand-mini" href="{{ url_for('landing') }}"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt=""> RouteMate</a>
+    <div class="site-links">
+      <a href="#why">Why</a><a href="#features">Features</a><a href="#how">How it works</a>
+    </div>
+    {{ theme_toggle() }}
+    <a class="btn btn-primary btn-sm" href="{{ url_for('app_home' if settings.onboarded else 'welcome') }}">Open app</a>
+  </div>
+</nav>
+
+<header class="container hero">
+  <div>
+    <span class="eyebrow-pill">{{ icon('sparkle', 16) }} For students in Chandigarh &amp; Mohali</span>
+    <h1>Know which bus. <em>Before</em> you leave.</h1>
+    <p class="lede">RouteMate turns the CTU bus timetable into one clear answer: which bus to take, where to board,
+      where to get off and what it costs. You pick what matters today: cheapest, fastest, simplest or least walking.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="{{ url_for('app_home' if settings.onboarded else 'welcome') }}">Plan a trip {{ icon('arrow-right', 20) }}</a>
+      <a class="btn btn-outline" href="#how">See how it works</a>
+    </div>
+    <p class="hero-note">
+      <span>{{ icon('check', 16) }} No sign-up</span>
+      <span>{{ icon('check', 16) }} All {{ n_routes }} CTU routes</span>
+      <span>{{ icon('check', 16) }} Works on any phone</span>
+    </p>
+  </div>
+
+  <div class="phone-stage" aria-label="Preview of RouteMate showing routes from Plaksha University to Sector 17">
+    <div class="phone-glow"></div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="phone-notch"></div>
+        <div class="od-mini">
+          <div class="od-mini-lines"><span><i></i>Plaksha University</span><span><i></i>Sector 17 Plaza</span></div>
+          <span class="icon-btn">{{ icon('swap', 18) }}</span>
+        </div>
+        <p class="phone-label">Best routes at 9:00 AM</p>
+        <ul class="results">
+          {% for j in demo or [] %}
+          <li class="result {{ 'best' if loop.first }}">
+            {% if loop.first %}<div class="result-tags"><span class="tag tag-best">Best for you</span>{{ label_chips(j.labels) }}</div>{% endif %}
+            <div class="result-top">{{ chain(j) }}<span class="result-time"><b>{{ j.time }}</b><small>min</small></span></div>
+            <div class="result-meta"><span>Leaves {{ fmt_time(j.legs[0].depart if j.legs[0].type == 'bus' else j.legs[1].depart) }}</span><b>₹{{ j.fare }}</b></div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="float-card float-a">{{ icon('bell', 18) }} Get off after PGI New OPD</div>
+    <div class="float-card float-b">{{ icon('rupee', 18) }} Compare cost, time &amp; walking</div>
+  </div>
+</header>
+
+<section class="band band-alt" id="why">
+  <div class="container">
+    <p class="kicker">The problem</p>
+    <h2>The bus information exists. Turning it into a decision is the hard part.</h2>
+    <p class="lede">Students moving between campus, PGs, sectors and the railway station keep running into the same three questions.</p>
+    <div class="grid-3">
+      <div class="feature"><span class="feature-ic">{{ icon('help', 24) }}</span><h3>"Which bus even goes there?"</h3><p>Timetables list routes, not answers. New students don't know the sector system yet.</p></div>
+      <div class="feature"><span class="feature-ic">{{ icon('stop', 24) }}</span><h3>"Where do I get off?"</h3><p>Missing your stop or taking the wrong direction is the most common mistake.</p></div>
+      <div class="feature"><span class="feature-ic">{{ icon('car', 24) }}</span><h3>"I'll just take a cab"</h3><p>When buses feel complicated, students pay 5–10× more for convenience.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="features">
+  <div class="container">
+    <p class="kicker">What RouteMate does</p>
+    <h2>Decisions, not timetables.</h2>
+    <div class="grid-4">
+      <div class="feature"><span class="feature-ic">{{ icon('sliders', 24) }}</span><h3>Your priority first</h3><p>Tell us if you're in a hurry, saving money or want it simple. We rank routes around you.</p></div>
+      <div class="feature"><span class="feature-ic">{{ icon('route', 24) }}</span><h3>Steps you can follow</h3><p>Walk here, board this bus, get off after this stop. Each step matches a numbered pin on the map.</p></div>
+      <div class="feature"><span class="feature-ic">{{ icon('locate', 24) }}</span><h3>Stops near you</h3><p>Use your location to see the closest stops, how far they are and which bus comes next.</p></div>
+      <div class="feature"><span class="feature-ic">{{ icon('compass', 24) }}</span><h3>Explore on a budget</h3><p>"I have ₹20, where can I go?" See every place you can reach within your money or time.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band band-alt" id="how">
+  <div class="container">
+    <p class="kicker">How it works</p>
+    <h2>Three taps from "where to?" to "on the bus".</h2>
+    <div class="grid-3 how">
+      <div class="feature"><h3>Say where you're going</h3><p>Pick a saved place like Campus or PG, a popular spot, or search any sector or stop.</p></div>
+      <div class="feature"><h3>Choose what matters</h3><p>Compare options by cost, time, walking and bus changes, with the trade-off spelled out in plain words.</p></div>
+      <div class="feature"><h3>Follow the steps</h3><p>Start the trip and RouteMate tells you how far your stop is and when to get ready to get off.</p></div>
+    </div>
+    <div class="stats">
+      <div><b>{{ n_routes }}</b><span>CTU bus routes</span></div>
+      <div><b>{{ n_stops }}</b><span>stops on the map</span></div>
+      <div><b>4</b><span>ways to rank a trip</span></div>
+      <div><b>0</b><span>accounts needed</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="container">
+    <p class="kicker">Why not just use a maps app?</p>
+    <h2>General maps navigate. RouteMate helps you decide.</h2>
+    <div class="table-wrap vs">
+      <table class="compare">
+        <thead><tr><th scope="col"></th><th scope="col">General navigation apps</th><th scope="col">RouteMate</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Built for</th><td>Everyone, everywhere</td><td>Students in Chandigarh &amp; Mohali</td></tr>
+          <tr><th scope="row">Ranking</th><td>One "best" route</td><td>Your priority: cost, time, simplicity, walking</td></tr>
+          <tr><th scope="row">Trade-offs</th><td>You work them out</td><td>"Saves ₹10, takes 4 min longer"</td></tr>
+          <tr><th scope="row">Budget</th><td>Not supported</td><td>"Where can I go with ₹20?"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="container" style="padding-bottom: 20px">
+  <div class="cta-band">
+    <h2>Your next bus trip, without the guesswork.</h2>
+    <p>Free, no account, built as an HCI course project at Plaksha University.</p>
+    <a class="btn btn-primary" href="{{ url_for('app_home' if settings.onboarded else 'welcome') }}">Get started {{ icon('arrow-right', 20) }}</a>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="container">
+    <span>© RouteMate · HCI course project</span>
+    <span>Bus data: CTU time table (25 Jul 2026) · Maps © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · <a href="{{ url_for('about') }}">About the data</a></span>
+  </div>
+</footer>
+{% endblock %}

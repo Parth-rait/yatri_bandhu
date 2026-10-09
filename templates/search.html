@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon with context %}
+{% block title %}{{ title }}{% endblock %}
+{% block tabbar %}{% endblock %}
+{% block content %}
+<form class="search-head" method="get" action="{{ url_for('search') }}" role="search" data-search
+      data-ret="{{ ret }}" data-kind="{{ kind }}">
+  <a class="icon-btn" href="javascript:history.back()" aria-label="Back">{{ icon('arrow-left', 22) }}</a>
+  <label class="search-input-wrap">
+    {{ icon('search', 20) }}
+    <span class="sr">{{ title }}</span>
+    <input class="search-input" type="search" name="q" value="{{ q }}" placeholder="{{ title }}" autocomplete="off" autofocus data-search-input>
+    <button type="button" class="search-clear" data-search-clear aria-label="Clear" {% if not q %}hidden{% endif %}>{{ icon('x', 16) }}</button>
+  </label>
+  <input type="hidden" name="ret" value="{{ ret }}"><input type="hidden" name="kind" value="{{ kind }}"><input type="hidden" name="title" value="{{ title }}">
+</form>
+
+<div data-search-results>
+{% if results is not none %}
+  <section class="section" style="margin-top:8px">
+    {% if results %}
+    <div class="list">
+      {% for r in results %}
+      <a class="row" href="{{ ret|fill(r.id) }}"><span class="row-ic">{{ icon(r.icon, 20) }}</span><span class="row-txt"><b>{{ r.name }}</b><small>{{ r.sub }}</small></span></a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="hint" style="padding:12px 4px">No match for “{{ q }}”. Try a sector number like “22” or “Sector 35”.</p>
+    {% endif %}
+  </section>
+{% else %}
+  <section class="section" style="margin-top:8px">
+    <div class="list">
+      {% if allow_geo %}
+      <button type="button" class="row" data-geo-pick><span class="row-ic brand">{{ icon('locate', 20) }}</span>
+        <span class="row-txt"><b>Current location</b><small data-geo-status>Uses your phone's GPS</small></span></button>
+      {% endif %}
+      {% for s in saved_pts %}
+      <a class="row" href="{{ ret|fill(s.point) }}"><span class="row-ic">{{ icon(s.icon, 20) }}</span><span class="row-txt"><b>{{ s.label }}</b><small>{{ s.name }}</small></span></a>
+      {% endfor %}
+    </div>
+  </section>
+  {% if recent %}
+  <section class="section">
+    <h2>Recent</h2>
+    <div class="list">
+      {% for p in recent %}
+      <a class="row" href="{{ ret|fill(p.id) }}"><span class="row-ic">{{ icon('clock', 20) }}</span><span class="row-txt"><b>{{ p.name }}</b><small>{{ p.sub }}</small></span></a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+  <section class="section">
+    <h2>{{ 'Main bus stops' if kind == 'stops' else 'Popular' }}</h2>
+    <div class="list">
+      {% for p in popular %}
+      <a class="row" href="{{ ret|fill(p.id) }}"><span class="row-ic">{{ icon(p.icon, 20) }}</span><span class="row-txt"><b>{{ p.name }}</b><small>{{ p.sub }}</small></span></a>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, row_link, theme_toggle with context %}
+{% block title %}Me{% endblock %}
+{% block content %}
+<header class="topbar">
+  <div class="topbar-title"><h1 style="font-size:1.6rem;font-weight:800;letter-spacing:-.03em">Me</h1></div>
+  <div class="topbar-actions">{{ theme_toggle() }}</div>
+</header>
+<div class="wrap">
+  <div class="profile">
+    <span class="profile-ic">{{ icon('user', 28) }}</span>
+    <div><b>Student traveller</b><small>No account needed. Your data stays on this prototype.</small></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><b>{{ stats.trips }}</b><small>trips completed</small></div>
+    <div class="stat"><b>₹{{ stats.spent }}</b><small>spent on buses</small></div>
+  </div>
+</div>
+
+<section class="section">
+  <h2>Your stuff</h2>
+  <div class="list">
+    {{ row_link(url_for('saved'), 'star', 'Saved places', saved|length ~ ' place' ~ ('s' if saved|length != 1 else '')) }}
+    {{ row_link(url_for('history'), 'clock', 'Trip history', 'Repeat a past trip in one tap') }}
+  </div>
+</section>
+
+<section class="section">
+  <h2>Preferences</h2>
+  <div class="list">
+    <div class="row">
+      <span class="row-ic">{{ icon('moon', 20) }}</span>
+      <span class="row-txt"><b>Appearance</b><small>Light or dark</small></span>
+      <div class="toggle-2" style="width:150px" role="group" aria-label="Theme">
+        <button type="button" class="link" data-set-theme="light" style="color:inherit">{{ icon('sun', 18) }}</button>
+        <button type="button" class="link" data-set-theme="dark" style="color:inherit">{{ icon('moon', 18) }}</button>
+      </div>
+    </div>
+    {{ row_link(url_for('settings'), 'sliders', 'Route settings', 'Usual priority, start, walking limit') }}
+    {{ row_link(url_for('accessibility'), 'access', 'Accessibility', 'Text size, contrast, simple mode') }}
+  </div>
+</section>
+
+<section class="section">
+  <h2>Help</h2>
+  <div class="list">
+    {{ row_link(url_for('help'), 'help', 'How to read RouteMate', 'Map symbols, fares and changes explained') }}
+    {{ row_link(url_for('about'), 'info', 'About the data', 'Where timetables and fares come from') }}
+    {{ row_link(url_for('landing'), 'sparkle', 'RouteMate website') }}
+  </div>
+</section>
+
+<section class="section">
+  <h2>HCI study</h2>
+  <div class="list">
+    {{ row_link(url_for('study'), 'clipboard', 'Usability test console', 'Time tasks, count taps, record confidence') }}
+    {{ row_link(url_for('sus'), 'check', 'SUS questionnaire', 'System Usability Scale') }}
+  </div>
+</section>
+{% endblock %}

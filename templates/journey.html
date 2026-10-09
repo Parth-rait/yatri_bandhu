@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, chain, theme_toggle with context %}
+{% block title %}To {{ dest.name }}{% endblock %}
+{% block content %}
+{% set base = search_args() %}
+<div class="map-page">
+  <div class="map-wrap">
+    <div id="journey-map" class="map" role="img" aria-label="Map of this route. Numbered circles match the numbered steps."></div>
+    <div class="map-float">
+      <a class="icon-btn raised" href="{{ url_for('routes', **base) }}" aria-label="Back to routes">{{ icon('arrow-left', 22) }}</a>
+      <span class="spacer"></span>
+      <span class="legend secondary"><span><i></i>Bus</span><span><i class="walk"></i>Walk</span></span>
+    </div>
+    <div class="map-btns">
+      <button type="button" class="icon-btn raised" data-fit aria-label="Show whole route">{{ icon('route', 20) }}</button>
+      <button type="button" class="icon-btn raised" data-locate aria-label="Show my location">{{ icon('locate', 20) }}</button>
+    </div>
+  </div>
+
+  <section class="sheet">
+    <div class="sheet-in">
+      <div class="j-sum">
+        <div>
+          <h1>{{ fmt_dur(j.time) }}</h1>
+          <p>To <b style="color:var(--text)">{{ dest.name }}</b></p>
+        </div>
+        <div style="display:flex;gap:2px">
+          {{ theme_toggle() }}
+          <a class="icon-btn" href="{{ url_for('saved_new', point=dest.id) }}" aria-label="{{ 'Saved' if is_saved else 'Save this place' }}" title="Save place" {% if is_saved %}style="color:var(--brand)"{% endif %}>{{ icon('star', 22) }}</a>
+        </div>
+      </div>
+      <div class="mt">{{ chain(j) }}</div>
+      <div class="j-stats">
+        <div><small>Leave</small><b>{{ fmt_time(j.leave) }}</b></div>
+        <div><small>Arrive</small><b>{{ fmt_time(j.arrive) }}</b></div>
+        <div><small>Fare</small><b>{% if j.fare %}₹{{ j.fare }}{% else %}Free{% endif %}</b></div>
+        <div><small>Walk</small><b>{{ j.walk }}m</b></div>
+      </div>
+
+      {% for w in j.warnings %}<p class="notice mt">{{ icon('alert', 18) }}<span>{{ w }}</span></p>{% endfor %}
+
+      {% include "_itinerary.html" %}
+
+      {% if later %}
+      <p class="hint">Missed it? Next {{ j.routes[0] }} from here around {% for d in later %}<b>{{ fmt_time(d.time) }}</b>{{ ', ' if not loop.last }}{% endfor %}.</p>
+      {% endif %}
+
+      <form method="post" action="{{ url_for('trip_start') }}" class="action-bar" style="bottom:calc(64px + env(safe-area-inset-bottom))">
+        {% for k, v in base.items() %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endfor %}
+        <input type="hidden" name="key" value="{{ key }}">
+        <button class="btn btn-primary btn-block" type="submit">{{ icon('navigate', 20) }} Start trip</button>
+      </form>
+      <p class="hint">Times are estimates from the CTU timetable, not live tracking.</p>
+    </div>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}<script>RM.journeyMap({{ map_data|tojson }});</script>{% endblock %}

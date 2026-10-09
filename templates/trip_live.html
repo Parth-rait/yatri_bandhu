@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, theme_toggle with context %}
+{% block title %}Trip to {{ dest.name }}{% endblock %}
+{% block content %}
+{% set first = j.legs[0] %}
+<div class="map-page">
+  <div class="map-wrap">
+    <div id="journey-map" class="map" role="img" aria-label="Live map of your trip"></div>
+    <div class="map-float">
+      <a class="icon-btn raised" href="{{ url_for('app_home') }}" aria-label="Back to home">{{ icon('arrow-left', 22) }}</a>
+      <span class="spacer"></span>
+      <span class="legend"><span class="pulse"></span> Trip in progress</span>
+    </div>
+    <div class="map-btns">
+      <button type="button" class="icon-btn raised" data-fit aria-label="Show whole route">{{ icon('route', 20) }}</button>
+      <button type="button" class="icon-btn raised" data-locate aria-label="Show my location">{{ icon('locate', 20) }}</button>
+    </div>
+  </div>
+  <section class="sheet">
+    <div class="sheet-in" data-live>
+      <div class="live-card" aria-live="polite">
+        <p class="eyebrow" data-live-step>Step 1 of {{ j.legs|length }}</p>
+        <h2 data-live-title>
+          {% if first.type == 'walk' %}Walk to {{ first.end.name }}{% else %}Board bus {{ first.route }} at {{ first.board.name }}{% endif %}
+        </h2>
+        <p data-live-sub>{% if first.type == 'walk' %}{{ first.minutes }} min · leave by {{ fmt_time(j.leave) }}{% else %}Bus around {{ fmt_time(first.depart) }}{% endif %}</p>
+        <div class="live-progress" aria-hidden="true">{% for l in j.legs %}<i class="{{ 'done' if loop.first }}" data-progress="{{ loop.index0 }}"></i>{% endfor %}</div>
+      </div>
+      <button type="button" class="btn btn-dark btn-block mt" data-live-toggle aria-pressed="false">{{ icon('locate', 20) }} <span>Turn on live location</span></button>
+      <p class="hint mt">With live location on, RouteMate tells you how far your next stop is and when to get ready to get off.</p>
+
+      <div class="section-head mt-lg"><h2>Your steps</h2>{{ theme_toggle() }}</div>
+      {% include "_itinerary.html" %}
+
+      <div class="btn-row">
+        <form method="post" action="{{ url_for('trip_cancel', tid=trip.id) }}"><button class="btn btn-outline btn-block" type="submit">End trip</button></form>
+        <form method="post" action="{{ url_for('trip_arrived', tid=trip.id) }}"><button class="btn btn-primary btn-block" type="submit">{{ icon('flag', 18) }} I've arrived</button></form>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}<script>RM.journeyMap({{ map_data|tojson }}, { live: true });</script>{% endblock %}

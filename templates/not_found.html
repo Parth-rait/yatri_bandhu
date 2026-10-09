@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon with context %}
+{% block title %}Not found{% endblock %}
+{% block content %}
+<div class="wrap">
+  <div class="empty" style="padding-top:80px">
+    <span class="empty-ic">{{ icon('compass', 32) }}</span>
+    <h2>This page took a wrong turn</h2>
+    <p>The stop, line or page you're looking for doesn't exist.</p>
+    <a class="btn btn-primary btn-block" href="{{ url_for('app_home') }}">Back to planning</a>
+  </div>
+</div>
+{% endblock %}

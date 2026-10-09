@@ -1,0 +1,36 @@
+{# Moovit-style vertical itinerary. Numbers match the numbered pins on the map. #}
+{% from "_macros.html" import icon, bus_badge with context %}
+<ol class="tl">
+  {% for l in j.legs %}
+  {% if l.type == 'bus' and l.wait is defined %}
+  <li class="tl-item walk" aria-hidden="true"><span></span><span class="tl-rail"></span>
+    <div class="tl-body"><p class="tl-change">Change buses. Wait about {{ l.wait }} min for bus {{ l.route }}.</p></div></li>
+  {% endif %}
+  <li class="tl-item {{ l.type }}" data-leg="{{ loop.index0 }}" tabindex="0" style="--lc: {{ 'var(--walk)' if l.type == 'walk' else 'var(--rc-' ~ loop.index0 ~ ')' }}" {% if l.type == 'bus' %}data-route-color="{{ l.route }}"{% endif %}>
+    <span class="tl-time">{% if l.type == 'bus' %}{{ fmt_time(l.depart) }}{% elif loop.first %}{{ fmt_time(j.leave) }}{% endif %}</span>
+    <span class="tl-rail"><span class="tl-num">{{ loop.index }}</span></span>
+    <div class="tl-body">
+      {% if l.type == 'walk' %}
+        <b>Walk to {{ l.end.name }}</b>
+        <p class="tl-sub">{{ l.minutes }} min · about {{ l.meters|int }} m</p>
+      {% else %}
+        <b>Board at <a href="{{ url_for('stop', sid=l.board.stop_id) }}">{{ l.board.name }}</a></b>
+        <div class="tl-card">
+          <div class="head">{{ bus_badge(l.route, 'lg') }}<span class="towards">towards {{ l.headsign }}</span></div>
+          <details class="tl-ride">
+            <summary>Ride {{ l.n_stops }} stop{{ 's' if l.n_stops != 1 }} · {{ fmt_dur(l.arrive - l.depart) }} {{ icon('chevron-down', 16) }}</summary>
+            <ol>{% for v in l.via %}<li>{{ v }}</li>{% endfor %}<li><b>{{ l.alight.name }}</b></li></ol>
+          </details>
+          {% if l.via %}<p class="tl-alert">{{ icon('bell', 16) }} Get ready after {{ l.via[-1] }}</p>{% endif %}
+        </div>
+        <p class="tl-sub" style="margin-top:10px">Get off at <a href="{{ url_for('stop', sid=l.alight.stop_id) }}"><b>{{ l.alight.name }}</b></a> · ~{{ fmt_time(l.arrive) }} · ₹{{ l.fare }}</p>
+      {% endif %}
+    </div>
+  </li>
+  {% endfor %}
+  <li class="tl-item end">
+    <span class="tl-time">{{ fmt_time(j.arrive) }}</span>
+    <span class="tl-rail"><span class="tl-num">{{ icon('flag', 13) }}</span></span>
+    <div class="tl-body"><b>Arrive at {{ dest.name }}</b></div>
+  </li>
+</ol>

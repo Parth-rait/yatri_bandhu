@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, bus_badge, topbar with context %}
+{% block title %}How to read RouteMate{% endblock %}
+{% block content %}
+{{ topbar('How to read RouteMate', url_for('me')) }}
+<section class="section" style="margin-top:4px">
+  <h2>Map symbols</h2>
+  <div class="list legend-list">
+    <div class="row"><span class="sym"><span class="sym-bus"></span></span><span class="row-txt"><b>Solid coloured line</b><small class="wrap-text">Ride the bus. Its colour matches the bus number badge, like {{ bus_badge('38B') }}</small></span></div>
+    <div class="row"><span class="sym"><span class="sym-walk"></span></span><span class="row-txt"><b>Grey dotted line</b><small class="wrap-text">Walk this part</small></span></div>
+    <div class="row"><span class="sym"><span class="sym-num">2</span></span><span class="row-txt"><b>Numbered circle</b><small class="wrap-text">Where step 2 starts. Numbers match the steps under the map.</small></span></div>
+    <div class="row"><span class="sym"><span class="sym-off"></span></span><span class="row-txt"><b>White circle</b><small class="wrap-text">Get off the bus here</small></span></div>
+    <div class="row"><span class="sym"><span class="sym-you"></span></span><span class="row-txt"><b>Blue dot</b><small class="wrap-text">You, when location is on</small></span></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Words we use</h2>
+  <div class="list faq">
+    <details><summary>What is a “change”? {{ icon('chevron-down', 18) }}</summary><p>Getting off one bus and taking another to finish your trip. Each bus needs its own ticket. “No changes” means one bus all the way.</p></details>
+    <details><summary>What does “every 20 min” mean? {{ icon('chevron-down', 18) }}</summary><p>A bus on that line comes roughly every 20 minutes. If you just missed one, the next is usually within that time.</p></details>
+    <details><summary>What does “Best for you” mean? {{ icon('chevron-down', 18) }}</summary><p>It's the route that best fits the priority you picked: cheapest, fastest, simplest or least walking. The others are still there to compare.</p></details>
+    <details><summary>How do I know where to get off? {{ icon('chevron-down', 18) }}</summary><p>Each bus step says “Get ready after …”, which is the stop just before yours. Start the trip and turn on live location for a reminder when you're close.</p></details>
+    <details><summary>Are times live? {{ icon('chevron-down', 18) }}</summary><p>No. They are estimated from the official CTU timetable (first bus, last bus, frequency). Buses can be a few minutes early or late.</p></details>
+    <details><summary>How do I pay? {{ icon('chevron-down', 18) }}</summary><p>Buy a ticket from the conductor on the bus. Fares shown are approximate CTU fares by distance: ₹10, ₹20 or ₹25.</p></details>
+  </div>
+</section>
+<section class="section"><a class="btn btn-block" href="{{ url_for('about') }}">{{ icon('info', 18) }} About the data</a></section>
+{% endblock %}

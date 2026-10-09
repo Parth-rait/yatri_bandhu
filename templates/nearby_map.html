@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon with context %}
+{% block title %}Stops map{% endblock %}
+{% block content %}
+<div class="map-full">
+  <div class="map-wrap">
+    <div id="nearby-map" class="map" role="img" aria-label="Map of the bus stops closest to you, numbered by distance"></div>
+    <div class="map-float">
+      <a class="icon-btn raised" href="{{ url_for('nearby', lat=here.lat, lng=here.lng) }}" aria-label="Back to list">{{ icon('arrow-left', 22) }}</a>
+      <div class="toggle-2" style="flex:1;max-width:260px;margin:0 auto;box-shadow:var(--shadow-1)">
+        <a href="{{ url_for('nearby', lat=here.lat, lng=here.lng) }}">{{ icon('list', 18) }} List</a>
+        <a aria-current="true" href="#">{{ icon('map', 18) }} Map</a>
+      </div>
+      <span style="width:44px"></span>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script>RM.nearbyMap({{ here|tojson }}, {{ rows|map(attribute='s')|list|tojson }});</script>{% endblock %}

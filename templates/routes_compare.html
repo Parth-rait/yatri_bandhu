@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, bus_badge, topbar with context %}
+{% block title %}Compare{% endblock %}
+{% block content %}
+{% set base = search_args() %}
+{{ topbar('Compare routes', url_for('routes', **base), origin.name ~ ' → ' ~ dest.name) }}
+{% set opts = ranked.options %}
+<div class="wrap">
+  {% if opts %}
+  {% set best = {'fare': opts|map(attribute='fare')|min, 'time': opts|map(attribute='time')|min,
+                 'walk': opts|map(attribute='walk')|min, 'changes': opts|map(attribute='changes')|min} %}
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Comparison table, scroll sideways for more">
+    <table class="compare">
+      <thead><tr><th scope="col"></th>{% for j in opts %}<th scope="col">Option {{ loop.index }}</th>{% endfor %}</tr></thead>
+      <tbody>
+        <tr><th scope="row">Buses</th>{% for j in opts %}<td><span class="line-badges">{% for r in j.routes %}{{ bus_badge(r) }}{% endfor %}</span></td>{% endfor %}</tr>
+        <tr><th scope="row">Cost</th>{% for j in opts %}<td class="{{ 'best' if j.fare == best.fare }}">₹{{ j.fare }}</td>{% endfor %}</tr>
+        <tr><th scope="row">Reach in</th>{% for j in opts %}<td class="{{ 'best' if j.time == best.time }}">{{ fmt_dur(j.time) }}</td>{% endfor %}</tr>
+        <tr><th scope="row">Walking</th>{% for j in opts %}<td class="{{ 'best' if j.walk == best.walk }}">{{ j.walk }} min</td>{% endfor %}</tr>
+        <tr><th scope="row">Changes</th>{% for j in opts %}<td class="{{ 'best' if j.changes == best.changes }}">{{ j.changes }}</td>{% endfor %}</tr>
+        <tr><th scope="row">Leave</th>{% for j in opts %}<td>{{ fmt_time(j.leave) }}</td>{% endfor %}</tr>
+        <tr><th scope="row"></th>{% for j in opts %}<td><a class="link" href="{{ url_for('journey', key=j.key, **base) }}">View</a></td>{% endfor %}</tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint mt">Green = best in that row. Scroll sideways to see all options.</p>
+  {% else %}
+  <div class="empty"><span class="empty-ic">{{ icon('table', 30) }}</span><h2>Nothing to compare</h2><p>No routes match right now.</p></div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, bus_badge, theme_toggle with context %}
+{% block title %}Stops near you{% endblock %}
+{% block content %}
+<header class="topbar">
+  <div class="topbar-title"><h1 style="font-size:1.6rem;font-weight:800;letter-spacing:-.03em">Stops</h1></div>
+  <div class="topbar-actions">
+    <a class="icon-btn" href="{{ url_for('search', kind='stops', ret='/stop/__PT__', geo=0) }}" aria-label="Search stops">{{ icon('search', 22) }}</a>
+    {{ theme_toggle() }}
+  </div>
+</header>
+
+{% if not located %}
+<div class="wrap">
+  <div class="empty">
+    <span class="empty-ic">{{ icon('locate', 32) }}</span>
+    <h2>Find bus stops near you</h2>
+    <p>See the closest stops, how long the walk is and which bus comes next.</p>
+    <button type="button" class="btn btn-primary btn-block" data-find-nearby>{{ icon('locate', 20) }} Use my location</button>
+    <p class="notice mt" data-nearby-error hidden></p>
+  </div>
+  <div class="list">
+    <a class="row" href="{{ url_for('search', kind='stops', ret='/stop/__PT__', geo=0) }}"><span class="row-ic">{{ icon('search', 20) }}</span><span class="row-txt"><b>Search for a stop</b><small>By name, sector or landmark</small></span><span class="row-chev">{{ icon('chevron-right', 18) }}</span></a>
+    <a class="row" href="{{ url_for('nearby', lat=demo.lat, lng=demo.lng) }}"><span class="row-ic">{{ icon('cap', 20) }}</span><span class="row-txt"><b>Stops near Plaksha University</b><small>Try it without sharing location</small></span><span class="row-chev">{{ icon('chevron-right', 18) }}</span></a>
+  </div>
+  <p class="hint mt" style="text-align:center">Your location is only used to find stops. It isn't stored.</p>
+</div>
+{% else %}
+<div class="wrap">
+  <div class="toggle-2" role="group" aria-label="View">
+    <a aria-current="true" href="{{ url_for('nearby', lat=here.lat, lng=here.lng) }}">{{ icon('list', 18) }} List</a>
+    <a href="{{ url_for('nearby_map', lat=here.lat, lng=here.lng) }}">{{ icon('map', 18) }} Map</a>
+  </div>
+</div>
+<section class="section" style="margin-top:14px">
+  {% if rows %}
+  <div class="list">
+    {% for r in rows %}
+    <a class="row" href="{{ url_for('stop', sid=r.s.id) }}">
+      <span class="near-num">{{ loop.index }}</span>
+      <span class="row-txt">
+        <b>{{ r.s.name }}</b>
+        <small>{{ r.walk }} min walk · {{ r.meters|int }} m</small>
+        <span class="line-badges" style="margin-top:6px">{% for no in r.routes[:5] %}{{ bus_badge(no) }}{% endfor %}{% if r.routes|length > 5 %}<span class="tag">+{{ r.routes|length - 5 }}</span>{% endif %}</span>
+      </span>
+      <span class="row-trail">{% if r.deps %}<b style="color:var(--ok)">{{ fmt_time(r.deps[0].time) }}</b><br><small>{{ r.deps[0].route }}</small>{% else %}<small>No buses<br>this hour</small>{% endif %}</span>
+    </a>
+    {% endfor %}
+  </div>
+  <p class="hint mt">Next-bus times are estimated from the timetable.</p>
+  {% else %}
+  <div class="empty"><span class="empty-ic">{{ icon('stop', 30) }}</span><h2>No stops within a 20 min walk</h2><p>You may be outside the CTU network. Try searching for a stop instead.</p></div>
+  {% endif %}
+  <button type="button" class="btn btn-ghost btn-block mt" data-find-nearby>{{ icon('refresh', 18) }} Refresh my location</button>
+  <p class="notice" data-nearby-error hidden></p>
+</section>
+{% endif %}
+{% endblock %}

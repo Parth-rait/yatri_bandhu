@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, topbar with context %}
+{% block title %}Saved places{% endblock %}
+{% block content %}
+{% call topbar('Saved places', url_for('me')) %}
+  <a class="icon-btn" href="{{ url_for('saved_new') }}" aria-label="Add a place">{{ icon('plus', 22) }}</a>
+{% endcall %}
+<div class="wrap">
+  {% if saved %}
+  <div class="list">
+    {% for s in saved %}
+    <div class="row">
+      <span class="row-ic brand">{{ icon(s.icon, 20) }}</span>
+      <a class="row-txt" href="{{ url_for('plan', to=s.point) }}" style="color:inherit;text-decoration:none"><b>{{ s.label }}</b><small>{{ s.name }}</small></a>
+      <form method="post"><input type="hidden" name="delete" value="{{ s.id }}">
+        <button class="icon-btn" type="submit" aria-label="Remove {{ s.label }}" title="Remove" style="color:var(--text-3)">{{ icon('trash', 18) }}</button></form>
+    </div>
+    {% endfor %}
+  </div>
+  <p class="hint mt">Tap a place to plan a trip there. Saved places also appear on the home screen.</p>
+  {% else %}
+  <div class="empty"><span class="empty-ic">{{ icon('star', 30) }}</span><h2>No saved places yet</h2><p>Save Home, PG or Campus to plan trips in one tap.</p></div>
+  {% endif %}
+  <a class="btn btn-primary btn-block mt-lg" href="{{ url_for('saved_new') }}">{{ icon('plus', 20) }} Add a place</a>
+</div>
+{% endblock %}

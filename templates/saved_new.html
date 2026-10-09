@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, topbar with context %}
+{% block title %}Add a place{% endblock %}
+{% block content %}
+{{ topbar('Add a place', url_for('saved')) }}
+<form class="wrap" method="post">
+  <p class="field-label">Location</p>
+  <a class="ex-from" href="{{ url_for('search', title='Find the place', ret='/saved/new?point=__PT__') }}">
+    <span class="row-ic brand">{{ icon(point.icon if point else 'search', 20) }}</span>
+    <span><small>{{ 'Selected' if point else 'Step 1' }}</small><b>{{ point.name if point else 'Search for the place' }}</b></span>
+    <span class="link">{{ 'Change' if point else 'Search' }}</span>
+  </a>
+  <input type="hidden" name="point" value="{{ point.id if point else '' }}">
+
+  {% if point %}
+  <div class="mt-lg">
+    <label class="field-label" for="label">Name it</label>
+    <input class="input" id="label" name="label" maxlength="30" placeholder="e.g. Home, PG, Gym" value="{{ label }}" required autofocus>
+  </div>
+  <fieldset class="mt-lg" style="border:0;padding:0;margin-left:0;margin-right:0">
+    <legend class="field-label">Icon</legend>
+    <div class="icon-pick">
+      {% for i in icons %}<label><input type="radio" name="icon" value="{{ i }}" {% if loop.first %}checked{% endif %}><span>{{ icon(i, 22) }}<span class="sr">{{ i }}</span></span></label>{% endfor %}
+    </div>
+  </fieldset>
+  <div class="action-bar"><button class="btn btn-primary btn-block" type="submit">Save place</button></div>
+  {% endif %}
+</form>
+{% endblock %}

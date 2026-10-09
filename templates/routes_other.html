@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, topbar with context %}
+{% block title %}Other ways{% endblock %}
+{% block content %}
+{% set base = search_args() %}
+{{ topbar('Other ways to go', url_for('routes', **base), origin.name ~ ' → ' ~ dest.name) }}
+<div class="wrap">
+  <div class="list">
+    {% if res.walk_only %}
+    <a class="row" href="{{ url_for('journey', key='walk', **base) }}"><span class="row-ic">{{ icon('walk', 20) }}</span>
+      <span class="row-txt"><b>Walk</b><small>{{ (res.walk_only.legs[0].meters / 1000)|round(1) }} km · free</small></span>
+      <span class="row-trail">{{ fmt_dur(res.walk_only.time) }}</span><span class="row-chev">{{ icon('chevron-right', 18) }}</span></a>
+    {% endif %}
+    {% for o in res.others %}
+    <div class="row"><span class="row-ic">{{ icon({'cab': 'car'}.get(o.id, o.id), 20) }}</span>
+      <span class="row-txt"><b>{{ o.label }}</b><small>~{{ fmt_dur(o.minutes) }} · {{ o.km }} km by road</small></span>
+      <span class="row-trail"><b style="color:var(--text)">₹{{ o.low }}–{{ o.high }}</b></span></div>
+    {% endfor %}
+  </div>
+  <div class="notice mt">{{ icon('info', 18) }}<span>These prices are <b>rough estimates</b> from distance, not live prices from Uber, Ola or Rapido. Check the app before booking.</span></div>
+  {% if ranked.recommended %}
+  <div class="notice ok">{{ icon('bus', 18) }}<span>The bus costs <b>₹{{ ranked.recommended.fare }}</b> for this trip.
+    {% set cab = res.others[-1] %}That's about ₹{{ cab.low - ranked.recommended.fare }} less than a cab.</span></div>
+  {% endif %}
+</div>
+{% endblock %}

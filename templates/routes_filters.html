@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, topbar with context %}
+{% block title %}Filters{% endblock %}
+{% block content %}
+{{ topbar('Filters', url_for('routes', **search_args()), dest.name) }}
+<form class="wrap" method="get" action="{{ url_for('routes') }}">
+  {% for k in ('from', 'to', 'mode', 'at') if request.args.get(k) %}<input type="hidden" name="{{ k }}" value="{{ request.args.get(k) }}">{% endfor %}
+  {% macro chipset(name, opts, current) -%}
+  <div class="chips">
+    {% for v, t in opts %}
+    <label class="chip-r"><input type="radio" name="{{ name }}" value="{{ v }}" {% if (current|string if current is not none else '') == v %}checked{% endif %}><span>{{ t }}</span></label>
+    {% endfor %}
+  </div>
+  {%- endmacro %}
+
+  <fieldset class="form-block" style="border:0;padding:0;margin:8px 0 0">
+    <legend class="field-label">Most I want to spend</legend>
+    {{ chipset('budget', [('', 'Any'), ('10', '₹10'), ('20', '₹20'), ('25', '₹25'), ('40', '₹40')], limits.budget) }}
+  </fieldset>
+  <fieldset class="form-block" style="border:0;padding:0;margin:26px 0 0">
+    <legend class="field-label">Most walking I'm OK with</legend>
+    {{ chipset('walk', [('', 'Any'), ('5', '5 min'), ('10', '10 min'), ('15', '15 min')], limits.walk) }}
+  </fieldset>
+  <fieldset class="form-block" style="border:0;padding:0;margin:26px 0 0">
+    <legend class="field-label">Bus changes</legend>
+    {{ chipset('changes', [('', 'Any'), ('0', 'One bus only'), ('1', 'Up to 1 change')], limits.changes) }}
+  </fieldset>
+
+  <div class="notice info mt-lg">{{ icon('info', 18) }}<span>Routes outside your filters aren't deleted. They move to the bottom with the reason, so you can still pick one.</span></div>
+
+  <div class="action-bar btn-row">
+    <a class="btn btn-outline" href="{{ url_for('routes', **search_args(budget='', walk='', changes='')) }}">Reset</a>
+    <button class="btn btn-primary" type="submit">Apply</button>
+  </div>
+</form>
+{% endblock %}

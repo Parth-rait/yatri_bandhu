@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, mode_icon, topbar with context %}
+{% block title %}Trip options{% endblock %}
+{% block content %}
+{% set oid = origin.id if origin else '' %}
+{{ topbar('Plan your trip', url_for('app_home')) }}
+<form class="wrap" method="get" action="{{ url_for('routes') }}" data-plan-form>
+  <input type="hidden" name="from" value="{{ oid }}"><input type="hidden" name="to" value="{{ dest.id }}">
+
+  <div class="od">
+    <a class="od-row" href="{{ url_for('search', title='Start from', ret='/plan?from=__PT__&to=' ~ (dest.id|urlencode)) }}">
+      <span class="od-dot a"></span><span><small>From</small><b>{{ origin.name if origin else 'Choose a start' }}</b></span></a>
+    <a class="od-row" href="{{ url_for('search', ret='/plan?from=' ~ (oid|urlencode) ~ '&to=__PT__') }}">
+      <span class="od-dot b"></span><span><small>To</small><b>{{ dest.name }}</b></span></a>
+    {% if origin %}<div class="od-swap"><a class="icon-btn" href="{{ url_for('plan', **{'from': dest.id, 'to': oid}) }}" aria-label="Swap start and destination">{{ icon('swap', 20) }}</a></div>{% endif %}
+  </div>
+
+  <div class="form-block mt-lg">
+    <p class="field-label">When</p>
+    <div class="toggle-2" role="radiogroup" aria-label="When">
+      <label><input type="radio" name="when" value="now" {% if not at %}checked{% endif %} data-when-now> {{ icon('clock', 18) }} Leave now</label>
+      <label><input type="radio" name="when" value="later" {% if at %}checked{% endif %} data-when-later> Leave at…</label>
+    </div>
+    <div data-when-time-wrap {% if not at %}hidden{% endif %} class="mt">
+      <label class="sr" for="at">Departure time</label>
+      <input class="time-input" id="at" type="time" name="at" value="{{ at }}" {% if not at %}disabled{% endif %} data-when-time>
+    </div>
+  </div>
+
+  <fieldset class="form-block" style="border:0;padding:0;margin-top:26px">
+    <legend class="field-label">What matters most right now?</legend>
+    <div class="list choice-list">
+      {% for key, m in MODES.items() %}
+      <label class="choice m-{{ key }}">
+        <input type="radio" name="mode" value="{{ key }}" {% if key == mode %}checked{% endif %}>
+        <span class="choice-ic">{{ mode_icon(key, 22) }}</span>
+        <span class="choice-txt"><b>{{ m.situation }}</b><small>{{ m.blurb }}</small></span>
+        <span class="choice-tick">{{ icon('check', 14) }}</span>
+      </label>
+      {% endfor %}
+    </div>
+  </fieldset>
+
+  <label class="check-row mt">
+    <input type="checkbox" data-remember>
+    <span>Don't ask again <small>Go straight to routes with this priority. Change it in Settings.</small></span>
+  </label>
+
+  <div class="action-bar">
+    <button class="btn btn-primary btn-block" type="submit" {% if not origin %}disabled{% endif %}>Show routes {{ icon('arrow-right', 20) }}</button>
+  </div>
+</form>
+{% endblock %}

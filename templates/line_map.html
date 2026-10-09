@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, bus_badge with context %}
+{% block title %}Line {{ r.no }} map{% endblock %}
+{% block content %}
+<div class="map-full">
+  <div class="map-wrap">
+    <div id="line-map" class="map" role="img" aria-label="Map of line {{ r.no }} and its stops"></div>
+    <div class="map-float">
+      <a class="icon-btn raised" href="{{ url_for('line', no=r.no, dir=p.direction) }}" aria-label="Back">{{ icon('arrow-left', 22) }}</a>
+      <span class="legend" style="height:44px;font-size:.9rem;color:var(--text)">{{ bus_badge(r.no) }} <b>{{ 'Circular' if r.loop else 'To ' ~ p.headsign }}</b></span>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script>RM.lineMap({{ r.no|tojson }}, {{ p.shape|tojson }}, {{ stops|tojson }});</script>{% endblock %}

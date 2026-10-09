@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, theme_toggle with context %}
+{% block title %}Plan{% endblock %}
+{% block content %}
+{% set from_id = origin.id if origin else '' %}
+{% set go = '/' ~ next_step ~ '?from=' ~ (from_id|urlencode) ~ '&to=__PT__' ~ ('' if next_step == 'plan' else '&mode=' ~ settings.default_mode) %}
+<div class="home-hero">
+  <div class="home-top">
+    <a class="brand-mini" href="{{ url_for('landing') }}"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt=""> RouteMate</a>
+    {{ theme_toggle() }}
+    <a class="icon-btn" href="{{ url_for('help') }}" aria-label="Help">{{ icon('help', 22) }}</a>
+  </div>
+
+  <h1 class="greeting"><span>{{ greeting }}</span>Where are you going?</h1>
+
+  <div class="search-card">
+    <a class="search-pill" href="{{ url_for('search', ret=go) }}">{{ icon('search', 24) }} Search a place or stop</a>
+    <a class="search-from" href="{{ url_for('search', title='Start from', ret='/app?from=__PT__') }}">
+      <span class="dot" aria-hidden="true"></span>
+      <span>From <b>{{ origin.name if origin else 'choose a start' }}</b></span>
+      <span class="link">Change</span>
+    </a>
+  </div>
+</div>
+
+<section class="section" aria-labelledby="places-h">
+  <div class="section-head"><h2 id="places-h">Your places</h2><a class="link" href="{{ url_for('saved') }}">Edit</a></div>
+  <div class="shortcuts">
+    {% for s in saved if s.point != from_id %}
+    <a class="shortcut" href="{{ go|fill(s.point) }}"><span class="shortcut-ic">{{ icon(s.icon, 24) }}</span><span>{{ s.label }}</span></a>
+    {% endfor %}
+    <a class="shortcut add" href="{{ url_for('saved_new') }}"><span class="shortcut-ic">{{ icon('plus', 24) }}</span><span>Add</span></a>
+  </div>
+</section>
+
+{% if recent %}
+<section class="section" aria-labelledby="recent-h">
+  <div class="section-head"><h2 id="recent-h">Recent</h2><a class="link" href="{{ url_for('history') }}">See all</a></div>
+  <div class="list">
+    {% for t in recent %}
+    <a class="row" href="{{ url_for('routes', **{'from': t.origin, 'to': t.dest, 'mode': t.mode}) }}">
+      <span class="row-ic">{{ icon('clock', 20) }}</span>
+      <span class="row-txt"><b>{{ t.dest_name }}</b><small>from {{ t.origin_name }}</small></span>
+      <span class="row-trail">{{ icon('repeat', 18) }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="section secondary" aria-labelledby="pop-h">
+  <div class="section-head"><h2 id="pop-h">Popular with students</h2></div>
+  <div class="list">
+    {% for p in popular %}
+    <a class="row" href="{{ go|fill(p.id) }}">
+      <span class="row-ic">{{ icon(p.icon, 20) }}</span>
+      <span class="row-txt"><b>{{ p.name }}</b><small>{{ p.category }}</small></span>
+      <span class="row-chev">{{ icon('chevron-right', 18) }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
