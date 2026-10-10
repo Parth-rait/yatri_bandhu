@@ -6,7 +6,7 @@
 {% block content %}
 <div class="onb">
   <div class="onb-top">
-    <div class="onb-dots" aria-label="Step {{ step }} of 2"><i class="{{ 'on' if step == '1' }}"></i><i class="{{ 'on' if step == '2' }}"></i></div>
+    <div class="onb-dots" aria-label="Step {{ step }} of 3">{% for n in ['1', '2', '3'] %}<i class="{{ 'on' if step == n }}"></i>{% endfor %}</div>
     <div style="display:flex;align-items:center">{{ theme_toggle() }}<a class="btn btn-ghost btn-sm" href="{{ url_for('app_home') }}">Skip</a></div>
   </div>
 
@@ -18,8 +18,9 @@
     <input class="input big" id="name" name="name" value="{{ settings.name }}" placeholder="Your name" autocomplete="given-name" autofocus>
     <div class="onb-foot"><button class="btn btn-primary btn-block" type="submit">Continue {{ icon('arrow-right', 20) }}</button></div>
   </form>
-  {% else %}
+  {% elif step == '2' %}
   <form method="post" class="onb" style="padding:0;min-height:0;flex:1">
+    <input type="hidden" name="next" value="3">
     <h1>Where's home?</h1>
     <input type="hidden" name="home" value="{{ home.id if home else '' }}">
     <div class="list">
@@ -28,10 +29,21 @@
         <span class="row-txt"><b>{{ home.name }}</b><small>{{ home.sub }}</small></span>
         <span style="color:var(--ok)">{{ icon('check', 22) }}</span></div>
       {% endif %}
-      <a class="row" href="{{ url_for('search', title='Search home', ret='/welcome?step=2&home=__PT__') }}">
+      <a class="row" href="{{ url_for('search', title='Search home', ret='/welcome?step=2&home=__PT__', geo=0) }}">
         <span class="row-ic">{{ icon('search', 20) }}</span><span class="row-txt"><b>{{ 'Choose another place' if home else 'Search a place' }}</b><small>Hostel, PG, sector or stop</small></span><span class="row-chev">{{ icon('chevron-right', 18) }}</span></a>
     </div>
-    <div class="onb-foot"><button class="btn btn-primary btn-block" type="submit">Start {{ icon('arrow-right', 20) }}</button></div>
+    <div class="onb-foot"><button class="btn btn-primary btn-block" type="submit">Continue {{ icon('arrow-right', 20) }}</button></div>
+  </form>
+  {% else %}
+  <form method="post" class="onb" style="padding:0;min-height:0;flex:1">
+    <input type="hidden" name="use_location" value="0">
+    <div style="text-align:center;margin-top:40px"><span class="empty-ic" style="width:96px;height:96px;border-radius:30px">{{ icon('locate', 44) }}</span></div>
+    <h1 style="text-align:center">Find buses near you</h1>
+    <p class="lede" style="text-align:center">Allow location to start trips from where you are.</p>
+    <div class="onb-foot">
+      <button class="btn btn-primary btn-block" type="button" data-ask-location>Allow location</button>
+      <button class="btn btn-ghost btn-block" type="submit">Not now</button>
+    </div>
   </form>
   {% endif %}
 </div>

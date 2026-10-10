@@ -3,7 +3,13 @@
 {% set ns = namespace(bus=0) %}
 <ol class="stl">
   {% for l in j.legs %}
-    {% if l.type == 'walk' %}
+    {% if l.type == 'via' %}
+    <li class="via">
+      <span class="stl-dot via"></span>
+      <span><b>{{ l.start.name }}</b><small>Your stop on the way</small></span>
+      <span class="t strong">{{ fmt_time(l.arrive) }}</span>
+    </li>
+    {% elif l.type == 'walk' %}
     <li class="walk">
       <span class="stl-dot walk"></span>
       <span><b>{% if loop.first %}{{ origin.name }}{% else %}Walk to {{ l.end.name }}{% endif %}</b><small>Walk {{ l.minutes }} min{% if loop.first %} to {{ l.end.name }}{% endif %}</small></span>

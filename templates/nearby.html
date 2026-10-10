@@ -2,8 +2,8 @@
 {% from "_macros.html" import icon, bus_ic, topbar with context %}
 {% block title %}Nearby Buses{% endblock %}
 {% block content %}
-{{ topbar('Nearby Buses', url_for('lines')) }}
 {% if not located %}
+{{ topbar('Nearby Buses', url_for('lines')) }}
 <div class="wrap" style="padding:0 20px">
   <div class="empty">
     <span class="empty-ic">{{ icon('locate', 32) }}</span>
@@ -17,12 +17,12 @@
   </div>
 </div>
 {% else %}
-<div class="map-page">
-  <div class="map-wrap" style="height:42vh;min-height:260px">
-    <div id="nearby-map" class="map" role="img" aria-label="Map of buses near you"></div>
-    <div class="map-btns"><button type="button" class="icon-btn raised" data-find-nearby aria-label="Refresh my location">{{ icon('locate', 20) }}</button></div>
-  </div>
-  <section class="sheet">
+<div class="mapui">
+  <div class="mapui-panel">
+    <div class="mapui-head">
+{{ topbar('Nearby Buses', url_for('lines')) }}
+    </div>
+  <section class="sheet mapui-body">
     <div class="sheet-in">
       <div class="opt-head"><h2>Buses near you</h2></div>
       <p class="notice" data-nearby-error hidden></p>
@@ -42,6 +42,11 @@
       {% endif %}
     </div>
   </section>
+  </div>
+  <div class="map-wrap mapui-map" style="height:42vh;min-height:260px">
+    <div id="nearby-map" class="map" role="img" aria-label="Map of buses near you"></div>
+    <div class="map-btns"><button type="button" class="icon-btn raised" data-find-nearby aria-label="Refresh my location">{{ icon('locate', 20) }}</button></div>
+  </div>
 </div>
 {% endif %}
 {% endblock %}

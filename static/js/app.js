@@ -1,4 +1,4 @@
-/* RouteMate page behaviour: theme, search, location, small form helpers, usability-test logger. */
+/* Yatri Bandhu page behaviour: theme, search, location, small form helpers, usability-test logger. */
 (function () {
   'use strict';
   const RM = (window.RM = window.RM || {});
@@ -26,7 +26,9 @@
   const sysDark = () => matchMedia('(prefers-color-scheme: dark)').matches;
   function setTheme(choice) {
     const theme = choice === 'system' ? (sysDark() ? 'dark' : 'light') : choice;
+    const changed = document.documentElement.dataset.theme !== theme;
     document.documentElement.dataset.theme = theme;
+    if (changed) window.dispatchEvent(new Event('rm:theme'));
     document.cookie = choice === 'system' ? 'theme=; path=/; max-age=0; SameSite=Lax'
       : `theme=${choice}; path=/; max-age=31536000; SameSite=Lax`;
     syncThemeButtons(choice);
@@ -108,17 +110,13 @@
     const rows = $$('[data-lines-list] > a');
     const empty = $('[data-lines-empty]');
     const apply = () => {
-      const f = $('[data-lines-filter]:checked').value, t = q.value.trim().toLowerCase();
+      const t = q.value.trim().toLowerCase();
       let shown = 0;
-      rows.forEach((r) => {
-        const ok = (f === 'all' || r.dataset.tags.split(' ').includes(f)) && (!t || r.dataset.search.includes(t));
-        r.hidden = !ok;
-        if (ok) shown++;
-      });
+      rows.forEach((r) => { const ok = !t || r.dataset.search.includes(t); r.hidden = !ok; if (ok) shown++; });
       empty.hidden = shown > 0;
     };
     q.addEventListener('input', apply);
-    $$('[data-lines-filter]').forEach((r) => r.addEventListener('change', apply));
+    apply();
   }
 
   // ---------------------------------------------------------------- forms
@@ -231,7 +229,42 @@
   }
 
   // ---------------------------------------------------------------- boot
+  // splash screen: once per session, long enough to read the name
+  function splash() {
+    const el = $('[data-splash]');
+    if (!el) return;
+    try { if (sessionStorage.getItem('yb.splash')) { el.remove(); return; } sessionStorage.setItem('yb.splash', '1'); } catch { /* ignore */ }
+    setTimeout(() => { el.classList.add('done'); setTimeout(() => el.remove(), 500); }, 1300);
+  }
+
+  // Home: start trips from where you are (if you allowed location)
+  function autoLocate() {
+    const home = $('[data-auto-locate]');
+    if (!home || new URLSearchParams(location.search).get('from')) return;
+    try { if (sessionStorage.getItem('yb.located')) return; sessionStorage.setItem('yb.located', '1'); } catch { /* ignore */ }
+    RM.geolocate().then((pos) => {
+      const p = [pos.coords.latitude, pos.coords.longitude];
+      if (RM.TRICITY && !RM.TRICITY.contains(p)) return;
+      location.replace(`/app?from=geo:${p[0].toFixed(5)},${p[1].toFixed(5)}`);
+    }).catch(() => {});
+  }
+
+  // Onboarding: ask the browser for location permission
+  function initLocationAsk() {
+    const b = $('[data-ask-location]');
+    if (!b) return;
+    b.addEventListener('click', async () => {
+      const f = b.form;
+      try { await RM.geolocate(); f.use_location.value = '1'; }
+      catch (err) { f.use_location.value = '0'; RM.toast(err.message); await new Promise((r) => setTimeout(r, 1200)); }
+      f.submit();
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    splash();
+    autoLocate();
+    initLocationAsk();
     paint();
     syncThemeButtons();
     $$('[data-theme-toggle]').forEach((b) => b.addEventListener('click', () =>

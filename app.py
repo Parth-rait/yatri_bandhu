@@ -1,5 +1,5 @@
 """
-RouteMate — student-centric mobility assistant for Chandigarh & Mohali.
+Yatri Bandhu — student-centric mobility assistant for Chandigarh & Mohali.
 
 Run:   .venv/bin/python app.py      then open http://127.0.0.1:5000
 """
@@ -53,7 +53,8 @@ PLACE_ICON = {"Campus": "cap", "Education": "cap", "Shopping": "bag", "Market": 
 TABS = {
     "home": {"app_home", "plan", "search", "routes", "routes_filters", "routes_compare", "routes_other",
              "journey", "trip_live", "trip_ticket", "feedback"},
-    "routes": {"lines", "line", "line_map", "nearby", "nearby_map", "stop", "stop_map", "explore", "explore_map"},
+    "routes": {"lines", "lines_all", "line", "line_map", "nearby", "nearby_map", "stop", "stop_map", "explore",
+               "explore_map"},
     "saved": {"saved", "saved_new"},
     "profile": {"profile", "history", "settings", "settings_start", "accessibility", "help", "about", "study", "sus"},
 }
@@ -144,7 +145,7 @@ def limits_from_args(args):
 
 def search_args(**over):
     """Current trip-search parameters (for building links), with overrides."""
-    keys = ("from", "to", "mode", "budget", "walk", "changes", "at")
+    keys = ("from", "to", "via", "mode", "budget", "walk", "changes", "at")
     a = {k: request.args.get(k) for k in keys if request.args.get(k)}
     a.update({k: v for k, v in over.items() if v is not None})
     return {k: v for k, v in a.items() if v != ""}
@@ -154,7 +155,8 @@ def journey_map_data(j, origin, dest):
     """Everything the map needs to draw a journey, numbered to match the step list."""
     return dict(origin=origin, dest=dest, legs=[
         dict(type=l["type"], line=l.get("line"), route=l.get("route"), depart=l.get("depart"),
-             arrive=l.get("arrive"), start=l.get("start") or l.get("board"), end=l.get("end") or l.get("alight"))
+             arrive=l.get("arrive"), start=l.get("start") or l.get("board"), end=l.get("end") or l.get("alight"),
+             stops=[[net.stops[x["stop_id"]]["lat"], net.stops[x["stop_id"]]["lng"]] for x in l.get("stops_timed", [])])
         for l in j["legs"]], now=now_min())
 
 
@@ -228,9 +230,11 @@ def welcome():
         if home:
             s["default_from"] = home["id"]
             store.add_saved(g.uid, "Home", "home", home["id"], home["name"], "home")
-        if request.form.get("next") == "2":
+        if "use_location" in request.form:
+            s["use_location"] = request.form["use_location"] == "1"
+        if request.form.get("next") in ("2", "3"):
             store.save_settings(g.uid, s)
-            return redirect(url_for("welcome", step="2"))
+            return redirect(url_for("welcome", step=request.form["next"]))
         s["onboarded"] = True
         store.save_settings(g.uid, s)
         return redirect(url_for("app_home"))
@@ -299,9 +303,39 @@ def remember_priority():
     return ("", 204)
 
 
+def combine_trips(ja, jb, via, t):
+    """Join 'origin -> stop' and 'stop -> destination' into one trip with a stopover in the middle."""
+    stop_leg = dict(type="via", start=dict(name=via["name"], lat=via["lat"], lng=via["lng"]),
+                    end=dict(name=via["name"], lat=via["lat"], lng=via["lng"]), minutes=0, arrive=ja["arrive"])
+    return dict(legs=ja["legs"] + [stop_leg] + jb["legs"], leave=ja["leave"], arrive=jb["arrive"],
+                time=jb["arrive"] - t, duration=jb["arrive"] - ja["leave"], fare=ja["fare"] + jb["fare"],
+                walk=ja["walk"] + jb["walk"], changes=ja["changes"] + jb["changes"], wait_change=0,
+                routes=ja["routes"] + jb["routes"], key=f"{ja['key']}~{jb['key']}")
+
+
+def plan_trip(origin, dest, t, via=None, mode="balanced"):
+    """Plan origin -> dest, optionally stopping at `via` on the way. Same result shape as planner.plan."""
+    if not via:
+        return planner.plan(origin, dest, t)
+    first = planner.plan(origin, via, t)
+    part_a = planner.rank(first["journeys"], mode)["options"][:3] or ([first["walk_only"]] if first["walk_only"] else [])
+    combos, last = [], None
+    for ja in part_a:
+        last = planner.plan(via, dest, ja["arrive"])
+        part_b = planner.rank(last["journeys"], mode)["options"][:2] or ([last["walk_only"]] if last["walk_only"] else [])
+        combos += [combine_trips(ja, jb, via, t) for jb in part_b]
+    others = []
+    for x, y in zip(planner.other_modes(origin, via), planner.other_modes(via, dest)):
+        others.append(dict(x, low=x["low"] + y["low"], high=x["high"] + y["high"], minutes=x["minutes"] + y["minutes"],
+                           km=round(x["km"] + y["km"], 1)))
+    return dict(journeys=combos, walk_only=None, others=others, near_origin=first["near_origin"],
+                near_dest=last["near_dest"] if last else first["near_dest"])
+
+
 def plan_request():
     """Shared by the results sub-pages: parse the trip, plan it and rank it."""
     origin, dest = parse_point(request.args.get("from")), parse_point(request.args.get("to"))
+    via = parse_point(request.args.get("via"))
     if not origin or not dest or origin["id"] == dest["id"]:
         return None
     t = req_time()
@@ -309,9 +343,9 @@ def plan_request():
     limits = limits_from_args(request.args)
     if limits["walk"] is None and g.settings.get("max_walk"):
         limits["walk"] = int(g.settings["max_walk"])
-    res = planner.plan(origin, dest, t)
+    res = plan_trip(origin, dest, t, via, mode)
     ranked = planner.rank(res["journeys"], mode, limits)
-    return dict(origin=origin, dest=dest, t=t, mode=mode, limits=limits, res=res, ranked=ranked)
+    return dict(origin=origin, dest=dest, via=via, t=t, mode=mode, limits=limits, res=res, ranked=ranked)
 
 
 @app.route("/routes")
@@ -322,7 +356,7 @@ def routes():
     rec = ctx["ranked"]["recommended"]
     n_filters = sum(v is not None for v in ctx["limits"].values())
     shown = ctx["ranked"]["options"] or ctx["ranked"]["misfits"]
-    return render_template("routes.html", **ctx, rec=rec, via=request.args.get("via", "bus"),
+    return render_template("routes.html", **ctx, rec=rec, by=request.args.get("by", "bus"),
                            map_data=journey_map_data(shown[0], ctx["origin"], ctx["dest"]) if shown else
                            dict(origin=ctx["origin"], dest=ctx["dest"], legs=[]),
                            reason=planner.reason(rec, ctx["mode"]) if rec else None,
@@ -360,7 +394,7 @@ def find_journey(args=None):
     if not origin or not dest:
         return None, None, None, None
     t = req_time(args)
-    res = planner.plan(origin, dest, t)
+    res = plan_trip(origin, dest, t, parse_point(args.get("via")), args.get("mode", "balanced"))
     key = args.get("key")
     j = next((x for x in res["journeys"] if x["key"] == key), None)
     if not j and key == "walk":
@@ -423,7 +457,7 @@ def trip_ticket(tid):
     if not trip:
         abort(404)
     sm = trip["summary"]
-    text = (f"RouteMate trip pass (not a ticket) | Bus {' + '.join(sm['routes']) or 'walk'} | "
+    text = (f"Yatri Bandhu trip pass (not a ticket) | Bus {' + '.join(sm['routes']) or 'walk'} | "
             f"{trip['origin_name']} -> {trip['dest_name']} | Rs {sm['fare']} | {fmt_time(sm['leave'])}")
     svg = qrcode.make(text, image_factory=qrcode.image.svg.SvgPathImage, box_size=8, border=1).to_string(encoding="unicode")
     return render_template("trip_ticket.html", trip=trip, sm=sm, qr=svg)
@@ -544,16 +578,27 @@ def line_area_tags(r):
     return tags
 
 
+POPULAR_LINES = ["38B", "39", "20", "35B", "551", "22"]
+
+
+def line_row(no):
+    r = net.routes[no]
+    lo, hi = r["every"]
+    a, b = net.stops[r["stops"][0]]["name"], net.stops[r["stops"][-1]]["name"]
+    return dict(no=no, name=r["name"], ends="Circular" if r["loop"] else f"{a} – {b}",
+                every=f"{lo}" if lo == hi else f"{lo}–{hi}", search=f"{no} {r['name']}".lower())
+
+
 @app.route("/lines")
 def lines():
-    rows = []
-    for no in sorted(net.routes, key=route_sort_key):
-        r = net.routes[no]
-        lo, hi = r["every"]
-        rows.append(dict(no=no, name=r["name"], every=f"{lo}" if lo == hi else f"{lo}–{hi}",
-                         hours=f"{fmt_time(r['fwd'][0])} – {fmt_time(r['fwd'][1])}", tags=line_area_tags(r),
-                         plaksha="PLAKSHA" in r["stops"]))
-    return render_template("lines.html", rows=rows)
+    return render_template("lines.html", popular=[line_row(n) for n in POPULAR_LINES if n in net.routes],
+                           total=len(net.routes))
+
+
+@app.route("/lines/all")
+def lines_all():
+    return render_template("lines_all.html", rows=[line_row(n) for n in sorted(net.routes, key=route_sort_key)],
+                           q=request.args.get("q", ""))
 
 
 def line_pattern(no):
@@ -739,7 +784,7 @@ def export(name):
         w.writeheader()
         w.writerows(rows)
     return Response(buf.getvalue(), mimetype="text/csv",
-                    headers={"Content-Disposition": f"attachment; filename=routemate-{name}.csv"})
+                    headers={"Content-Disposition": f"attachment; filename=yatri-bandhu-{name}.csv"})
 
 
 # ---------------------------------------------------------------- JSON API

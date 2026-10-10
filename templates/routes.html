@@ -4,32 +4,37 @@
 {% block content %}
 {% set base = search_args() %}
 {% set names = {'cheapest': 'Cheapest', 'fastest': 'Fastest', 'simplest': 'Fewest changes', 'walking': 'Least walking'} %}
+<div class="mapui">
+  <div class="mapui-panel">
+    <div class="mapui-head">
+{% set vq = ('&via=' ~ (via.id|urlencode)) if via else '' %}
 <div class="od2">
   <div class="od2-wrap">
     <a class="icon-btn" href="{{ url_for('app_home') }}" aria-label="Back">{{ icon('arrow-left', 22) }}</a>
     <div class="od2-fields">
-      <a class="od2-field" href="{{ url_for('search', title='Start from', ret='/routes?to=' ~ (dest.id|urlencode) ~ '&from=__PT__') }}"><i class="od2-dot"></i><span>{{ origin.name }}</span></a>
-      <a class="od2-field" href="{{ url_for('search', ret='/routes?from=' ~ (origin.id|urlencode) ~ '&to=__PT__') }}"><i class="od2-dot b"></i><span>{{ dest.name }}</span></a>
+      <a class="od2-field" href="{{ url_for('search', title='Start from', ret='/routes?to=' ~ (dest.id|urlencode) ~ vq ~ '&from=__PT__') }}"><i class="od2-dot"></i><span>{{ origin.name }}</span></a>
+      {% if via %}
+      <div class="od2-field"><i class="od2-dot v"></i><a href="{{ url_for('search', title='Stop on the way', ret='/routes?from=' ~ (origin.id|urlencode) ~ '&to=' ~ (dest.id|urlencode) ~ '&via=__PT__') }}" style="flex:1;color:inherit;text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ via.name }}</a>
+        <a class="od2-x" href="{{ url_for('routes', **search_args(via='')) }}" aria-label="Remove stop">{{ icon('x', 16) }}</a></div>
+      {% endif %}
+      <a class="od2-field" href="{{ url_for('search', ret='/routes?from=' ~ (origin.id|urlencode) ~ vq ~ '&to=__PT__') }}"><i class="od2-dot b"></i><span>{{ dest.name }}</span></a>
+      {% if not via %}
+      <a class="od2-add" href="{{ url_for('search', title='Add a stop', ret='/routes?from=' ~ (origin.id|urlencode) ~ '&to=' ~ (dest.id|urlencode) ~ '&via=__PT__') }}">{{ icon('plus', 16) }} Add stop</a>
+      {% endif %}
     </div>
   </div>
   <a class="icon-btn" href="{{ url_for('routes', **search_args(**{'from': dest.id, 'to': origin.id})) }}" aria-label="Swap">{{ icon('swap', 20) }}</a>
 </div>
 
 <nav class="modes" aria-label="Travel mode">
-  <a href="{{ url_for('routes', **base) }}" {% if via == 'bus' %}aria-current="true"{% endif %}>{{ icon('bus', 18) }} Bus</a>
-  <a href="{{ url_for('routes', via='auto', **base) }}" {% if via == 'auto' %}aria-current="true"{% endif %}>{{ icon('auto', 18) }} Auto</a>
-  <a href="{{ url_for('routes', via='cab', **base) }}" {% if via == 'cab' %}aria-current="true"{% endif %}>{{ icon('car', 18) }} Cab</a>
+  <a href="{{ url_for('routes', **base) }}" {% if by == 'bus' %}aria-current="true"{% endif %}>{{ icon('bus', 18) }} Bus</a>
+  <a href="{{ url_for('routes', by='auto', **base) }}" {% if by == 'auto' %}aria-current="true"{% endif %}>{{ icon('auto', 18) }} Auto</a>
+  <a href="{{ url_for('routes', by='cab', **base) }}" {% if by == 'cab' %}aria-current="true"{% endif %}>{{ icon('car', 18) }} Cab</a>
 </nav>
-
-<div class="map-page">
-  <div class="map-wrap" style="height:36vh;min-height:230px">
-    <div id="routes-map" class="map" role="img" aria-label="Map of the top route"></div>
-    <div class="map-btns"><button type="button" class="icon-btn raised" data-locate aria-label="My location">{{ icon('locate', 20) }}</button></div>
-  </div>
-
-  <section class="sheet">
+    </div>
+  <section class="sheet mapui-body">
     <div class="sheet-in">
-      {% if via == 'bus' %}
+      {% if by == 'bus' %}
       <div class="opt-head">
         <h2>Route options</h2>
         <div class="opt-tools">
@@ -79,7 +84,7 @@
         <span class="empty-ic">{{ icon('bus', 28) }}</span>
         {% if res.near_origin == 0 or res.near_dest == 0 %}
           <h2>No bus stop nearby</h2>
-          <a class="btn btn-primary btn-block" href="{{ url_for('routes', via='auto', **base) }}">See auto &amp; cab</a>
+          <a class="btn btn-primary btn-block" href="{{ url_for('routes', by='auto', **base) }}">See auto &amp; cab</a>
         {% else %}
           <h2>No buses at {{ fmt_time(t) }}</h2>
           <div class="chips" style="justify-content:center">
@@ -90,11 +95,11 @@
       {% endif %}
 
       {% else %}
-      {% set o = res.others|selectattr('id', 'equalto', 'auto' if via == 'auto' else 'cab')|first %}
+      {% set o = res.others|selectattr('id', 'equalto', 'auto' if by == 'auto' else 'cab')|first %}
       {% set b = res.others|selectattr('id', 'equalto', 'bike')|first %}
-      <div class="opt-head"><h2>{{ 'Auto' if via == 'auto' else 'Cab' }}</h2><span class="est">Estimate</span></div>
+      <div class="opt-head"><h2>{{ 'Auto' if by == 'auto' else 'Cab' }}</h2><span class="est">Estimate</span></div>
       <ul class="opts">
-        <li><div class="opt best"><span class="bus-ic">{{ icon('auto' if via == 'auto' else 'car', 20) }}</span>
+        <li><div class="opt best"><span class="bus-ic">{{ icon('auto' if by == 'auto' else 'car', 20) }}</span>
           <span class="opt-main"><b>{{ o.label }}</b><small>{{ o.km }} km</small></span>
           <span class="opt-side"><b>~{{ o.minutes }} min</b><span class="green">₹{{ o.low }}–{{ o.high }}</span></span></div></li>
         <li><div class="opt"><span class="bus-ic">{{ icon('bike', 20) }}</span>
@@ -110,6 +115,11 @@
       {% endif %}
     </div>
   </section>
+  </div>
+  <div class="map-wrap mapui-map" style="height:36vh;min-height:230px">
+    <div id="routes-map" class="map" role="img" aria-label="Map of the top route"></div>
+    <div class="map-btns"><button type="button" class="icon-btn raised" data-locate aria-label="My location">{{ icon('locate', 20) }}</button></div>
+  </div>
 </div>
 {% endblock %}
 {% block scripts %}<script>RM.routesMap({{ map_data|tojson }});</script>{% endblock %}

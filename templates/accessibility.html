@@ -2,7 +2,7 @@
 {% from "_macros.html" import icon, topbar with context %}
 {% block title %}Accessibility{% endblock %}
 {% block content %}
-{{ topbar('Accessibility', url_for('me')) }}
+{{ topbar('Accessibility', url_for('profile')) }}
 <form class="wrap" method="post">
   {% if just_saved %}<p class="notice ok" role="status" style="margin-bottom:12px">{{ icon('check', 18) }} Saved. Changes apply on every screen.</p>{% endif %}
   <div class="list">

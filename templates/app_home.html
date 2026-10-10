@@ -18,6 +18,11 @@
     {{ icon('search', 22) }}
     <span><b>Search destination</b><small>e.g. Sector 17, ISBT, Airport</small></span>
   </a>
+  <a class="from-line" href="{{ url_for('search', title='Start from', ret='/app?from=__PT__') }}" {% if settings.use_location %}data-auto-locate{% endif %}>
+    <span class="od2-dot"></span>
+    <span>From <b>{{ origin.name if origin else 'Choose start' }}</b></span>
+    <span class="link">Change</span>
+  </a>
 
   <div class="hw">
     {% for kind, label, ic, place in [('home', 'Home', 'home', home), ('work', 'Work', 'briefcase', work)] %}

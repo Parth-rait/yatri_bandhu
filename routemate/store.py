@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS sus (id TEXT PRIMARY KEY, uid TEXT, participant TEXT,
 
 DEFAULT_SETTINGS = dict(large_text=False, high_contrast=False, simple_ui=False, reduce_motion=False,
                         ask_priority=True, default_mode="balanced", max_walk=None, default_from="place:plaksha",
-                        onboarded=False, name="")
+                        onboarded=False, name="", use_location=False)
 
 # (label, icon, point, place name, kind)   kind: home | work | fav (a favourite place to visit)
 DEFAULT_SAVED = [("Home", "home", "place:plaksha", "Plaksha University", "home"),

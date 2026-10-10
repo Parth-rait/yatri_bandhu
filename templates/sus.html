@@ -2,7 +2,7 @@
 {% from "_macros.html" import icon, topbar with context %}
 {% block title %}SUS questionnaire{% endblock %}
 {% block content %}
-{{ topbar('System Usability Scale', url_for('me')) }}
+{{ topbar('System Usability Scale', url_for('profile')) }}
 <div class="wrap">
   {% if score is not none %}
   <div class="empty">

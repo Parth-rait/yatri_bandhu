@@ -6,7 +6,7 @@
 {% block content %}
 <div class="lp">
   <div class="lp-top">
-    <a class="brand-mini" href="{{ url_for('landing') }}"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt=""> RouteMate</a>
+    <a class="brand-mini" href="{{ url_for('landing') }}"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt=""> Yatri Bandhu</a>
     <div style="display:flex;align-items:center;gap:4px">
       {{ theme_toggle() }}
       {% if settings.onboarded %}<a class="btn btn-sm btn-outline" href="{{ url_for('app_home') }}">Open app</a>{% endif %}
@@ -14,64 +14,91 @@
   </div>
 
   <div class="lp-main">
-    <div>
-      <h1>Get around Chandigarh with ease</h1>
+    <div class="lp-copy">
+      <h1>Get around Chandigarh <span>with ease</span></h1>
       <p class="lede">Bus routes, timings and fares for Plaksha and around the city.</p>
-      <div class="lp-cta">
-        <a class="btn btn-primary btn-block" href="{{ url_for('app_home' if settings.onboarded else 'welcome') }}">Get Started {{ icon('arrow-right', 20) }}</a>
-      </div>
     </div>
 
     <div class="lp-art" aria-hidden="true">
-      <svg viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 600 470" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dcecff"/><stop offset="1" stop-color="#f6fbff"/></linearGradient>
-          <linearGradient id="bus" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e3edff"/></linearGradient>
+          <linearGradient id="lp-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3efff"/><stop offset="1" stop-color="#f7fbff"/></linearGradient>
+          <linearGradient id="lp-glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a4a7a"/><stop offset="1" stop-color="#1b3254"/></linearGradient>
+          <linearGradient id="lp-tower" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e7a07a"/><stop offset=".7" stop-color="#df9068"/><stop offset="1" stop-color="#c97a55"/></linearGradient>
+          <linearGradient id="lp-road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfd6e1"/><stop offset="1" stop-color="#c3cbd7"/></linearGradient>
+          <radialGradient id="lp-sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff3c4"/><stop offset="1" stop-color="#fff3c4" stop-opacity="0"/></radialGradient>
         </defs>
-        <rect width="520" height="420" fill="url(#sky)"/>
-        <circle cx="430" cy="70" r="26" fill="#fff4cf"/>
-        <g fill="#fff" opacity=".9"><ellipse cx="110" cy="70" rx="38" ry="12"/><ellipse cx="135" cy="62" rx="24" ry="12"/><ellipse cx="330" cy="105" rx="30" ry="9"/></g>
-        <!-- distant city -->
-        <g fill="#c9dbf2"><rect x="20" y="200" width="46" height="90"/><rect x="72" y="180" width="34" height="110"/><rect x="410" y="190" width="40" height="100"/><rect x="456" y="210" width="50" height="80"/></g>
+
+        <rect width="600" height="470" fill="url(#lp-sky)"/>
+        <circle cx="470" cy="92" r="70" fill="url(#lp-sun)"/>
+        <circle cx="470" cy="92" r="26" fill="#ffe7a3"/>
+        <!-- clouds -->
+        <g fill="#fff"><path d="M70 96a16 16 0 0 1 30-8 20 20 0 0 1 36 6 13 13 0 0 1 2 26H74a12 12 0 0 1-4-24z"/>
+          <path d="M300 64a12 12 0 0 1 22-6 15 15 0 0 1 27 4 10 10 0 0 1 1 20h-47a9 9 0 0 1-3-18z" opacity=".9"/></g>
+        <!-- hills -->
+        <path d="M0 250c60-38 130-44 200-20s120 30 190 4 150-34 210-6v60H0z" fill="#d7ecd0"/>
+        <path d="M0 268c80-22 150-18 230 0s150 14 230-6 110-14 140-4v40H0z" fill="#c6e4bd"/>
+        <!-- city -->
+        <g fill="#d3dfee"><rect x="28" y="196" width="52" height="94" rx="3"/><rect x="88" y="172" width="38" height="118" rx="3"/><rect x="430" y="186" width="44" height="104" rx="3"/><rect x="482" y="206" width="60" height="84" rx="3"/><rect x="548" y="226" width="40" height="64" rx="3"/></g>
+        <g fill="#eef4fb"><rect x="38" y="208" width="8" height="10" rx="1"/><rect x="54" y="208" width="8" height="10" rx="1"/><rect x="38" y="228" width="8" height="10" rx="1"/><rect x="54" y="228" width="8" height="10" rx="1"/>
+          <rect x="98" y="186" width="7" height="10" rx="1"/><rect x="110" y="186" width="7" height="10" rx="1"/><rect x="98" y="206" width="7" height="10" rx="1"/><rect x="110" y="206" width="7" height="10" rx="1"/>
+          <rect x="442" y="200" width="8" height="10" rx="1"/><rect x="456" y="200" width="8" height="10" rx="1"/><rect x="494" y="220" width="8" height="10" rx="1"/><rect x="510" y="220" width="8" height="10" rx="1"/><rect x="526" y="220" width="8" height="10" rx="1"/></g>
         <!-- clock tower -->
         <g>
-          <rect x="300" y="110" width="58" height="190" fill="#e8b88a"/>
-          <rect x="300" y="110" width="58" height="190" fill="#000" opacity=".04"/>
-          <polygon points="292,112 329,62 366,112" fill="#c9774b"/>
-          <rect x="324" y="48" width="10" height="18" fill="#c9774b"/>
-          <circle cx="329" cy="140" r="16" fill="#fff"/><circle cx="329" cy="140" r="16" fill="none" stroke="#9a5a37" stroke-width="3"/>
-          <path d="M329 140v-9M329 140l6 4" stroke="#5b3a29" stroke-width="2.5" stroke-linecap="round"/>
-          <g fill="#b9835e"><rect x="312" y="178" width="12" height="22" rx="6"/><rect x="334" y="178" width="12" height="22" rx="6"/><rect x="312" y="216" width="12" height="22" rx="6"/><rect x="334" y="216" width="12" height="22" rx="6"/></g>
-          <rect x="318" y="258" width="22" height="42" rx="11" fill="#9a5a37"/>
+          <path d="M318 92l22-30 22 30z" fill="#b8613f"/>
+          <rect x="337" y="44" width="6" height="22" fill="#b8613f"/><path d="M343 46l14 5-14 5z" fill="#2563eb"/>
+          <rect x="314" y="92" width="52" height="16" rx="2" fill="#c97a55"/>
+          <rect x="310" y="106" width="60" height="186" fill="url(#lp-tower)"/>
+          <rect x="306" y="150" width="68" height="8" rx="2" fill="#c97a55"/>
+          <circle cx="340" cy="130" r="15" fill="#fff8ef" stroke="#a9583a" stroke-width="3"/>
+          <path d="M340 130v-9M340 130l7 3" stroke="#5b3426" stroke-width="2.4" stroke-linecap="round"/>
+          <g fill="#b56d4c"><rect x="322" y="170" width="12" height="24" rx="6"/><rect x="346" y="170" width="12" height="24" rx="6"/><rect x="322" y="208" width="12" height="24" rx="6"/><rect x="346" y="208" width="12" height="24" rx="6"/></g>
+          <path d="M328 292v-26a12 12 0 0 1 24 0v26z" fill="#8e4a31"/>
         </g>
         <!-- trees -->
-        <g><rect x="140" y="236" width="6" height="56" fill="#7b5a3a"/><circle cx="143" cy="222" r="28" fill="#6bbf59"/><circle cx="128" cy="236" r="18" fill="#5aae4b"/></g>
-        <g><rect x="232" y="246" width="6" height="46" fill="#7b5a3a"/><circle cx="235" cy="234" r="22" fill="#7acb67"/></g>
-        <g><rect x="404" y="240" width="6" height="52" fill="#7b5a3a"/><circle cx="407" cy="226" r="26" fill="#6bbf59"/><circle cx="424" cy="240" r="16" fill="#5aae4b"/></g>
-        <!-- lawn & road -->
-        <rect x="0" y="288" width="520" height="30" fill="#bfe3a8"/>
-        <rect x="0" y="318" width="520" height="70" fill="#d7dbe2"/>
-        <path d="M0 353h520" stroke="#fff" stroke-width="4" stroke-dasharray="26 18"/>
-        <rect x="0" y="388" width="520" height="32" fill="#c4e6ae"/>
-        <!-- bus stop -->
+        <g><rect x="196" y="236" width="7" height="56" rx="3" fill="#8a6141"/><circle cx="199" cy="226" r="30" fill="#6fc06a"/><circle cx="184" cy="240" r="19" fill="#5aae55"/><circle cx="214" cy="238" r="16" fill="#7fcb76"/></g>
+        <g><rect x="262" y="250" width="6" height="42" rx="3" fill="#8a6141"/><ellipse cx="265" cy="232" rx="13" ry="32" fill="#5aae55"/></g>
+        <g><rect x="398" y="246" width="7" height="46" rx="3" fill="#8a6141"/><circle cx="401" cy="232" r="25" fill="#7fcb76"/><circle cx="416" cy="244" r="15" fill="#6fc06a"/></g>
+        <!-- ground -->
+        <rect x="0" y="288" width="600" height="18" fill="#b8e0a4"/>
+        <rect x="0" y="304" width="600" height="14" fill="#eef1f5"/>
+        <rect x="0" y="318" width="600" height="92" fill="url(#lp-road)"/>
+        <path d="M0 364h600" stroke="#fff" stroke-width="5" stroke-dasharray="34 22" stroke-linecap="round"/>
+        <rect x="0" y="410" width="600" height="14" fill="#eef1f5"/>
+        <rect x="0" y="424" width="600" height="46" fill="#bfe5ab"/>
+        <!-- bus shelter + passenger -->
         <g>
-          <rect x="430" y="232" width="5" height="88" fill="#4b5563"/><rect x="494" y="232" width="5" height="88" fill="#4b5563"/>
-          <rect x="422" y="224" width="86" height="12" rx="3" fill="#2563eb"/>
-          <rect x="440" y="290" width="48" height="6" rx="3" fill="#6b7280"/>
-          <rect x="470" y="244" width="22" height="30" rx="3" fill="#ffffff" opacity=".85"/>
+          <rect x="478" y="226" width="6" height="88" rx="2" fill="#475569"/><rect x="562" y="226" width="6" height="88" rx="2" fill="#475569"/>
+          <rect x="470" y="216" width="106" height="14" rx="5" fill="#2563eb"/>
+          <rect x="488" y="236" width="70" height="44" rx="4" fill="#dbeafe" opacity=".75"/>
+          <rect x="490" y="290" width="62" height="6" rx="3" fill="#64748b"/>
+          <g><circle cx="530" cy="262" r="7" fill="#7a4e36"/><path d="M521 300v-22a9 9 0 0 1 18 0v22z" fill="#f59e0b"/><rect x="522" y="298" width="6" height="16" rx="2" fill="#334155"/><rect x="532" y="298" width="6" height="16" rx="2" fill="#334155"/></g>
+          <rect x="580" y="236" width="4" height="78" rx="2" fill="#475569"/><circle cx="582" cy="232" r="12" fill="#2563eb"/><rect x="576" y="226" width="12" height="11" rx="2.5" fill="#fff"/>
         </g>
         <!-- bus -->
         <g>
-          <rect x="54" y="246" width="300" height="96" rx="18" fill="url(#bus)" stroke="#2563eb" stroke-width="3"/>
-          <rect x="54" y="314" width="300" height="12" fill="#2563eb"/>
-          <g fill="#1e3a8a"><rect x="74" y="262" width="44" height="34" rx="6"/><rect x="126" y="262" width="44" height="34" rx="6"/><rect x="178" y="262" width="44" height="34" rx="6"/><rect x="230" y="262" width="44" height="34" rx="6"/></g>
-          <rect x="286" y="262" width="52" height="56" rx="8" fill="#1e3a8a"/>
-          <rect x="294" y="270" width="36" height="12" rx="3" fill="#60a5fa"/>
-          <circle cx="110" cy="344" r="17" fill="#1f2937"/><circle cx="110" cy="344" r="7" fill="#9ca3af"/>
-          <circle cx="292" cy="344" r="17" fill="#1f2937"/><circle cx="292" cy="344" r="7" fill="#9ca3af"/>
-          <rect x="344" y="300" width="10" height="10" rx="3" fill="#fde68a"/>
+          <ellipse cx="236" cy="404" rx="190" ry="10" fill="#0f172a" opacity=".12"/>
+          <path d="M64 258h312c22 0 36 14 40 34l10 66c2 14-8 24-22 24H64c-12 0-20-8-20-20V278c0-12 8-20 20-20z" fill="#ffffff"/>
+          <path d="M44 336h380l2 22c2 14-8 24-22 24H64c-12 0-20-8-20-20z" fill="#2563eb"/>
+          <rect x="44" y="328" width="380" height="6" fill="#93c5fd"/>
+          <g fill="url(#lp-glass)">
+            <rect x="62" y="274" width="54" height="44" rx="7"/><rect x="124" y="274" width="54" height="44" rx="7"/>
+            <rect x="186" y="274" width="54" height="44" rx="7"/><rect x="290" y="274" width="54" height="44" rx="7"/>
+            <path d="M352 274h28c8 0 14 6 16 14l6 30h-50z"/>
+          </g>
+          <rect x="248" y="274" width="34" height="84" rx="5" fill="#1b3254"/><path d="M265 276v80" stroke="#3b5c8c" stroke-width="2"/>
+          <g fill="#ffffff" opacity=".18"><path d="M66 278h22l-16 36h-6z"/><path d="M128 278h22l-16 36h-6z"/><path d="M190 278h22l-16 36h-6z"/><path d="M294 278h22l-16 36h-6z"/></g>
+          <rect x="76" y="262" width="96" height="9" rx="3" fill="#1e293b"/><text x="82" y="269.5" font-family="Inter, sans-serif" font-size="7.5" font-weight="800" fill="#fbbf24">38B  PGI</text>
+          <rect x="404" y="344" width="14" height="10" rx="3" fill="#fde68a"/>
+          <rect x="40" y="346" width="8" height="12" rx="2" fill="#ef4444"/>
+          <g><circle cx="118" cy="384" r="24" fill="#334155"/><circle cx="118" cy="384" r="18" fill="#1f2937"/><circle cx="118" cy="384" r="8" fill="#cbd5e1"/></g>
+          <g><circle cx="350" cy="384" r="24" fill="#334155"/><circle cx="350" cy="384" r="18" fill="#1f2937"/><circle cx="350" cy="384" r="8" fill="#cbd5e1"/></g>
         </g>
       </svg>
+    </div>
+
+    <div class="lp-cta">
+      <a class="btn btn-primary btn-block" href="{{ url_for('app_home' if settings.onboarded else 'welcome') }}">Get Started {{ icon('arrow-right', 20) }}</a>
     </div>
   </div>
 </div>

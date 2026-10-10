@@ -1,4 +1,4 @@
-# RouteMate
+# Yatri Bandhu
 
 A student-focused travel decision assistant for Chandigarh & Mohali (HCI course project).
 
@@ -10,7 +10,7 @@ Bus data comes from the **CTU time table of local & tri-city routes, as on 25.07
 ## Run it
 
 ```bash
-cd RouteMate
+cd Yatri Bandhu
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/python app.py              # http://127.0.0.1:5000
@@ -47,7 +47,7 @@ where they help (journey, live trip, stop/line/nearby/explore map views).
 | **Explore** tab | "I have ₹20 / 30 min, where can I go?" (list / map) | `/explore`, `/explore/map` |
 | **Me** tab | Hub, saved places, add place, trip history | `/me`, `/saved`, `/saved/new`, `/history` |
 | | Route settings (incl. light / dark / auto theme), accessibility | `/settings`, `/accessibility` |
-| | How to read RouteMate (map symbols, glossary), about the data | `/help`, `/about` |
+| | How to read Yatri Bandhu (map symbols, glossary), about the data | `/help`, `/about` |
 | | Usability test console, SUS questionnaire, CSV export | `/study`, `/sus`, `/export/<table>.csv` |
 
 **Light / dark mode:** the sun/moon button in every page header switches theme. The choice is remembered in a cookie.

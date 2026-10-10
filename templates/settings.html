@@ -2,7 +2,7 @@
 {% from "_macros.html" import icon, mode_icon, topbar with context %}
 {% block title %}Route settings{% endblock %}
 {% block content %}
-{{ topbar('Route settings', url_for('me')) }}
+{{ topbar('Route settings', url_for('profile')) }}
 <div class="wrap">
   {% if just_saved %}<p class="notice ok" role="status">{{ icon('check', 18) }} Saved</p>{% endif %}
 
