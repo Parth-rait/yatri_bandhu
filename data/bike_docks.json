@@ -1,0 +1,151 @@
+{
+ "_about": "Public bike-share docking stations. Seeded from OpenStreetMap (amenity=bicycle_rental, (c) OpenStreetMap contributors, ODbL). Chandigarh's SmartBike network has hundreds more docks that are not on OpenStreetMap yet: add them here (or to OSM) with id, name, lat, lng, operator, city. The app shows bike options only near docks listed in this file.",
+ "fare_note": "~₹10 / 30 min",
+ "app_link": "https://play.google.com/store/search?q=SmartBike%20Chandigarh&c=apps",
+ "docks": [
+  {
+   "id": "osmn11363911706",
+   "name": "Bike share dock",
+   "lat": 30.730121,
+   "lng": 76.761079,
+   "capacity": null,
+   "operator": "SmartBike",
+   "city": "Chandigarh"
+  },
+  {
+   "id": "osmn11364089941",
+   "name": "Bike share dock",
+   "lat": 30.722587,
+   "lng": 76.805531,
+   "capacity": null,
+   "operator": "SmartBike",
+   "city": "Chandigarh"
+  },
+  {
+   "id": "osmn11897122929",
+   "name": "Bike share dock",
+   "lat": 30.756507,
+   "lng": 76.801653,
+   "capacity": null,
+   "operator": "SmartBike",
+   "city": "Chandigarh"
+  },
+  {
+   "id": "osmn11898854051",
+   "name": "Bike share dock",
+   "lat": 30.725267,
+   "lng": 76.769446,
+   "capacity": null,
+   "operator": "SmartBike",
+   "city": "Chandigarh"
+  },
+  {
+   "id": "osmn14049566564",
+   "name": "SmartBike Bicycle Rental",
+   "lat": 30.741266,
+   "lng": 76.74005,
+   "capacity": null,
+   "operator": "SmartBike",
+   "city": "Chandigarh"
+  },
+  {
+   "id": "osmn10050981768",
+   "name": "Sector 10 Roundabout",
+   "lat": 30.685393,
+   "lng": 76.846098,
+   "capacity": 12,
+   "operator": "Panchkula Municipal Corp.",
+   "city": "Panchkula"
+  },
+  {
+   "id": "osmn10720537776",
+   "name": "Sector 10, Hotel Shiraz",
+   "lat": 30.692043,
+   "lng": 76.851774,
+   "capacity": null,
+   "operator": "Panchkula Municipal Corp.",
+   "city": "Panchkula"
+  },
+  {
+   "id": "osmn10050223075",
+   "name": "Sector 11 Roundabout",
+   "lat": 30.68037,
+   "lng": 76.851377,
+   "capacity": 12,
+   "operator": "Panchkula Municipal Corp.",
+   "city": "Panchkula"
+  },
+  {
+   "id": "osmn10270946938",
+   "name": "Sector 12",
+   "lat": 30.677971,
+   "lng": 76.854397,
+   "capacity": 12,
+   "operator": "Panchkula Municipal Corp.",
+   "city": "Panchkula"
+  },
+  {
+   "id": "osmn10720669953",
+   "name": "Sector 14 Govt. Girls College",
+   "lat": 30.676243,
+   "lng": 76.847094,
+   "capacity": null,
+   "operator": "Panchkula Municipal Corp.",
+   "city": "Panchkula"
+  },
+  {
+   "id": "osmn10050223074",
+   "name": "Sector 14 Roundabout",
+   "lat": 30.679939,
+   "lng": 76.851287,
+   "capacity": 12,
+   "operator": "Panchkula Municipal Corp.",
+   "city": "Panchkula"
+  },
+  {
+   "id": "osmn10050933139",
+   "name": "Sector 15 Roundabout",
+   "lat": 30.684987,
+   "lng": 76.845983,
+   "capacity": 12,
+   "operator": "Panchkula Municipal Corp.",
+   "city": "Panchkula"
+  },
+  {
+   "id": "osmn10050947406",
+   "name": "Sector 16 Roundabout",
+   "lat": 30.696279,
+   "lng": 76.840005,
+   "capacity": 12,
+   "operator": "Panchkula Municipal Corp.",
+   "city": "Panchkula"
+  },
+  {
+   "id": "osmn10050978735",
+   "name": "Sector 18",
+   "lat": 30.703992,
+   "lng": 76.838368,
+   "capacity": 12,
+   "operator": "Panchkula Municipal Corp.",
+   "city": "Panchkula"
+  },
+  {
+   "id": "osmn10718442744",
+   "name": "Sector 5 Parade Ground Station",
+   "lat": 30.693145,
+   "lng": 76.856608,
+   "capacity": null,
+   "operator": "Panchkula Municipal Corp.",
+   "city": "Panchkula"
+  },
+  {
+   "id": "osmn10050960325",
+   "name": "Sector 7 Housing Board Colony",
+   "lat": 30.704855,
+   "lng": 76.83856,
+   "capacity": 12,
+   "operator": "Panchkula Municipal Corp.",
+   "city": "Panchkula"
+  }
+ ]
+}

@@ -32,6 +32,9 @@ def is_night(minute):
     return m >= NIGHT_START or m < NIGHT_END
 
 
+HOOKS = []   # other add-ons (e.g. bikes) register extra decorators here
+
+
 def enrich(j, stop_safety=None):
     """Decorate one journey in place. `stop_safety(stop_id)` returns a report summary or None."""
     if not j or j.get("_enriched"):
@@ -78,6 +81,8 @@ def enrich(j, stop_safety=None):
                     s = stop_safety(sid)
                     if s:
                         j["stop_safety"].append(dict(s, role=role, name=p["name"], stop_id=sid))
+    for hook in HOOKS:
+        hook(j)
     j["_enriched"] = True
     return j
 

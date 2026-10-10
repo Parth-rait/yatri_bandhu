@@ -985,3 +985,16 @@ body.has-trip .sticky-cta, body.has-trip .action-bar { bottom: calc(148px + env(
 .back-time { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: .9rem; color: var(--text-2); }
 .rt-total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 14px; padding: 14px 16px; border-radius: 16px; background: var(--ok-soft); font-weight: 600; }
 .rt-total b { font-size: 1.35rem; font-weight: 800; color: var(--ok); }
+
+/* smart bikes */
+.bike-ic { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--ok-soft); color: var(--ok); flex: none; }
+.bike-tip { display: flex; align-items: center; gap: 12px; margin-top: 12px; padding: 12px 14px; border-radius: 16px; background: var(--ok-soft); color: var(--text); text-decoration: none; }
+.bike-tip b { display: block; font-weight: 700; }
+.bike-tip small { display: block; color: var(--text-2); }
+.mk-bike { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: #16a34a; color: #fff; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0, 0, 0, .25); }
+
+/* live bus (Uber-style) */
+.mk-livebus { position: relative; width: 40px; height: 40px; display: grid; place-items: center; pointer-events: none; }
+.mk-busrot { display: grid; place-items: center; transition: transform .25s linear; filter: drop-shadow(0 3px 6px rgba(0, 0, 0, .35)); }
+.mk-livebus .mk-bubble { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); }
+.demo-link { display: inline-block; margin-top: 6px; font-size: .88rem; }

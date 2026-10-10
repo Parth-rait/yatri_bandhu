@@ -18,6 +18,7 @@ from routemate.network import Network, distance_m, route_sort_key
 from routemate.planner import MODES, Planner, fmt_dur, fmt_time
 from routemate.enrich import ELECTRIC, EXTRAS, enrich, enrich_all
 from routemate.extras import init_extras, stop_safety
+from routemate import bikes, enrich as enrich_mod
 
 TZ = ZoneInfo("Asia/Kolkata")
 app = Flask(__name__)
@@ -163,11 +164,26 @@ def search_args(**over):
     return {k: v for k, v in a.items() if v != ""}
 
 
+def approach_of(l, n_stops=6):
+    """The road a bus covers on its way TO your boarding stop (last few stops), with the time it sets off."""
+    p = net.pattern_by_id.get(l.get("pattern") or "")
+    if not p or l.get("board_i") is None:
+        return None
+    i = l["board_i"]
+    k = max(0, i - n_stops)
+    if k == i:
+        return None
+    a, b = p.shape_idx[k], p.shape_idx[i]
+    return dict(line=p.shape[a:b + 1], t0=l["depart"] - (p.offsets[i] - p.offsets[k]),
+                stops=[[net.stops[s]["lat"], net.stops[s]["lng"]] for s in p.stops[k:i]])
+
+
 def journey_map_data(j, origin, dest):
     """Everything the map needs to draw a journey, numbered to match the step list."""
     return dict(origin=origin, dest=dest, legs=[
         dict(type=l["type"], line=l.get("line"), route=l.get("route"), depart=l.get("depart"),
              arrive=l.get("arrive"), start=l.get("start") or l.get("board"), end=l.get("end") or l.get("alight"),
+             bike=l.get("bike"), approach=approach_of(l) if l["type"] == "bus" else None,
              stops=[[net.stops[x["stop_id"]]["lat"], net.stops[x["stop_id"]]["lng"]] for x in l.get("stops_timed", [])])
         for l in j["legs"]], now=now_min())
 
@@ -387,6 +403,7 @@ def routes():
                     args={k: v for k, v in dict(search_args(), **{"from": ctx["dest"]["id"], "to": ctx["origin"]["id"],
                                                                   "at": hhmm}).items() if k not in ("trip", "back", "via")})
     return render_template("routes.html", **ctx, rec=rec, by=request.args.get("by", "bus"), back=back,
+                           bike=bikes.bike_option(ctx["origin"], ctx["dest"]), bike_app=bikes.APP_LINK, bike_fare=bikes.FARE_NOTE,
                            map_data=journey_map_data(shown[0], ctx["origin"], ctx["dest"]) if shown else
                            dict(origin=ctx["origin"], dest=ctx["dest"], legs=[]),
                            reason=planner.reason(rec, ctx["mode"]) if rec else None,
@@ -448,7 +465,8 @@ def journey():
     origin, dest, t, j = find_journey()
     if not j:
         return redirect(url_for("routes", **search_args()))
-    return render_template("journey.html", origin=origin, dest=dest, t=t, j=j, later=later_buses(j),
+    return render_template("journey.html", bike_app=bikes.APP_LINK, bike_fare=bikes.FARE_NOTE,
+                           origin=origin, dest=dest, t=t, j=j, later=later_buses(j),
                            map_data=journey_map_data(j, origin, dest), key=request.args.get("key"))
 
 
@@ -475,8 +493,13 @@ def trip_live(tid):
     origin, dest, t, j = find_journey(trip["summary"].get("params", {}))
     if not j:
         return redirect(url_for("routes", **{"from": trip["origin"], "to": trip["dest"]}))
-    return render_template("trip_live.html", trip=trip, origin=origin, dest=dest, j=j,
-                           map_data=journey_map_data(j, origin, dest))
+    data = journey_map_data(j, origin, dest)
+    # Demo mode for presentations: start with the bus a few minutes away; ?demo=10 also plays 10x faster.
+    if request.args.get("demo"):
+        first = next((l for l in data["legs"] if l["type"] == "bus"), None)
+        if first:
+            data["demo"] = dict(offset=(first["depart"] - 3) - data["now"], speed=max(1, min(30, request.args.get("demo", type=int) or 1)))
+    return render_template("trip_live.html", trip=trip, origin=origin, dest=dest, j=j, map_data=data)
 
 
 @app.route("/trip/<tid>/ticket")
@@ -554,7 +577,8 @@ def nearby():
     if lat is None or lng is None:
         return render_template("nearby.html", located=False, demo=net.places.get("plaksha"))
     here, rows = nearby_rows(lat, lng)
-    return render_template("nearby.html", located=True, here=here, rows=rows, buses=buses_near(lat, lng))
+    return render_template("nearby.html", located=True, here=here, rows=rows, buses=buses_near(lat, lng),
+                           docks=bikes.docks_near(lat, lng, 1500)[:4], bike_app=bikes.APP_LINK)
 
 
 @app.route("/nearby/map")
@@ -849,6 +873,8 @@ def api_plan():
                    options=[strip(j) for j in ranked["options"]])
 
 
+bikes.init(net)
+enrich_mod.HOOKS.append(bikes.decorate)
 init_extras(app, find_journey=find_journey, journey_map_data=journey_map_data, parse_point=parse_point,
             net=net, TZ=TZ, safe_ret=safe_ret, plan_request=plan_request, search_args=search_args)
 

@@ -21,6 +21,7 @@
         <span class="pill-ok">Scheduled</span>
       </div>
       {% if first_bus %}<p class="muted" data-live-sub>Route {{ first_bus.route }} at {{ first_bus.board.name }}</p>{% endif %}
+      {% if first_bus and not request.args.get('demo') %}<a class="link demo-link" href="{{ url_for('trip_live', tid=trip.id, demo=1) }}">▶ Preview bus arrival</a>{% elif request.args.get('demo') %}<a class="link demo-link" href="{{ url_for('trip_live', tid=trip.id) }}">■ Exit preview</a>{% endif %}
 
       {% if first_bus %}
       <div class="prog" aria-hidden="true">
@@ -56,6 +57,7 @@
   <div class="map-wrap mapui-map" style="height:40vh;min-height:250px">
     <div id="journey-map" class="map" role="img" aria-label="Map of your trip with the bus's scheduled position"></div>
     <div class="map-btns">
+      <button type="button" class="icon-btn raised" data-follow-bus aria-label="Follow the bus">{{ icon('bus', 20) }}</button>
       <button type="button" class="icon-btn raised" data-fit aria-label="Whole route">{{ icon('route', 20) }}</button>
       <button type="button" class="icon-btn raised" data-locate aria-label="My location">{{ icon('locate', 20) }}</button>
     </div>

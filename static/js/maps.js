@@ -33,6 +33,7 @@
   const SVG = {
     bus: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17h12M6 17a2 2 0 0 1-2-2V6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v9a2 2 0 0 1-2 2M6 17v3M18 17v3M4 11h16"/></svg>',
     star: '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>',
+    bike: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="16" r="3.5"/><circle cx="18" cy="16" r="3.5"/><path d="M6 16l4-7h5l3 7M10 9 8 5H6M15 9l-2 7"/></svg>',
     pin: '<svg class="mk-pin" width="34" height="44" viewBox="0 0 34 44"><path d="M17 43s15-14.3 15-25.5A15 15 0 0 0 2 17.5C2 28.7 17 43 17 43z" fill="#ef4444" stroke="#fff" stroke-width="2.5"/><circle cx="17" cy="17" r="6" fill="#fff"/></svg>',
   };
 
@@ -190,6 +191,10 @@
       const next = legs[i + 1];
       if (!next || next.type !== 'bus') marker(map, LL(leg.end), '<span class="mk-off"></span>' + card('Get off', 'left'));
     });
+    legs.forEach((leg) => {
+      if (!leg.bike) return;
+      [leg.bike.pick, leg.bike.drop].forEach((d, k) => marker(map, LL(d), `<span class="mk-bike">${SVG.bike}</span>` + card(k ? 'Drop bike' : 'Pick up bike', 'right')));
+    });
   }
 
   function drawJourney(map, data) {
@@ -246,50 +251,10 @@
     locateButton(map);
     if (!live) return;
 
-    // Scheduled bus position: waits at the boarding stop until departure, then moves along the route.
-    const loaded = Date.now();
-    const nowMin = () => data.now + (Date.now() - loaded) / 60000;
-    const bus = data.legs.find((l) => l.type === 'bus');
-    if (bus && bus.line && bus.line.length > 1) {
-      const line = bus.line.map(LL);
-      const seg = line.map((p, i) => (i ? dist(line[i - 1], p) : 0));
-      const total = seg.reduce((a, b) => a + b, 0);
-      const along = (f) => {
-        let d = total * Math.min(1, Math.max(0, f));
-        for (let i = 1; i < line.length; i++) {
-          if (d <= seg[i]) { const t = seg[i] ? d / seg[i] : 0; return [line[i - 1][0] + (line[i][0] - line[i - 1][0]) * t, line[i - 1][1] + (line[i][1] - line[i - 1][1]) * t]; }
-          d -= seg[i];
-        }
-        return line[line.length - 1];
-      };
-      const el = document.createElement('div');
-      el.className = 'mk mk-live';
-      el.innerHTML = '<span class="mk-bubble" data-bubble></span><span class="mk-bus">' + SVG.bus + '</span>';
-      const busMarker = new maplibregl.Marker({ element: el, anchor: 'bottom' }).setLngLat(LL(bus.start)).addTo(map);
-      const tick = () => {
-        const t = nowMin();
-        const bubble = el.querySelector('[data-bubble]');
-        const minsEl = document.querySelector('[data-live-mins]');
-        const title = document.querySelector('[data-live-title]');
-        if (t < bus.depart) {
-          busMarker.setLngLat(LL(bus.start));
-          const m = Math.max(0, Math.round(bus.depart - t));
-          bubble.innerHTML = m ? `Arriving in<br><b>${m} min</b>` : '<b>Arriving now</b>';
-          if (minsEl) minsEl.textContent = `${m} min`;
-        } else if (t < bus.arrive) {
-          busMarker.setLngLat(along((t - bus.depart) / Math.max(1, bus.arrive - bus.depart)));
-          const m = Math.round(bus.arrive - t);
-          bubble.innerHTML = `<b>${m} min</b> to your stop`;
-          if (title) title.innerHTML = `On the bus · <span data-live-mins>${m} min</span> left`;
-        } else {
-          busMarker.setLngLat(LL(bus.end));
-          bubble.innerHTML = '<b>At your stop</b>';
-          if (title) title.textContent = 'Bus has reached your stop';
-        }
-      };
-      tick();
-      setInterval(tick, 15000);
-    }
+    // Uber-style live bus: approaches your stop, then rides the route (see RM.animateBus).
+    const firstBus = data.legs.find((l) => l.type === 'bus');
+    const live$ = { user: null };
+    if (firstBus && firstBus.line && firstBus.line.length > 1) RM.animateBus(map, data, firstBus, live$);
 
     // "Get off" alert using live location
     const legs = data.legs.filter((l) => l.type !== 'via');
@@ -310,6 +275,7 @@
     }
     function update(pos) {
       const p = [pos.coords.longitude, pos.coords.latitude];
+      live$.user = p;
       RM.youAt(map, p);
       while (ti < legs.length - 1 && dist(p, LL(legs[ti].end)) < 60) ti++;
       sessionStorage.setItem(key, ti);
@@ -330,6 +296,165 @@
         RM.toast?.("Alert on: we'll tell you before your stop");
       } catch (err) { RM.toast?.(err.message); }
     }));
+  };
+
+  // ------------------------------------------------------------- Uber-style bus animation
+  function bearing(a, b) {
+    const r = Math.PI / 180, y = Math.sin((b[0] - a[0]) * r) * Math.cos(b[1] * r);
+    const x = Math.cos(a[1] * r) * Math.sin(b[1] * r) - Math.sin(a[1] * r) * Math.cos(b[1] * r) * Math.cos((b[0] - a[0]) * r);
+    return (Math.atan2(y, x) / r + 360) % 360;
+  }
+
+  /* Timing profile along a road line ([lng,lat] points) between t0 and t1 (minutes):
+     - each road segment gets a speed factor: straight = fast, sharp turn = slow, very short twisty bits = slower
+     - the bus pauses briefly at each stop (dwell)
+     - everything is scaled so the bus leaves at t0 and arrives at t1, as the timetable says */
+  function motionProfile(line, stops, t0, t1) {
+    const n = line.length, seg = [], head = [];
+    for (let i = 1; i < n; i++) { seg.push(dist(line[i - 1], line[i])); head.push(bearing(line[i - 1], line[i])); }
+    const turn = (i) => {
+      if (i <= 0 || i >= seg.length) return 0;
+      let d = Math.abs(head[i] - head[i - 1]) % 360;
+      return d > 180 ? 360 - d : d;
+    };
+    const raw = seg.map((d, i) => {
+      let f = 1.25 - 0.9 * Math.min(Math.max(turn(i), turn(i + 1)), 90) / 90;   // 1.25x straight … 0.35x at 90°
+      if (d < 25) f *= 0.75;
+      return d / Math.max(0.3, f);
+    });
+    const stopAt = new Set();
+    (stops || []).forEach((sp) => {
+      let best = 0, bd = Infinity;
+      line.forEach((p, i) => { const dd = dist(p, sp); if (dd < bd) { bd = dd; best = i; } });
+      if (best > 0 && best < n - 1) stopAt.add(best);
+    });
+    const total = Math.max(30, (t1 - t0) * 60);
+    const dwell = Math.min(20, (total * 0.2) / Math.max(1, stopAt.size));
+    const travel = total - dwell * stopAt.size, rawSum = raw.reduce((x, y) => x + y, 0) || 1;
+    const arr = [0], dep = [0];
+    for (let i = 0; i < seg.length; i++) {
+      arr.push(dep[i] + (raw[i] * travel) / rawSum);
+      dep.push(arr[i + 1] + (stopAt.has(i + 1) ? dwell : 0));
+    }
+    return {
+      t0, t1, line,
+      at(sec) {
+        if (sec <= 0) return { pos: line[0], head: head[0] || 0, i: 0 };
+        if (sec >= arr[n - 1]) return { pos: line[n - 1], head: head[n - 2] || 0, i: n - 1 };
+        let lo = 0, hi = n - 1;
+        while (hi - lo > 1) { const mid = (lo + hi) >> 1; if (arr[mid] <= sec) lo = mid; else hi = mid; }
+        if (sec < dep[lo]) return { pos: line[lo], head: head[Math.min(lo, head.length - 1)], i: lo };   // waiting at a stop
+        const f = (sec - dep[lo]) / Math.max(1e-6, arr[lo + 1] - dep[lo]);
+        const a = line[lo], b = line[lo + 1];
+        return { pos: [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f], head: head[lo], i: lo };
+      },
+    };
+  }
+
+  // nearest point on a line to p (both [lng,lat]); returns {pos, i, d (metres)}
+  function snapToLine(line, p) {
+    let best = { d: Infinity };
+    const kx = Math.cos(p[1] * Math.PI / 180);
+    for (let i = 0; i < line.length - 1; i++) {
+      const a = line[i], b = line[i + 1];
+      const ax = (b[0] - a[0]) * kx, ay = b[1] - a[1], px = (p[0] - a[0]) * kx, py = p[1] - a[1];
+      const t = Math.max(0, Math.min(1, (ax * px + ay * py) / ((ax * ax + ay * ay) || 1e-12)));
+      const q = [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+      const d = dist(q, p);
+      if (d < best.d) best = { pos: q, i, d };
+    }
+    return best;
+  }
+
+  const BUS_TOP = '<svg width="22" height="40" viewBox="0 0 22 40" aria-hidden="true"><rect x="1" y="1" width="20" height="38" rx="5" fill="#2563eb" stroke="#fff" stroke-width="2"/><rect x="4" y="4" width="14" height="6" rx="2" fill="#bfdbfe"/><rect x="4" y="13" width="14" height="19" rx="2" fill="#1e3a8a" opacity=".45"/><rect x="6" y="34.5" width="10" height="2" rx="1" fill="#93c5fd"/></svg>';
+
+  RM.animateBus = function (map, data, bus, live$) {
+    const approach = bus.approach && bus.approach.line.length > 1
+      ? motionProfile(bus.approach.line.map(LL), (bus.approach.stops || []).map(LL), bus.approach.t0, bus.depart) : null;
+    const ride = motionProfile(bus.line.map(LL), (bus.stops || []).map(LL), bus.depart, bus.arrive);
+    const demo = data.demo || { offset: 0, speed: 1 };
+    const loaded = Date.now();
+    const simNow = () => data.now + demo.offset + ((Date.now() - loaded) / 60000) * demo.speed;
+
+    // faint dashed line: where the bus is coming from; grey line: the part of your ride already done
+    overlay(map, (m) => {
+      if (approach) {
+        addOrSet(m, 'rm-appr', { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: approach.line } });
+        if (!m.getLayer('rm-appr')) m.addLayer({ id: 'rm-appr', type: 'line', source: 'rm-appr', layout: { 'line-cap': 'round' },
+          paint: { 'line-color': C.blue, 'line-width': 4, 'line-opacity': 0.35, 'line-dasharray': [1.5, 1.5] } });
+      }
+      addOrSet(m, 'rm-done', { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: [ride.line[0], ride.line[0]] } });
+      if (!m.getLayer('rm-done')) m.addLayer({ id: 'rm-done', type: 'line', source: 'rm-done', layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: { 'line-color': dark() ? '#4b5563' : '#b8c0cc', 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 4, 15, 7.5] } });
+    });
+
+    const el = document.createElement('div');
+    el.className = 'mk-livebus';
+    el.innerHTML = `<span class="mk-bubble" data-bubble></span><span class="mk-busrot">${BUS_TOP}</span>`;
+    const rot = el.querySelector('.mk-busrot'), bubble = el.querySelector('[data-bubble]');
+    const marker = new maplibregl.Marker({ element: el, anchor: 'center' }).setLngLat(ride.line[0]).addTo(map);
+
+    // Uber-style first view: the bus and your stop, while you wait
+    if (approach && simNow() < bus.depart) RM.fit(map, [...approach.line, ride.line[0]], { duration: 0, maxZoom: 15 });
+
+    // Follow the bus like Uber/Rapido: the camera glides after it; dragging the map stops following,
+    // the "whole route" button shows everything, the location button centres on you.
+    let follow = true, lastFollow = 0;
+    map.on('dragstart', () => { follow = false; });
+    document.querySelectorAll('[data-follow-bus]').forEach((b) => b.addEventListener('click', () => { follow = true; lastFollow = 0; }));
+    document.querySelectorAll('[data-fit], [data-locate]').forEach((b) => b.addEventListener('click', () => { follow = false; }));
+    let lastText = 0, lastDone = 0;
+    const minsEl = () => document.querySelector('[data-live-mins]');
+    const title = () => document.querySelector('[data-live-title]');
+    function frame() {
+      const t = simNow(), now = Date.now();
+      let st, phase;
+      if (t < bus.depart) {
+        phase = 'coming';
+        st = approach ? approach.at((t - approach.t0) * 60) : { pos: ride.line[0], head: 0 };
+      } else if (t < bus.arrive) {
+        phase = 'riding';
+        st = ride.at((t - bus.depart) * 60);
+        if (live$.user) {                          // on the bus: trust the phone's GPS over the timetable
+          const sn = snapToLine(ride.line, live$.user);
+          if (sn.d < 80) st = { pos: sn.pos, head: st.head, i: sn.i };
+        }
+      } else {
+        phase = 'done';
+        st = { pos: ride.line[ride.line.length - 1], head: 0, i: ride.line.length - 1 };
+      }
+      marker.setLngLat(st.pos);
+      rot.style.transform = `rotate(${Math.round(st.head)}deg)`;
+      if (follow && now - lastFollow > 1500) {
+        lastFollow = now;
+        const pt = map.project(st.pos), c = map.getContainer();
+        const edge = 70, off = pt.x < edge || pt.y < edge + 40 || pt.x > c.clientWidth - edge || pt.y > c.clientHeight - edge;
+        if (off || phase === 'riding') map.easeTo({ center: st.pos, zoom: Math.max(map.getZoom(), 14), duration: calm() ? 0 : 1200, easing: (x) => x });
+      }
+
+      if (now - lastText > 1000) {
+        lastText = now;
+        if (phase === 'coming') {
+          const m = Math.max(0, Math.ceil(bus.depart - t));
+          bubble.innerHTML = m > 0 ? `<b>${m} min</b> away` : '<b>Arriving</b>';
+          if (minsEl()) minsEl().textContent = `${m} min`;
+        } else if (phase === 'riding') {
+          const m = Math.max(0, Math.ceil(bus.arrive - t));
+          bubble.innerHTML = `<b>${m} min</b> to your stop`;
+          if (title()) title().innerHTML = `On the bus · <span data-live-mins>${m} min</span> left`;
+        } else {
+          bubble.innerHTML = '<b>At your stop</b>';
+          if (title()) title().textContent = 'Bus has reached your stop';
+        }
+      }
+      if (phase !== 'coming' && now - lastDone > 500 && map.getSource('rm-done')) {
+        lastDone = now;
+        const done = ride.line.slice(0, (st.i || 0) + 1).concat([st.pos]);
+        map.getSource('rm-done').setData({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: done.length > 1 ? done : [st.pos, st.pos] } });
+      }
+    }
+    if (calm()) { frame(); setInterval(frame, 2000); }
+    else { const loop = () => { frame(); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
   };
 
   // metres between two [lng, lat]

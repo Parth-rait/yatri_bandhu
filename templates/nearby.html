@@ -40,6 +40,15 @@
       {% else %}
       <div class="empty" style="padding:20px"><h2>No buses in the next hour</h2></div>
       {% endif %}
+      {% if docks %}
+      <div class="opt-head" style="margin-top:22px"><h2>Bike docks near you</h2><a class="link" href="{{ bike_app }}" target="_blank" rel="noopener">Get app</a></div>
+      <div class="list">
+        {% for d in docks %}
+        <div class="row"><span class="bike-ic">{{ icon('bike', 20) }}</span>
+          <span class="row-txt"><b>{{ d.name }}</b><small>{{ d.operator }} · {{ d.walk }} min walk{% if d.capacity %} · {{ d.capacity }} docks{% endif %}</small></span></div>
+        {% endfor %}
+      </div>
+      {% endif %}
     </div>
   </section>
   </div>

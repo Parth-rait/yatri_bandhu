@@ -48,6 +48,15 @@
     {% if j.electric %}<span class="chip-tag eco">⚡ Electric bus</span>{% endif %}
     {% if j.co2_saved_kg %}<span class="chip-tag eco">🌱 {{ j.co2_saved_kg }} kg CO₂ saved vs cab</span>{% endif %}
   </div>
+  {% for b in j.bike_tips %}
+  <a class="bike-tip" href="{{ bike_app }}" target="_blank" rel="noopener">
+    <span class="bike-ic">{{ icon('bike', 22) }}</span>
+    <span><b>Smart bike: save {{ b.saves }} min</b>
+      <small>{{ b.pick.name }} → {{ b.drop.name }} · ~{{ b.ride }} min ride · {{ bike_fare }}</small>
+      <small class="muted">Bikes may be unavailable</small></span>
+    <span class="row-chev">{{ icon('arrow-right', 18) }}</span>
+  </a>
+  {% endfor %}
   {% for w in j.warnings %}<p class="notice" style="margin-top:10px">{{ icon('alert', 18) }}<span>{{ w }}</span></p>{% endfor %}
   {% if j.night_notes %}
   <div class="night-box">

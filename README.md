@@ -121,3 +121,14 @@ Built as add-ons so the planner and existing pages stay unchanged:
 - **Live ETAs:** not scraped. Implement `CTULiveFeed` in `routemate/live.py` once official access is available.
 
 To switch the add-ons off: remove the `enrich_all`/`enrich` calls and `init_extras(...)` in `app.py`.
+
+## Smart bikes (first / last mile)
+
+`routemate/bikes.py` + `data/bike_docks.json`. When a trip has a walk of 7+ minutes and there's a bike-share dock near both ends,
+route detail suggests riding instead ("Smart bike: save 3 min"), and the map shows pick-up/drop docks. Short trips with docks at
+both ends get a "Smart bike" option on the Auto/Cab tab, and Nearby lists docks around you.
+
+Docks are seeded from OpenStreetMap: 11 Panchkula municipal bike stations + 5 Chandigarh SmartBike docks. Chandigarh's
+hundreds of other SmartBike docks aren't on OpenStreetMap, and SmartBike publishes no open data feed (GBFS). **Add docks to
+`data/bike_docks.json`** (id, name, lat, lng, operator, city) and the feature appears there automatically. Bikes are never
+required for a trip, since there is no live availability.
