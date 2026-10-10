@@ -31,6 +31,21 @@
   <a href="{{ url_for('routes', by='auto', **base) }}" {% if by == 'auto' %}aria-current="true"{% endif %}>{{ icon('auto', 18) }} Auto</a>
   <a href="{{ url_for('routes', by='cab', **base) }}" {% if by == 'cab' %}aria-current="true"{% endif %}>{{ icon('car', 18) }} Cab</a>
 </nav>
+{% if by == 'bus' %}
+<div class="tripkind">
+  <div class="toggle-2" role="group" aria-label="Trip type">
+    <a href="{{ url_for('routes', **search_args(trip='', back='')) }}" {% if not back %}aria-current="true"{% endif %}>One way</a>
+    <a href="{{ url_for('routes', **search_args(trip='round')) }}" {% if back %}aria-current="true"{% endif %}>Round trip</a>
+  </div>
+  {% if back %}
+  <form method="get" action="{{ url_for('routes') }}" class="back-time">
+    {% for k, v in search_args().items() if k != 'back' %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endfor %}
+    <label for="back">Return at</label>
+    <input class="time-input" id="back" type="time" name="back" value="{{ back.hhmm }}" data-autosubmit>
+  </form>
+  {% endif %}
+</div>
+{% endif %}
     </div>
   <section class="sheet mapui-body">
     <div class="sheet-in">
@@ -94,17 +109,38 @@
       </div>
       {% endif %}
 
+      {% if back %}
+      <div class="opt-head" style="margin-top:26px"><h2>Coming back · {{ fmt_time(back.t) }}</h2></div>
+      <p class="muted" style="margin:-2px 0 10px">{{ dest.name }} → {{ origin.name }}</p>
+      {% if back.ranked.options %}
+      <ul class="opts">
+        {% for j in back.ranked.options[:3] %}
+        {% set fb = j.legs|selectattr('type', 'equalto', 'bus')|first %}
+        <li><a class="opt {{ 'best' if loop.first }}" href="{{ url_for('journey', key=j.key, **back.args) }}">
+          {{ bus_ic() }}
+          <span class="opt-main"><b>{{ route_name(j.routes) }}</b><small>Leave {{ fmt_time(j.leave) }}{% if fb %} · {{ fb.every }}{% endif %}{% if j.electric %} · <span class="eco">⚡ Electric</span>{% endif %}</small></span>
+          <span class="opt-side"><b>{{ j.time }} min</b><span class="green">₹{{ j.fare }}</span></span>
+        </a></li>
+        {% endfor %}
+      </ul>
+      {% if rec %}
+      <div class="rt-total"><span>Round trip from</span><b>₹{{ rec.fare + back.ranked.options[0].fare }}</b></div>
+      {% endif %}
+      {% else %}
+      <div class="notice" style="margin-top:4px">{{ icon('clock', 18) }}<span>No bus back at {{ fmt_time(back.t) }}. Most routes run 5:30 AM – 9 PM. Try an earlier return.</span></div>
+      {% endif %}
+      {% endif %}
       {% else %}
       {% set o = res.others|selectattr('id', 'equalto', 'auto' if by == 'auto' else 'cab')|first %}
       {% set b = res.others|selectattr('id', 'equalto', 'bike')|first %}
       <div class="opt-head"><h2>{{ 'Auto' if by == 'auto' else 'Cab' }}</h2><span class="est">Estimate</span></div>
       <ul class="opts">
-        <li><div class="opt best"><span class="bus-ic">{{ icon('auto' if by == 'auto' else 'car', 20) }}</span>
-          <span class="opt-main"><b>{{ o.label }}</b><small>{{ o.km }} km</small></span>
-          <span class="opt-side"><b>~{{ o.minutes }} min</b><span class="green">₹{{ o.low }}–{{ o.high }}</span></span></div></li>
-        <li><div class="opt"><span class="bus-ic">{{ icon('bike', 20) }}</span>
-          <span class="opt-main"><b>{{ b.label }}</b><small>{{ b.km }} km</small></span>
-          <span class="opt-side"><b>~{{ b.minutes }} min</b><span class="green">₹{{ b.low }}–{{ b.high }}</span></span></div></li>
+        <li><a class="opt best" href="{{ url_for('extras.ride', by=by, **base) }}"><span class="bus-ic">{{ icon('auto' if by == 'auto' else 'car', 20) }}</span>
+          <span class="opt-main"><b>{{ o.label }}</b><small>{{ o.km }} km · tap to book in the app</small></span>
+          <span class="opt-side"><b>~{{ o.minutes }} min</b><span class="green">₹{{ o.low }}–{{ o.high }}</span></span></a></li>
+        <li><a class="opt" href="{{ url_for('extras.ride', by='bike', **base) }}"><span class="bus-ic">{{ icon('bike', 20) }}</span>
+          <span class="opt-main"><b>{{ b.label }}</b><small>{{ b.km }} km · tap to book in the app</small></span>
+          <span class="opt-side"><b>~{{ b.minutes }} min</b><span class="green">₹{{ b.low }}–{{ b.high }}</span></span></a></li>
         {% if res.walk_only %}
         <li><a class="opt" href="{{ url_for('journey', key='walk', **base) }}"><span class="bus-ic">{{ icon('walk', 20) }}</span>
           <span class="opt-main"><b>Walk</b><small>{{ (res.walk_only.legs[0].meters / 1000)|round(1) }} km</small></span>
@@ -122,4 +158,4 @@
   </div>
 </div>
 {% endblock %}
-{% block scripts %}<script>RM.routesMap({{ map_data|tojson }});</script>{% endblock %}
+{% block scripts %}<script>{% if by == 'bus' %}RM.routesMap({{ map_data|tojson }});{% else %}RM.rideMap({{ {'origin': origin, 'dest': dest}|tojson }}, 'routes-map');{% endif %}</script>{% endblock %}

@@ -78,15 +78,25 @@
       clear.hidden = !input.value;
       clearTimeout(timer);
       const q = input.value.trim();
+      const cats = $('[data-cats]'); if (cats) cats.hidden = !!q;
       if (!q) { out.innerHTML = initial; bindGeo(); return; }
       timer = setTimeout(async () => {
         const my = ++n;
-        try {
-          const res = await fetch(`/api/search?kind=${kind}&q=${encodeURIComponent(q)}`).then((r) => r.json());
+        const row = (r) => `<a class="row" href="${esc(fill(r.id))}"><span class="row-ic">${svg(r.icon)}</span><span class="row-txt"><b>${esc(r.name)}</b><small>${esc(r.sub)}</small></span></a>`;
+        const render = (res, places) => {
           if (my !== n) return;
-          out.innerHTML = `<section class="section" style="margin-top:8px">${res.length
-            ? `<div class="list">${res.map((r) => `<a class="row" href="${esc(fill(r.id))}"><span class="row-ic">${svg(r.icon)}</span><span class="row-txt"><b>${esc(r.name)}</b><small>${esc(r.sub)}</small></span></a>`).join('')}</div>`
-            : `<p class="muted" style="padding:12px 4px">No results</p>`}</section>`;
+          let html = res.length ? `<div class="list">${res.map(row).join('')}</div>` : '';
+          if (places && places.length) html += `<h2 style="margin:18px 0 6px">Places</h2><div class="list">${places.map(row).join('')}</div>`;
+          if (!html) html = places ? '<p class="muted" style="padding:12px 4px">No results</p>' : '<p class="muted" style="padding:12px 4px">Searching…</p>';
+          out.innerHTML = `<section class="section" style="margin-top:8px">${html}</section>`;
+        };
+        try {
+          const local = fetch(`/api/search?kind=${kind}&q=${encodeURIComponent(q)}`).then((r) => r.json());
+          const places = kind === 'stops' || q.length < 2 ? Promise.resolve([])
+            : fetch(`/api/places?q=${encodeURIComponent(q)}&lat=${form.dataset.lat}&lng=${form.dataset.lng}`).then((r) => r.json()).catch(() => []);
+          const res = await local;
+          render(res, null);
+          render(res, await places);
         } catch { /* offline: the form still works by pressing Enter */ }
       }, 120);
     });
@@ -255,7 +265,11 @@
     if (!b) return;
     b.addEventListener('click', async () => {
       const f = b.form;
-      try { await RM.geolocate(); f.use_location.value = '1'; }
+      b.disabled = true;
+      b.textContent = 'Waiting for permission…';
+      // If the browser prompt is ignored or closed, don't hang: carry on without location after 8 s.
+      const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error('No answer, continuing without location')), 8000));
+      try { await Promise.race([RM.geolocate(), timeout]); f.use_location.value = '1'; }
       catch (err) { f.use_location.value = '0'; RM.toast(err.message); await new Promise((r) => setTimeout(r, 1200)); }
       f.submit();
     });

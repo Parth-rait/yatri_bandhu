@@ -11,7 +11,7 @@
         <small>{{ sm.origin }} → {{ sm.dest }}</small></div>
     </div>
     <div class="qr" role="img" aria-label="Ticket QR code">{{ qr|safe }}</div>
-    <p class="ticket-note">Booking {{ b.id|upper }}</p>
+    <p class="ticket-note">Booking {{ b.id|upper }} · Scan to open CTU</p>
     <div class="ticket-grid">
       <div><small>Total</small><b>₹{{ b.total }}</b></div>
       <div><small>Passengers</small><b>{{ pax|sum(attribute='n') }}</b></div>

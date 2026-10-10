@@ -49,7 +49,7 @@
     const hide = /^(poi|building-3d|road_one_way|highway-shield|road_shield|label_country|label_state|airport)/;
     for (const layer of map.getStyle().layers) {
       const id = layer.id;
-      if (hide.test(id)) { map.setLayoutProperty(id, 'visibility', 'none'); continue; }
+      if (hide.test(id) && !(map.rmKeepPoi && /^poi_r/.test(id))) { map.setLayoutProperty(id, 'visibility', 'none'); continue; }
       if (id === 'building') map.setLayerZoomRange(id, 14.5, 24);
       if (dark()) continue;
       if (id === 'background') setPaint(map, id, 'background-color', LIGHT.land);
@@ -69,7 +69,7 @@
     }
   }
 
-  RM.makeMap = function (id, onStyle) {
+  RM.makeMap = function (id, onStyle, opts = {}) {
     const el = document.getElementById(id);
     if (!el || !window.maplibregl) return null;
     const map = new maplibregl.Map({
@@ -87,6 +87,7 @@
     map.keyboard.disableRotation();
     map.rmMarkers = [];
     map.rmDraw = [];
+    map.rmKeepPoi = !!opts.keepPoi;
     map.on('style.load', () => { tune(map); onStyle && onStyle(map); map.rmDraw.forEach((f) => f(map)); });
     window.addEventListener('rm:theme', () => map.setStyle(STYLE()));
     return map;
@@ -424,6 +425,77 @@
     });
     RM.fit(map, coords, { duration: 0, maxZoom: 13.5 });
     autoDeclutter(map);
+  };
+
+  // ------------------------------------------------------------- ride (auto / cab / bike taxi)
+  RM.rideMap = function (data, id = 'journey-map') {
+    const map = RM.makeMap(id);
+    if (!map) return;
+    const a = LL(data.origin), b = LL(data.dest);
+    overlay(map, (m) => {
+      addOrSet(m, 'rm-ride', { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: [a, b] } });
+      if (!m.getLayer('rm-ride')) m.addLayer({ id: 'rm-ride', type: 'line', source: 'rm-ride', layout: { 'line-cap': 'round' },
+        paint: { 'line-color': dark() ? '#e5e7eb' : '#111827', 'line-width': 4, 'line-opacity': 0.55, 'line-dasharray': [2, 1.5] } });
+    });
+    marker(map, a, '<span class="mk-origin"></span>' + card(data.origin.name));
+    marker(map, b, SVG.pin + card(data.dest.name), 'bottom', 'mk-dest');
+    RM.fit(map, [a, b], { duration: 0 });
+    autoDeclutter(map);
+  };
+
+  // ------------------------------------------------------------- choose a place on the map
+  RM.pickMap = function (start) {
+    const box = document.querySelector('[data-pick]');
+    const map = RM.makeMap('pick-map', null, { keepPoi: true });
+    if (!map || !box) return;
+    const nameEl = box.querySelector('[data-pick-name]'), subEl = box.querySelector('[data-pick-sub]');
+    const btn = box.querySelector('[data-pick-confirm]'), ret = box.dataset.ret;
+    let current = null, skipReverse = false, timer, reqNo = 0;
+    const clean = (t) => String(t || '').replace(/\|/g, ' ').trim();
+    const poiId = (lng, lat, name, sub) => `poi:${lat.toFixed(5)},${lng.toFixed(5)}|${clean(name)}|${clean(sub)}`;
+    const show = (name, sub, id) => { nameEl.textContent = name; subEl.textContent = sub || ' '; current = id; btn.disabled = false; };
+    if (start) map.jumpTo({ center: LL(start), zoom: 15.5 });
+    else map.jumpTo({ center: [76.78, 30.735], zoom: 13.5 });
+
+    map.on('movestart', () => { btn.disabled = true; if (!skipReverse) { nameEl.textContent = 'Finding this place…'; subEl.textContent = ' '; } });
+    map.on('moveend', () => {
+      if (skipReverse) { skipReverse = false; return; }
+      clearTimeout(timer);
+      timer = setTimeout(async () => {
+        const c = map.getCenter(), my = ++reqNo;
+        try {
+          const r = await fetch(`/api/reverse?lat=${c.lat.toFixed(5)}&lng=${c.lng.toFixed(5)}`).then((x) => x.json());
+          if (my === reqNo) show(r.name, r.sub, r.id);
+        } catch { if (my === reqNo) show('Dropped pin', 'Chosen on map', poiId(c.lng, c.lat, 'Dropped pin', 'Chosen on map')); }
+      }, 300);
+    });
+    // tap a shop / restaurant / salon on the map to pick it by name
+    map.on('click', (e) => {
+      const layers = map.getStyle().layers.filter((l) => /^poi_r/.test(l.id)).map((l) => l.id);
+      const f = map.queryRenderedFeatures(e.point, { layers }).find((x) => x.properties.name);
+      const lngLat = f ? f.geometry.coordinates : [e.lngLat.lng, e.lngLat.lat];
+      if (f) {
+        const kind = String(f.properties.subclass || f.properties.class || 'Place').replace(/_/g, ' ');
+        skipReverse = true;
+        show(f.properties.name, kind.charAt(0).toUpperCase() + kind.slice(1), poiId(lngLat[0], lngLat[1], f.properties.name, kind));
+      }
+      map.easeTo({ center: lngLat, duration: calm() ? 0 : 400 });
+    });
+    map.on('mousemove', (e) => {
+      const layers = map.getStyle().layers.filter((l) => /^poi_r/.test(l.id)).map((l) => l.id);
+      map.getCanvas().style.cursor = map.queryRenderedFeatures(e.point, { layers }).length ? 'pointer' : '';
+    });
+    btn.addEventListener('click', () => { if (current) location.href = ret.replace('__PT__', encodeURIComponent(current)); });
+    document.querySelector('[data-locate]')?.addEventListener('click', async () => {
+      try {
+        const pos = await RM.geolocate();
+        const p = [pos.coords.longitude, pos.coords.latitude];
+        RM.youAt(map, p);
+        if (RM.TRICITY.contains([p[1], p[0]])) map.easeTo({ center: p, zoom: 16.5, duration: calm() ? 0 : 600 });
+        else RM.toast?.("You're outside Chandigarh, Mohali and Panchkula");
+      } catch (err) { RM.toast?.(err.message); }
+    });
+    map.once('idle', () => map.fire('moveend'));
   };
 
   // ------------------------------------------------------------- geolocation

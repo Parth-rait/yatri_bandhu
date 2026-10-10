@@ -54,9 +54,10 @@ PLACE_ICON = {"Campus": "cap", "Education": "cap", "Shopping": "bag", "Market": 
 # Which bottom tab is highlighted for each page
 TABS = {
     "home": {"app_home", "plan", "search", "routes", "routes_filters", "routes_compare", "routes_other",
-             "journey", "trip_live", "trip_ticket", "feedback", "extras.book", "extras.share"},
+             "journey", "trip_live", "trip_ticket", "feedback", "extras.book", "extras.share", "extras.ride"},
     "routes": {"lines", "lines_all", "line", "line_map", "nearby", "nearby_map", "stop", "stop_map", "explore",
                "explore_map", "extras.stop_report"},
+    "pick": {"extras.pick_map"},
     "saved": {"saved", "saved_new"},
     "profile": {"profile", "extras.passes", "extras.tickets", "extras.ticket", "history", "settings", "settings_start", "accessibility", "help", "about", "study", "sus"},
 }
@@ -88,6 +89,15 @@ def parse_point(s):
         near = net.stops_near(dict(lat=lat, lng=lng), 30)
         sub = f"Near {net.stops[near[0][0]]['name']}" if near else "Outside Chandigarh / Mohali"
         return dict(id=s, name="Current location", sub=sub, lat=lat, lng=lng, icon="locate")
+    if kind == "poi":
+        # a named place from map search / map pin: "poi:<lat>,<lng>|<name>|<subtitle>"
+        coords, _, rest = val.partition("|")
+        name, _, sub = rest.partition("|")
+        try:
+            lat, lng = map(float, coords.split(","))
+        except ValueError:
+            return None
+        return dict(id=s, name=(name or "Dropped pin")[:60], sub=(sub or "Chosen on map")[:80], lat=lat, lng=lng, icon="pin")
     return None
 
 
@@ -147,7 +157,7 @@ def limits_from_args(args):
 
 def search_args(**over):
     """Current trip-search parameters (for building links), with overrides."""
-    keys = ("from", "to", "via", "mode", "budget", "walk", "changes", "at")
+    keys = ("from", "to", "via", "mode", "budget", "walk", "changes", "at", "trip", "back")
     a = {k: request.args.get(k) for k in keys if request.args.get(k)}
     a.update({k: v for k, v in over.items() if v is not None})
     return {k: v for k, v in a.items() if v != ""}
@@ -278,7 +288,11 @@ def search():
         popular = [parse_point(f"stop:{h}") for h in hubs if h in net.stops]
     else:
         popular = [parse_point(f"place:{p}") for p in net.places][:10]
-    return render_template("search.html", ret=ret, kind=kind, q=q,
+    from routemate.extras import CATEGORIES, search_places
+    near = parse_point(g.settings.get("default_from"))
+    places = list(search_places(q.strip().lower(), round(near["lat"], 2), round(near["lng"], 2))) if q and kind != "stops" and near else []
+    return render_template("search.html", ret=ret, kind=kind, q=q, places=places, categories=CATEGORIES,
+                           near_lat=near["lat"] if near else 30.73, near_lng=near["lng"] if near else 76.78,
                            title=request.args.get("title") or ("Find a stop" if kind == "stops" else "Where to?"),
                            allow_geo=request.args.get("geo", "1") == "1",
                            results=search_points(q, 20, kind) if q else None,
@@ -359,7 +373,20 @@ def routes():
     rec = ctx["ranked"]["recommended"]
     n_filters = sum(v is not None for v in ctx["limits"].values())
     shown = ctx["ranked"]["options"] or ctx["ranked"]["misfits"]
-    return render_template("routes.html", **ctx, rec=rec, by=request.args.get("by", "bus"),
+    # Round trip: plan the way back (destination -> origin) at the return time, same priority and filters.
+    back = None
+    if request.args.get("trip") == "round":
+        default_back = (ctx["t"] + 180) // 30 * 30
+        back_t = req_time({"at": request.args.get("back")}) if request.args.get("back") else default_back
+        back_t = min(back_t, 23 * 60 + 30)
+        res_b = planner.plan(ctx["dest"], ctx["origin"], back_t)
+        enrich_all(res_b["journeys"], stop_safety)
+        ranked_b = planner.rank(res_b["journeys"], ctx["mode"], ctx["limits"])
+        hhmm = f"{back_t // 60:02d}:{back_t % 60:02d}"
+        back = dict(t=back_t, hhmm=hhmm, ranked=ranked_b, res=res_b,
+                    args={k: v for k, v in dict(search_args(), **{"from": ctx["dest"]["id"], "to": ctx["origin"]["id"],
+                                                                  "at": hhmm}).items() if k not in ("trip", "back", "via")})
+    return render_template("routes.html", **ctx, rec=rec, by=request.args.get("by", "bus"), back=back,
                            map_data=journey_map_data(shown[0], ctx["origin"], ctx["dest"]) if shown else
                            dict(origin=ctx["origin"], dest=ctx["dest"], legs=[]),
                            reason=planner.reason(rec, ctx["mode"]) if rec else None,
@@ -463,6 +490,7 @@ def trip_ticket(tid):
     sm = trip["summary"]
     text = (f"Yatri Bandhu trip pass (not a ticket) | Bus {' + '.join(sm['routes']) or 'walk'} | "
             f"{trip['origin_name']} -> {trip['dest_name']} | Rs {sm['fare']} | {fmt_time(sm['leave'])}")
+    text = "https://ctuonline.chd.gov.in/"  # scanning opens the official CTU portal
     svg = qrcode.make(text, image_factory=qrcode.image.svg.SvgPathImage, box_size=8, border=1).to_string(encoding="unicode")
     return render_template("trip_ticket.html", trip=trip, sm=sm, qr=svg)
 
@@ -670,9 +698,9 @@ def profile():
 
 @app.route("/logout", methods=["POST"])
 def logout():
-    """No accounts: logging out starts a fresh profile on this device."""
+    """No accounts: logging out (or 'Not you?') starts a fresh profile on this device and asks for a new name."""
     session.clear()
-    return redirect(url_for("landing"))
+    return redirect(url_for("welcome"))
 
 
 @app.route("/saved", methods=["GET", "POST"])
@@ -822,7 +850,7 @@ def api_plan():
 
 
 init_extras(app, find_journey=find_journey, journey_map_data=journey_map_data, parse_point=parse_point,
-            net=net, TZ=TZ)
+            net=net, TZ=TZ, safe_ret=safe_ret, plan_request=plan_request, search_args=search_args)
 
 
 @app.errorhandler(404)

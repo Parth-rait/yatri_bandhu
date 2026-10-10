@@ -53,6 +53,7 @@
     {% endfor %}
   </div>
   <ul class="pass-notes">{% for n in notes %}<li>{{ n }}</li>{% endfor %}</ul>
-  <p class="src">Source: Chandigarh Administration fare notification, 16 Jan 2020</p>
+  <a class="safety-row" href="{{ url_for('static', filename='docs/ctu-fare-notification-2020.pdf') }}" target="_blank" rel="noopener"><span><b>Official fare notification</b><small>Chandigarh Administration · 16 Jan 2020 · PDF</small></span><span class="link">Open</span></a>
+  <a class="safety-row" href="https://ctuonline.chd.gov.in/" target="_blank" rel="noopener"><span><b>CTU official portal</b><small>ctuonline.chd.gov.in</small></span><span class="link">Open</span></a>
 </section>
 {% endblock %}

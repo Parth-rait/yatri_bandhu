@@ -955,3 +955,33 @@ body.has-trip .sticky-cta, body.has-trip .action-bar { bottom: calc(148px + env(
 .share-box { display: flex; gap: 8px; align-items: center; }
 .share-box .input { font-size: .86rem; }
 .q-block { border: 0; padding: 0; margin: 22px 0 0; }
+
+.not-you { margin-top: 12px; text-align: center; }
+.not-you.inline { margin: 2px 0 0; text-align: left; }
+.not-you .link { font-size: .9rem; }
+.hello p .not-you .link { font-size: .92rem; }
+
+/* search: categories, map picker, ride */
+.cat-chips { padding: 2px 16px 0; max-width: 640px; margin: 0 auto; }
+.cat-chips .chip { height: 38px; font-size: .88rem; }
+.pick { position: fixed; inset: 0; }
+.pick .map { position: absolute; inset: 0; }
+.pick-pin { position: absolute; left: 50%; top: 50%; z-index: 500; transform: translate(-50%, -100%); pointer-events: none; display: flex; flex-direction: column; align-items: center; }
+.pick-pin svg { filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .3)); }
+.pick-pin i { width: 8px; height: 4px; margin-top: -2px; border-radius: 50%; background: rgba(0, 0, 0, .35); }
+.pick-card { position: absolute; z-index: 600; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); max-width: 520px; margin: 0 auto;
+  padding: 16px; border-radius: 22px; background: var(--surface); box-shadow: var(--shadow-2); }
+.pick-hint { font-size: .78rem; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: .05em; }
+.pick-name { font-size: 1.15rem; font-weight: 800; margin-top: 4px; letter-spacing: -.01em; }
+.pick-sub { color: var(--text-2); font-size: .9rem; margin-bottom: 12px; }
+.ride-sum { display: flex; align-items: center; gap: 14px; }
+.ride-sum b { display: block; font-size: 1.6rem; font-weight: 800; letter-spacing: -.02em; }
+.ride-sum small { color: var(--text-2); }
+.ride-sum .est { margin-left: auto; }
+
+/* one way / round trip */
+.tripkind { display: flex; align-items: center; gap: 12px; padding: 0 20px 12px; max-width: 640px; margin: 0 auto; flex-wrap: wrap; }
+.tripkind .toggle-2 { flex: 1; min-width: 210px; }
+.back-time { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: .9rem; color: var(--text-2); }
+.rt-total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 14px; padding: 14px 16px; border-radius: 16px; background: var(--ok-soft); font-weight: 600; }
+.rt-total b { font-size: 1.35rem; font-weight: 800; color: var(--ok); }

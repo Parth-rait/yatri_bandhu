@@ -10,7 +10,7 @@
       <div><b>Route {{ sm.routes|join(' + ') or 'Walk' }}</b><small>{{ trip.origin_name }} → {{ trip.dest_name }}</small></div>
     </div>
     <div class="qr" role="img" aria-label="Trip QR code">{{ qr|safe }}</div>
-    <p class="ticket-note">Pay the conductor on board</p>
+    <p class="ticket-note">Scan to open CTU · Pay the conductor on board</p>
     <div class="ticket-grid">
       <div><small>Fare</small><b>₹{{ sm.fare }}</b></div>
       <div><small>Ticket type</small><b>Single ride</b></div>

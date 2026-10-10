@@ -4,7 +4,7 @@
 {% block tabbar %}{% endblock %}
 {% block content %}
 <form class="search-head" method="get" action="{{ url_for('search') }}" role="search" data-search
-      data-ret="{{ ret }}" data-kind="{{ kind }}">
+      data-ret="{{ ret }}" data-kind="{{ kind }}" data-lat="{{ near_lat }}" data-lng="{{ near_lng }}">
   <a class="icon-btn" href="javascript:history.back()" aria-label="Back">{{ icon('arrow-left', 22) }}</a>
   <label class="search-input-wrap">
     {{ icon('search', 20) }}
@@ -15,6 +15,13 @@
   <input type="hidden" name="ret" value="{{ ret }}"><input type="hidden" name="kind" value="{{ kind }}"><input type="hidden" name="title" value="{{ title }}">
 </form>
 
+{% if kind != 'stops' %}
+<div class="wrap cat-chips" data-cats {% if q %}hidden{% endif %}>
+  <div class="chips chips-scroll">
+    {% for label, words, ic in categories %}<a class="chip" href="{{ url_for('search', q=words, ret=ret, kind=kind, title=title) }}">{{ icon(ic, 16) }} {{ label }}</a>{% endfor %}
+  </div>
+</div>
+{% endif %}
 <div data-search-results>
 {% if results is not none %}
   <section class="section" style="margin-top:8px">
@@ -24,8 +31,16 @@
       <a class="row" href="{{ ret|fill(r.id) }}"><span class="row-ic">{{ icon(r.icon, 20) }}</span><span class="row-txt"><b>{{ r.name }}</b><small>{{ r.sub }}</small></span></a>
       {% endfor %}
     </div>
-    {% else %}
+    {% elif not places %}
     <p class="muted" style="padding:12px 4px">No results</p>
+    {% endif %}
+    {% if places %}
+    <h2 style="margin:18px 0 6px">Places</h2>
+    <div class="list">
+      {% for r in places %}
+      <a class="row" href="{{ ret|fill(r.id) }}"><span class="row-ic">{{ icon('pin', 20) }}</span><span class="row-txt"><b>{{ r.name }}</b><small>{{ r.sub }}</small></span></a>
+      {% endfor %}
+    </div>
     {% endif %}
   </section>
 {% else %}
@@ -34,6 +49,10 @@
       {% if allow_geo %}
       <button type="button" class="row" data-geo-pick><span class="row-ic brand">{{ icon('locate', 20) }}</span>
         <span class="row-txt"><b>Current location</b><small data-geo-status>Uses your phone's GPS</small></span></button>
+      {% endif %}
+      {% if kind != 'stops' %}
+      <a class="row" href="{{ url_for('extras.pick_map', ret=ret, title=title) }}"><span class="row-ic brand">{{ icon('map', 20) }}</span>
+        <span class="row-txt"><b>Choose on map</b><small>Drop a pin or tap any shop or restaurant</small></span></a>
       {% endif %}
       {% for s in saved_pts %}
       <a class="row" href="{{ ret|fill(s.point) }}"><span class="row-ic">{{ icon(s.icon, 20) }}</span><span class="row-txt"><b>{{ s.label }}</b><small>{{ s.name }}</small></span></a>

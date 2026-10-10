@@ -32,7 +32,7 @@
     <a class="row" href="{{ href }}"><span class="row-ic">{{ icon(ic, 21) }}</span><span class="row-txt"><b>{{ label }}</b></span><span class="row-chev">{{ icon('chevron-right', 18) }}</span></a>
     {% endfor %}
     <form method="post" action="{{ url_for('logout') }}">
-      <button class="row logout" type="submit"><span class="row-ic" style="color:var(--danger)">{{ icon('logout', 21) }}</span><span class="row-txt"><b>Log Out</b></span></button>
+      <button class="row logout" type="submit"><span class="row-ic" style="color:var(--danger)">{{ icon('logout', 21) }}</span><span class="row-txt"><b>Log Out</b><small>Start fresh with a new name</small></span></button>
     </form>
   </nav>
 </div>
