@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, topbar with context %}
+{% block title %}Share trip{% endblock %}
+{% block content %}
+{{ topbar('Share Trip', url_for('trip_live', tid=trip.id)) }}
+<div class="wrap" style="padding:0 20px">
+  <div class="empty" style="padding-top:20px">
+    <span class="empty-ic">{{ icon('user', 30) }}</span>
+    <h2>Let someone follow your trip</h2>
+    <p>They'll see where you're going and where the bus should be. No account needed.</p>
+  </div>
+  <div class="share-box">
+    <input class="input" value="{{ link }}" readonly aria-label="Share link" data-share-link>
+    <button class="btn btn-primary btn-sm" type="button" data-copy>Copy</button>
+  </div>
+  <div class="btn-row mt">
+    <a class="btn btn-soft" href="https://wa.me/?text={{ ('Following my bus trip to ' ~ trip.dest_name ~ ': ' ~ link)|urlencode }}" target="_blank" rel="noopener">WhatsApp</a>
+    <button class="btn btn-outline" type="button" data-native-share data-title="My trip to {{ trip.dest_name }}">More…</button>
+  </div>
+</div>
+{% endblock %}

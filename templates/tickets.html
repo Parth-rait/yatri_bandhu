@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, bus_ic, topbar with context %}
+{% block title %}My tickets{% endblock %}
+{% block content %}
+{{ topbar('My Tickets', url_for('profile')) }}
+<div class="wrap" style="padding:0 20px">
+  {% if rows %}
+  <div class="list">
+    {% for r in rows %}
+    <a class="row" href="{{ url_for('extras.ticket', bid=r.id) }}">
+      {{ bus_ic() }}
+      <span class="row-txt"><b>Route {{ r.summary.routes|join(' + ') }}</b><small>{{ r.summary.origin }} → {{ r.summary.dest }}</small></span>
+      <span class="row-trail"><b style="color:var(--text)">₹{{ r.total }}</b><br><small>{{ r.created|ago }}</small></span>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty"><span class="empty-ic">{{ icon('ticket', 30) }}</span><h2>No tickets yet</h2>
+    <p>Book from any route's detail screen.</p>
+    <a class="btn btn-primary" href="{{ url_for('app_home') }}">Plan a trip</a></div>
+  {% endif %}
+</div>
+{% endblock %}

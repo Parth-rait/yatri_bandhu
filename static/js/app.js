@@ -261,7 +261,44 @@
     });
   }
 
+  // Booking: passenger steppers and live total
+  function initBooking() {
+    const f = $('[data-book]');
+    if (!f) return;
+    const total = $('[data-total]', f);
+    const update = () => {
+      let sum = 0;
+      $$('.stepper', f).forEach((st) => { sum += (+$('input', st).value || 0) * (+st.dataset.price || 0); });
+      total.textContent = `₹${sum}`;
+    };
+    $$('.stepper', f).forEach((st) => st.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-step]');
+      if (!b) return;
+      const inp = $('input', st);
+      inp.value = Math.max(0, Math.min(9, (+inp.value || 0) + +b.dataset.step));
+      update();
+    }));
+    update();
+  }
+
+  // Share trip: copy link / native share sheet
+  function initShare() {
+    const link = $('[data-share-link]');
+    if (!link) return;
+    $('[data-copy]')?.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(link.value); RM.toast('Link copied'); }
+      catch { link.select(); document.execCommand('copy'); RM.toast('Link copied'); }
+    });
+    const ns = $('[data-native-share]');
+    if (ns) {
+      if (!navigator.share) ns.hidden = true;
+      ns.addEventListener('click', () => navigator.share({ title: ns.dataset.title, url: link.value }).catch(() => {}));
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    initBooking();
+    initShare();
     splash();
     autoLocate();
     initLocationAsk();

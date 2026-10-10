@@ -58,7 +58,7 @@
             {{ bus_ic() }}
             <span class="opt-main">
               <b>{{ route_name(j.routes) }}</b>
-              <small>{{ first_bus.every|capitalize if first_bus else '' }}{% if j.changes %} · {{ j.changes }} change{% endif %}{% if j.labels %} · <span class="why-tag">{{ names[j.labels[0]] }}</span>{% endif %}</small>
+              <small>{{ first_bus.every|capitalize if first_bus else '' }}{% if j.changes %} · {{ j.changes }} change{% endif %}{% if j.labels %} · <span class="why-tag">{{ names[j.labels[0]] }}</span>{% endif %}{% if j.electric %} · <span class="eco">⚡ Electric</span>{% endif %}</small>
             </span>
             <span class="opt-side"><b>{{ j.time }} min</b><span class="green">₹{{ j.fare }}</span></span>
           </a>

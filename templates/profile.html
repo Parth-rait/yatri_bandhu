@@ -21,6 +21,8 @@
   <nav class="list menu" aria-label="Profile">
     {% for href, ic, label in [
       (url_for('settings'), 'sliders', 'Travel Preferences'),
+      (url_for('extras.passes'), 'ticket', 'Passes & Fares'),
+      (url_for('extras.tickets'), 'clipboard', 'My Tickets'),
       (url_for('saved'), 'star', 'Saved Places'),
       (url_for('history'), 'clock', 'Trip History'),
       (url_for('accessibility'), 'access', 'Display & Accessibility'),

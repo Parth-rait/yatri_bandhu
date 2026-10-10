@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, bus_ic, route_name, topbar with context %}
+{% block title %}Book ticket{% endblock %}
+{% block content %}
+{{ topbar('Book Ticket', url_for('journey', **params)) }}
+<form class="wrap" method="post" style="padding:0 20px" data-book data-base="{{ base }}">
+  {% for k, v in params.items() %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endfor %}
+  <div class="opt best" style="margin-top:4px">
+    {{ bus_ic() }}
+    <span class="opt-main"><b>{{ route_name(j.routes) }}</b><small>{{ origin.name }} → {{ dest.name }}</small></span>
+    <span class="opt-side"><b>{{ fmt_time(j.leave) }}</b><span class="green">₹{{ base }}</span></span>
+  </div>
+
+  <h2 class="field-label" style="margin-top:24px">Passengers</h2>
+  <div class="list">
+    {% for c in types %}
+    {% set price = concession_price(base, c.discount) %}
+    <div class="row pax-row">
+      <span class="row-txt"><b>{{ c.label }}</b><small>{% if price %}₹{{ price }} each{% else %}Free{% endif %}{% if c.discount and c.discount < 100 %} · {{ c.discount }}% off{% endif %}</small></span>
+      <div class="stepper" data-price="{{ price }}">
+        <button type="button" data-step="-1" aria-label="Fewer {{ c.label }}">−</button>
+        <input type="number" name="{{ c.id }}" value="{{ 1 if loop.first else 0 }}" min="0" max="9" aria-label="{{ c.label }} count" readonly>
+        <button type="button" data-step="1" aria-label="More {{ c.label }}">+</button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="book-total"><span>Total</span><b data-total>₹{{ base }}</b></div>
+  <p class="demo-note">{{ icon('info', 16) }} Demo booking. No payment is taken and the ticket isn't valid for travel.</p>
+  <div class="sticky-cta"><button class="btn btn-primary btn-block" type="submit">Confirm booking</button></div>
+</form>
+{% endblock %}

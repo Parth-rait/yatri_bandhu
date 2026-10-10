@@ -1,0 +1,57 @@
+{
+  "_about": "Add-on data for Yatri Bandhu. Kept separate from the timetable so it can be edited without rebuilding the network.",
+
+  "electric_routes": {
+    "_source": "CTU electric bus routes as listed on CTU information (verify against the latest CTU fleet list).",
+    "routes": ["23A", "206", "202", "239", "6", "7"]
+  },
+
+  "fares": {
+    "_source": "Chandigarh Administration, Transport Department notification No. 1/5/36-H-III(7)-2020/906, effective 16.01.2020",
+    "non_ac": [{"upto_km": 5, "fare": 10}, {"upto_km": 10, "fare": 20}, {"upto_km": null, "fare": 25}],
+    "ac":     [{"upto_km": 5, "fare": 15}, {"upto_km": 10, "fare": 25}, {"upto_km": null, "fare": 30}],
+    "concessions": [
+      {"id": "adult",   "label": "Adult",                 "discount": 0},
+      {"id": "student", "label": "Student",               "discount": 0,   "note": "Students save with a monthly pass"},
+      {"id": "child",   "label": "Child (6–12 years)",    "discount": 50},
+      {"id": "senior",  "label": "Senior citizen (60+)",  "discount": 50,  "note": "ID card from Director Social Welfare, Chandigarh"},
+      {"id": "infant",  "label": "Child below 6 years",   "discount": 100}
+    ],
+    "half_ticket_rounding": "50 paise rounded to Rs 1"
+  },
+
+  "passes": [
+    {"id": "daily_nonac",      "label": "Daily pass",                    "buses": "Non-AC",    "price": 60,  "period": "day"},
+    {"id": "daily_all",        "label": "Daily pass",                    "buses": "All buses", "price": 75,  "period": "day"},
+    {"id": "monthly_nonac",    "label": "Monthly pass",                  "buses": "Non-AC",    "price": 700, "period": "month"},
+    {"id": "monthly_all",      "label": "Monthly pass",                  "buses": "All buses", "price": 900, "period": "month"},
+    {"id": "student_route",    "label": "Student pass · one route",      "buses": "Non-AC",    "price": 125, "period": "month", "student": true,
+     "note": "For a specific route to your school or college"},
+    {"id": "student_all",      "label": "Student pass · all routes",     "buses": "Non-AC",    "price": 350, "period": "month", "student": true,
+     "note": "All general routes; AC buses at 50% off the all-buses monthly pass"}
+  ],
+  "pass_notes": [
+    "A pass month starts from the date the pass is issued.",
+    "Tricity passes are valid on city buses, not long-route buses.",
+    "Smart card fee is extra."
+  ],
+
+  "safety": {
+    "night_starts": "19:30",
+    "night_ends": "06:00",
+    "long_walk_min": 8,
+    "long_wait_min": 15,
+    "min_reports_to_show": 3,
+    "helplines": [
+      {"label": "Emergency", "number": "112"},
+      {"label": "Women helpline", "number": "1091"}
+    ]
+  },
+
+  "co2": {
+    "_source": "Rough per-passenger-km estimates for comparison only",
+    "cab_g_per_km": 150,
+    "bus_g_per_km": 30,
+    "electric_bus_g_per_km": 15
+  }
+}

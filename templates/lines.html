@@ -22,7 +22,7 @@
     {% for r in popular %}
     <a class="row" href="{{ url_for('line', no=r.no) }}">
       {{ bus_ic() }}
-      <span class="row-txt"><b>Route {{ r.no }}</b><small>{{ r.ends }}</small></span>
+      <span class="row-txt"><b>Route {{ r.no }}{% if r.no in electric_routes %} <span class="eco" style="font-size:.78rem">⚡ Electric</span>{% endif %}</b><small>{{ r.ends }}</small></span>
       <span class="row-chev">{{ icon('chevron-right', 18) }}</span>
     </a>
     {% endfor %}

@@ -16,6 +16,8 @@ from flask import (Flask, Response, abort, g, jsonify, redirect, render_template
 from routemate import store
 from routemate.network import Network, distance_m, route_sort_key
 from routemate.planner import MODES, Planner, fmt_dur, fmt_time
+from routemate.enrich import ELECTRIC, EXTRAS, enrich, enrich_all
+from routemate.extras import init_extras, stop_safety
 
 TZ = ZoneInfo("Asia/Kolkata")
 app = Flask(__name__)
@@ -52,11 +54,11 @@ PLACE_ICON = {"Campus": "cap", "Education": "cap", "Shopping": "bag", "Market": 
 # Which bottom tab is highlighted for each page
 TABS = {
     "home": {"app_home", "plan", "search", "routes", "routes_filters", "routes_compare", "routes_other",
-             "journey", "trip_live", "trip_ticket", "feedback"},
+             "journey", "trip_live", "trip_ticket", "feedback", "extras.book", "extras.share"},
     "routes": {"lines", "lines_all", "line", "line_map", "nearby", "nearby_map", "stop", "stop_map", "explore",
-               "explore_map"},
+               "explore_map", "extras.stop_report"},
     "saved": {"saved", "saved_new"},
-    "profile": {"profile", "history", "settings", "settings_start", "accessibility", "help", "about", "study", "sus"},
+    "profile": {"profile", "extras.passes", "extras.tickets", "extras.ticket", "history", "settings", "settings_start", "accessibility", "help", "about", "study", "sus"},
 }
 
 
@@ -186,7 +188,7 @@ def inject():
     return dict(settings=s, MODES=MODES, fmt_time=fmt_time,
                 fmt_dur=fmt_dur, active=store.active_trip(g.uid) if g.get("uid") else None, now=now_min(),
                 search_args=search_args, endpoint=ep, tab=tab, saved=g.get("saved", []),
-                user_name=name, initials=initials, fav_points={x["point"] for x in g.get("saved", []) if x["kind"] == "fav"})
+                user_name=name, initials=initials, electric_routes=ELECTRIC, helplines=EXTRAS["safety"]["helplines"], fav_points={x["point"] for x in g.get("saved", []) if x["kind"] == "fav"})
 
 
 @app.template_filter("ago")
@@ -344,6 +346,7 @@ def plan_request():
     if limits["walk"] is None and g.settings.get("max_walk"):
         limits["walk"] = int(g.settings["max_walk"])
     res = plan_trip(origin, dest, t, via, mode)
+    enrich_all(res["journeys"], stop_safety)
     ranked = planner.rank(res["journeys"], mode, limits)
     return dict(origin=origin, dest=dest, via=via, t=t, mode=mode, limits=limits, res=res, ranked=ranked)
 
@@ -401,6 +404,7 @@ def find_journey(args=None):
         j = res["walk_only"]
     if j:
         planner.rank([j], args.get("mode", "balanced"), limits_from_args(args))
+        enrich(j, stop_safety)
     return origin, dest, t, j
 
 
@@ -549,7 +553,7 @@ def stop(sid):
             reach.setdefault(x, set()).add(r["route"])
     reach_places = [dict(place=p, icon=place_icon(p), routes=sorted(reach[p["stop"]], key=route_sort_key))
                     for p in net.places.values() if p["stop"] in reach and p["stop"] != s["id"]]
-    return render_template("stop.html", s=s, t=t, deps=planner.departures(s["id"], t), routes_here=routes_here,
+    return render_template("stop.html", safety=stop_safety(s["id"]), reported=request.args.get("reported"), s=s, t=t, deps=planner.departures(s["id"], t), routes_here=routes_here,
                            reach_places=reach_places, lines=sorted({r["route"] for r in routes_here}, key=route_sort_key),
                            view=request.args.get("view", "departures"))
 
@@ -815,6 +819,10 @@ def api_plan():
         steps=[(l["type"], l.get("route"), l.get("minutes")) for l in j["legs"]])
     return jsonify(recommended=strip(ranked["recommended"]) if ranked["recommended"] else None,
                    options=[strip(j) for j in ranked["options"]])
+
+
+init_extras(app, find_journey=find_journey, journey_map_data=journey_map_data, parse_point=parse_point,
+            net=net, TZ=TZ)
 
 
 @app.errorhandler(404)

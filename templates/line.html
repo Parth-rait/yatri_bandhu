@@ -8,7 +8,7 @@
 <div class="wrap" style="--rc: var(--line-color)" data-line-color="{{ r.no }}">
   <div class="line-hero">
     {{ bus_badge(r.no, 'lg') }}
-    <div class="row-txt"><b style="font-size:1.1rem">{{ 'Circular route' if r.loop else 'To ' ~ p.headsign }}</b></div>
+    <div class="row-txt"><b style="font-size:1.1rem">{{ 'Circular route' if r.loop else 'To ' ~ p.headsign }}</b>{% if r.no in electric_routes %}<small class="eco">⚡ Electric bus</small>{% endif %}</div>
   </div>
 
   {% if other %}

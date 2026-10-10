@@ -44,14 +44,33 @@
     <div><b>{% if j.fare %}₹{{ j.fare }}{% else %}Free{% endif %}</b><small>Fare</small></div>
     <div><b>{{ first_bus.every.replace('every ', '') if first_bus else '–' }}</b><small>Frequency</small></div>
   </div>
+  <div class="chips-row">
+    {% if j.electric %}<span class="chip-tag eco">⚡ Electric bus</span>{% endif %}
+    {% if j.co2_saved_kg %}<span class="chip-tag eco">🌱 {{ j.co2_saved_kg }} kg CO₂ saved vs cab</span>{% endif %}
+  </div>
   {% for w in j.warnings %}<p class="notice" style="margin-top:10px">{{ icon('alert', 18) }}<span>{{ w }}</span></p>{% endfor %}
+  {% if j.night_notes %}
+  <div class="night-box">
+    <p class="night-k">🌙 After dark</p>
+    <ul>{% for n in j.night_notes %}<li>{{ n }}</li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+  {% for st in j.stop_safety %}
+  <a class="safety-row" href="{{ url_for('stop', sid=st.stop_id) }}">
+    <span><b>{{ st.role }}: {{ st.name }}</b><small>{{ st.n }} student reports</small></span>
+    <span class="safety-facts"><i>{{ st.felt_safe }}% felt safe</i><i>{{ st.lit }}% well lit</i>{% if st.cctv %}<i>CCTV seen {{ st.cctv }}%</i>{% endif %}</span>
+  </a>
+  {% endfor %}
 
   {% include "_stops.html" %}
 
   <form method="post" action="{{ url_for('trip_start') }}" class="sticky-cta">
     {% for k, v in base.items() %}<input type="hidden" name="{{ k }}" value="{{ v }}">{% endfor %}
     <input type="hidden" name="key" value="{{ key }}">
-    <button class="btn btn-primary btn-block" type="submit">{{ 'Track This Bus' if first_bus else 'Start' }}</button>
+    <div class="btn-row">
+      {% if first_bus %}<a class="btn btn-outline" href="{{ url_for('extras.book', key=key, **base) }}">{{ icon('ticket', 18) }} Book</a>{% endif %}
+      <button class="btn btn-primary" type="submit" style="flex:2">{{ 'Track This Bus' if first_bus else 'Start' }}</button>
+    </div>
   </form>
 </div>
 {% endif %}

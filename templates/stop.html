@@ -12,6 +12,16 @@
     <a class="btn btn-primary btn-sm" href="{{ url_for('plan', to='stop:' ~ s.id) }}">{{ icon('navigate', 18) }} Go here</a>
     <a class="btn btn-sm" href="{{ url_for('search', ret='/plan?from=stop:' ~ s.id ~ '&to=__PT__') }}">Start here</a>
   </div>
+  {% if reported %}<p class="notice ok mt">{{ icon('check', 18) }} Thanks for rating this stop</p>{% endif %}
+  <a class="safety-row mt" href="{{ url_for('extras.stop_report', sid=s.id) }}">
+    {% if safety %}
+    <span><b>Student reports</b><small>{{ safety.n }} reports · {{ safety.crowd }}</small></span>
+    <span class="safety-facts"><i>{{ safety.felt_safe }}% felt safe</i><i>{{ safety.lit }}% well lit</i><i>CCTV seen {{ safety.cctv }}%</i></span>
+    {% else %}
+    <span><b>Is this stop safe at night?</b><small>Rate lighting, CCTV and how busy it is</small></span>
+    <span class="link">Rate</span>
+    {% endif %}
+  </a>
   <div class="toggle-2 mt-lg">
     <a href="{{ url_for('stop', sid=s.id) }}" {% if view != 'lines' %}aria-current="true"{% endif %}>Departures</a>
     <a href="{{ url_for('stop', sid=s.id, view='lines') }}" {% if view == 'lines' %}aria-current="true"{% endif %}>Lines here</a>

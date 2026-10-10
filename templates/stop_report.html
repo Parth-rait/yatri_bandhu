@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, topbar with context %}
+{% block title %}Report stop{% endblock %}
+{% block content %}
+{{ topbar('Rate this stop', url_for('stop', sid=s.id), s.name) }}
+<form class="wrap" method="post" style="padding:0 20px">
+  {% for key, q in [('felt_safe', 'Did you feel safe here?'), ('lit', 'Is it well lit at night?'), ('cctv', 'Did you see a CCTV camera?')] %}
+  <fieldset class="q-block">
+    <legend class="field-label">{{ q }}</legend>
+    <div class="toggle-2 toggle-3">
+      {% for v, t in [('yes', 'Yes'), ('no', 'No'), ('', 'Not sure')] %}
+      <label><input type="radio" name="{{ key }}" value="{{ v }}" {% if v == '' %}checked{% endif %}> {{ t }}</label>
+      {% endfor %}
+    </div>
+  </fieldset>
+  {% endfor %}
+  <fieldset class="q-block">
+    <legend class="field-label">How busy is it usually?</legend>
+    <div class="toggle-2">
+      <label><input type="radio" name="crowd" value="busy"> Busy</label>
+      <label><input type="radio" name="crowd" value="quiet"> Quiet</label>
+    </div>
+  </fieldset>
+  <div class="sticky-cta" style="margin-top:24px"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
+</form>
+{% endblock %}

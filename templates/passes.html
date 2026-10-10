@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, topbar with context %}
+{% block title %}Passes & fares{% endblock %}
+{% block content %}
+{{ topbar('Passes & Fares', url_for('profile')) }}
+<div class="wrap" style="padding:0 20px">
+  <div class="advisor">
+    <p class="advisor-k">Student pass check</p>
+    {% if n_month %}
+      <h2>{{ n_month }} trip{{ 's' if n_month != 1 }} this month · ₹{{ spent }}</h2>
+      {% if spent >= student_all.price %}
+        <p>A ₹{{ student_all.price }} student pass would have saved you <b>₹{{ spent - student_all.price }}</b>.</p>
+      {% else %}
+        <p>The ₹{{ student_all.price }} student pass pays off after about <b>{{ breakeven }} trips</b> a month.</p>
+      {% endif %}
+    {% else %}
+      <h2>Worth it after ~{{ breakeven }} trips a month</h2>
+      <p>At ₹{{ avg }} a trip, the ₹{{ student_all.price }} all-routes student pass pays off after {{ breakeven }} trips.</p>
+    {% endif %}
+  </div>
+</div>
+
+<section class="section home-sec">
+  <h2>Passes</h2>
+  <div class="list">
+    {% for p in passes %}
+    <div class="row">
+      <span class="row-ic {{ 'dark' if p.student }}">{{ icon('cap' if p.student else 'ticket', 20) }}</span>
+      <span class="row-txt"><b>{{ p.label }}</b><small>{{ p.buses }}{% if p.note %} · {{ p.note }}{% endif %}</small></span>
+      <span class="row-trail"><b style="color:var(--text)">₹{{ p.price }}</b><br><small>/{{ p.period }}</small></span>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section home-sec">
+  <h2>Ticket fares</h2>
+  <div class="table-wrap" style="box-shadow:none;border:1px solid var(--line)">
+    <table class="compare">
+      <thead><tr><th>Distance</th><th>Non-AC</th><th>AC</th></tr></thead>
+      <tbody>
+        {% for a in fares.non_ac %}{% set b = fares.ac[loop.index0] %}
+        <tr><th scope="row">{% if a.upto_km %}{% if loop.first %}Up to {{ a.upto_km }} km{% else %}{{ fares.non_ac[loop.index0 - 1].upto_km }}–{{ a.upto_km }} km{% endif %}{% else %}Above {{ fares.non_ac[loop.index0 - 1].upto_km }} km{% endif %}</th>
+          <td>₹{{ a.fare }}</td><td>₹{{ b.fare }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="list mt">
+    {% for c in fares.concessions if c.discount %}
+    <div class="row"><span class="row-txt"><b>{{ c.label }}</b>{% if c.note %}<small>{{ c.note }}</small>{% endif %}</span>
+      <span class="tag tag-ok">{{ 'Free' if c.discount == 100 else c.discount ~ '% off' }}</span></div>
+    {% endfor %}
+  </div>
+  <ul class="pass-notes">{% for n in notes %}<li>{{ n }}</li>{% endfor %}</ul>
+  <p class="src">Source: Chandigarh Administration fare notification, 16 Jan 2020</p>
+</section>
+{% endblock %}

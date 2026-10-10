@@ -102,3 +102,22 @@ Options outside the limits move to an "outside your limits" section that says wh
 2. Hand over the phone. A purple bar times the task and counts taps on every screen. The observer taps *+ error* when needed.
 3. *Done* / *Gave up* → participant rates confidence 1–5 → saved.
 4. After all tasks: *SUS questionnaire*. Export CSVs for analysis.
+
+## Add-on features (safety, green, passes, booking)
+
+Built as add-ons so the planner and existing pages stay unchanged:
+
+| File | What it does |
+|------|--------------|
+| `data/extras.json` | Electric routes (23A, 206, 202, 239, 6, 7), official CTU fares & passes (notification of 16 Jan 2020), helplines, night hours, CO₂ factors |
+| `routemate/enrich.py` | Runs *after* planning: electric tags, CO₂ saved vs cab, after-dark notes, stop safety summaries. Never changes routes, fares or ranking |
+| `routemate/extras.py` | Blueprint with its own tables: `/passes`, `/book` → `/tickets/<id>` (demo), `/trip/<id>/share` → `/s/<token>`, `/stop/<id>/report` |
+| `routemate/live.py` | Plug-in point for an official real-time feed (CTU API / GTFS-Realtime). Defaults to timetable only |
+
+- **Women's safety:** SOS (112) and women helpline (1091) on the trip screen, share-live-trip link, after-dark notes, and student stop reports (felt safe / lit / CCTV / busy). Ratings only show after 3+ reports.
+- **Green:** electric bus badges and CO₂ saved per trip.
+- **Passes & fares:** official fare slabs and passes, with a student pass break-even check from your trip history.
+- **Pre-booked tickets:** full flow with official concessions (child/senior 50%, half-ticket rounding). **Demo only:** no payment, not valid for travel. Real booking needs CTU's ticketing/payment system.
+- **Live ETAs:** not scraped. Implement `CTULiveFeed` in `routemate/live.py` once official access is available.
+
+To switch the add-ons off: remove the `enrich_all`/`enrich` calls and `init_extras(...)` in `app.py`.

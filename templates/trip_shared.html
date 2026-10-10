@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, route_name with context %}
+{% block title %}Following a trip{% endblock %}
+{% block tabbar %}{% endblock %}
+{% block content %}
+{% set first_bus = j.legs|selectattr('type', 'equalto', 'bus')|first %}
+<div class="mapui">
+  <div class="mapui-panel">
+    <div class="mapui-head">
+      <header class="topbar"><div class="topbar-title" style="padding-left:12px"><h1>Following a trip</h1><p>to {{ dest.name }}</p></div></header>
+    </div>
+    <section class="sheet mapui-body">
+      <div class="sheet-in">
+        <div class="live-head">
+          <h2 data-live-title>{% if trip.status == 'active' %}On the way{% else %}Trip ended{% endif %}</h2>
+          <span class="pill-ok">{{ 'Live share' if trip.status == 'active' else 'Ended' }}</span>
+        </div>
+        <p class="muted">{{ route_name(j.routes) }} · {{ origin.name }} → {{ dest.name }}</p>
+        <div class="mt-lg">{% include "_stops.html" %}</div>
+      </div>
+    </section>
+  </div>
+  <div class="map-wrap mapui-map" style="height:46vh;min-height:260px">
+    <div id="journey-map" class="map" role="img" aria-label="Map of the shared trip"></div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script>RM.journeyMap({{ map_data|tojson }}, { live: {{ 'true' if trip.status == 'active' else 'false' }} });</script>{% endblock %}

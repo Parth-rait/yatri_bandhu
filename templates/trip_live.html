@@ -37,6 +37,13 @@
         <button type="button" class="btn btn-soft" data-live-toggle aria-pressed="false">{% if last_bus %}Get off at {{ last_bus.alight.name|truncate(22, True, '…') }}{% else %}Alert me on arrival{% endif %}</button>
       </div>
 
+      <div class="safety-actions">
+        <a class="btn btn-sos" href="tel:{{ helplines[0].number }}">{{ icon('alert', 18) }} SOS {{ helplines[0].number }}</a>
+        <a class="btn btn-outline" href="tel:{{ helplines[1].number }}">Women helpline {{ helplines[1].number }}</a>
+        <a class="btn btn-soft" href="{{ url_for('extras.share', tid=trip.id) }}">{{ icon('user', 18) }} Share trip</a>
+      </div>
+      {% if j.night_notes %}<div class="night-box"><p class="night-k">🌙 After dark</p><ul>{% for n in j.night_notes %}<li>{{ n }}</li>{% endfor %}</ul></div>{% endif %}
+
       <div class="mt-lg">{% include "_stops.html" %}</div>
 
       <div class="btn-row">

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, bus_ic, topbar with context %}
+{% block title %}Ticket{% endblock %}
+{% block content %}
+{{ topbar('Your Ticket', url_for('extras.tickets')) }}
+<div class="wrap" style="padding:0 20px">
+  <div class="ticket">
+    <div class="ticket-top">
+      {{ bus_ic(22) }}
+      <div><b>Route {{ sm.routes|join(' + ') }}{% if sm.electric %} <span class="tag tag-ok" style="vertical-align:middle">Electric</span>{% endif %}</b>
+        <small>{{ sm.origin }} → {{ sm.dest }}</small></div>
+    </div>
+    <div class="qr" role="img" aria-label="Ticket QR code">{{ qr|safe }}</div>
+    <p class="ticket-note">Booking {{ b.id|upper }}</p>
+    <div class="ticket-grid">
+      <div><small>Total</small><b>₹{{ b.total }}</b></div>
+      <div><small>Passengers</small><b>{{ pax|sum(attribute='n') }}</b></div>
+      <div><small>Valid till</small><b>{{ fmt_time(sm.arrive + 30) }}</b></div>
+    </div>
+    <ul class="pax-list">{% for p in pax %}<li><span>{{ p.n }} × {{ p.type }}</span><span>₹{{ p.n * p.each }}</span></li>{% endfor %}</ul>
+  </div>
+  <p class="demo-note" style="justify-content:center">{{ icon('info', 16) }} Demo ticket. Not valid for travel.</p>
+</div>
+{% endblock %}

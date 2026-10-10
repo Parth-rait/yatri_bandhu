@@ -916,3 +916,42 @@ html.reduce-motion .splash { display: none; }
 body.app.has-trip { padding-bottom: calc(160px + env(safe-area-inset-bottom)); }
 body.has-trip .sticky-cta, body.has-trip .action-bar { bottom: calc(148px + env(safe-area-inset-bottom)); }
 @media (min-width: 960px) { .trip-bar { left: 16px; right: auto; width: 440px; margin: 0; } }
+
+/* ================================================================== add-ons: green, safety, passes, booking */
+.eco { color: var(--ok); font-weight: 700; }
+.chips-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.chips-row:empty { display: none; }
+.chip-tag { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: 999px; background: var(--ok-soft); font-size: .84rem; }
+.night-box { margin-top: 12px; padding: 12px 14px; border-radius: 14px; background: color-mix(in srgb, #6366f1 10%, var(--bg)); border: 1px solid color-mix(in srgb, #6366f1 25%, transparent); }
+.night-k { font-weight: 700; font-size: .88rem; color: #4f46e5; }
+[data-theme="dark"] .night-k { color: #a5b4fc; }
+.night-box ul { margin: 6px 0 0; padding-left: 18px; font-size: .9rem; }
+.safety-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--line); color: var(--text); text-decoration: none; }
+.safety-row b { display: block; font-weight: 650; }
+.safety-row small { color: var(--text-2); }
+.safety-facts { display: flex; flex-wrap: wrap; gap: 4px; justify-content: flex-end; }
+.safety-facts i { font-style: normal; font-size: .76rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: var(--surface-2); color: var(--text-2); white-space: nowrap; }
+.safety-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.safety-actions .btn { min-height: 46px; font-size: .9rem; }
+.safety-actions .btn-soft { grid-column: 1 / -1; }
+.btn-sos { background: var(--danger); color: #fff; }
+.btn-sos:hover { background: #b91c1c; }
+.advisor { padding: 18px; border-radius: 20px; background: var(--blue-soft); }
+.advisor-k { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--brand-text); }
+.advisor h2 { font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; margin: 6px 0 4px; }
+.advisor p { color: var(--text-2); }
+.pass-notes { margin: 14px 0 0; padding-left: 18px; color: var(--text-2); font-size: .88rem; }
+.pass-notes li + li { margin-top: 4px; }
+.src { margin-top: 10px; font-size: .78rem; color: var(--text-3); }
+.stepper { display: flex; align-items: center; gap: 4px; }
+.stepper button { width: 36px; height: 36px; border: 0; border-radius: 10px; background: var(--surface-2); font-size: 1.2rem; font-weight: 700; cursor: pointer; color: var(--text); }
+.stepper input { width: 34px; text-align: center; border: 0; background: none; font-weight: 800; font-size: 1.05rem; -moz-appearance: textfield; }
+.stepper input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.book-total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); font-weight: 600; }
+.book-total b { font-size: 1.6rem; font-weight: 800; letter-spacing: -.02em; }
+.demo-note { display: flex; align-items: center; gap: 6px; margin-top: 10px; color: var(--text-3); font-size: .84rem; }
+.pax-list { list-style: none; margin: 14px 0 0; padding: 12px 4px 0; border-top: 1px dashed color-mix(in srgb, var(--ok) 40%, transparent); font-size: .9rem; }
+.pax-list li { display: flex; justify-content: space-between; padding: 3px 0; }
+.share-box { display: flex; gap: 8px; align-items: center; }
+.share-box .input { font-size: .86rem; }
+.q-block { border: 0; padding: 0; margin: 22px 0 0; }
