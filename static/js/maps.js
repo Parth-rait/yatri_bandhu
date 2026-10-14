@@ -437,10 +437,12 @@
         if (phase === 'coming') {
           const m = Math.max(0, Math.ceil(bus.depart - t));
           bubble.innerHTML = m > 0 ? `<b>${m} min</b> away` : '<b>Arriving</b>';
+          bubble.classList.toggle('soon', m <= 1);
           if (minsEl()) minsEl().textContent = `${m} min`;
         } else if (phase === 'riding') {
           const m = Math.max(0, Math.ceil(bus.arrive - t));
           bubble.innerHTML = `<b>${m} min</b> to your stop`;
+          bubble.classList.remove('soon');
           if (title()) title().innerHTML = `On the bus · <span data-live-mins>${m} min</span> left`;
         } else {
           bubble.innerHTML = '<b>At your stop</b>';

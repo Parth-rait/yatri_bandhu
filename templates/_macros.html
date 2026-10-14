@@ -138,3 +138,35 @@
   {% if caller %}{{ caller() }}{% endif %}
 </div>
 {%- endmacro %}
+
+{# Bandhu, the Yatri Bandhu mascot: a friendly little bus. sign = text on its destination board. #}
+{% macro bandhu(size=96, sign='Hi!', cls='') -%}
+<svg class="bandhu {{ cls }}" width="{{ size }}" height="{{ size }}" viewBox="0 0 120 120" role="img" aria-label="Bandhu, your bus buddy">
+  <ellipse class="bandhu-shadow" cx="60" cy="112" rx="34" ry="5" fill="#0f172a" opacity=".14"/>
+  <g class="bandhu-body">
+    <rect x="16" y="12" width="88" height="92" rx="24" fill="#2563eb"/>
+    <rect x="16" y="78" width="88" height="10" fill="#1d4ed8"/>
+    <rect x="34" y="18" width="52" height="13" rx="5" fill="#1e3a8a"/>
+    <text x="60" y="28" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="9" font-weight="800" fill="#fbbf24">{{ sign }}</text>
+    <rect x="26" y="36" width="68" height="38" rx="13" fill="#eaf2ff"/>
+    <g class="bandhu-look">
+      <g class="bandhu-eyes">
+        <ellipse cx="47" cy="53" rx="6" ry="7.5" fill="#111827"/><ellipse cx="73" cy="53" rx="6" ry="7.5" fill="#111827"/>
+        <circle cx="49" cy="50" r="2" fill="#fff"/><circle cx="75" cy="50" r="2" fill="#fff"/>
+      </g>
+      <g class="bandhu-happy-eyes" fill="none" stroke="#111827" stroke-width="3.2" stroke-linecap="round"><path d="M41 55 Q47 47 53 55"/><path d="M67 55 Q73 47 79 55"/></g>
+      <g class="bandhu-hearts" fill="#f43f5e"><path d="M47 60 l-6.5-6.5 a4 4 0 0 1 6.5-5 a4 4 0 0 1 6.5 5z"/><path d="M73 60 l-6.5-6.5 a4 4 0 0 1 6.5-5 a4 4 0 0 1 6.5 5z"/></g>
+    </g>
+    <g class="bandhu-brows" stroke="#111827" stroke-width="3" stroke-linecap="round"><path d="M40 42 L52 45"/><path d="M80 42 L68 45"/></g>
+    <circle class="bandhu-cheek" cx="37" cy="64" r="4.5" fill="#fb7185" opacity=".45"/><circle class="bandhu-cheek" cx="83" cy="64" r="4.5" fill="#fb7185" opacity=".45"/>
+    <path class="mo-smile" d="M52 64 Q60 71 68 64" fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round"/>
+    <path class="mo-grin" d="M50 63 Q60 76 70 63 Z" fill="#111827" stroke="#111827" stroke-width="2" stroke-linejoin="round"/>
+    <ellipse class="mo-o" cx="60" cy="66" rx="3.6" ry="4.2" fill="#111827"/>
+    <circle cx="30" cy="92" r="5" fill="#fde68a"/><circle cx="90" cy="92" r="5" fill="#fde68a"/>
+    <rect x="46" y="89" width="28" height="6" rx="3" fill="#93c5fd"/>
+    <rect x="24" y="100" width="16" height="9" rx="4" fill="#1f2937"/><rect x="80" y="100" width="16" height="9" rx="4" fill="#1f2937"/>
+    <g class="bandhu-arm"><rect x="100" y="44" width="10" height="30" rx="5" fill="#2563eb"/><circle cx="105" cy="42" r="7" fill="#fde68a"/></g>
+  </g>
+  <g class="bandhu-think" fill="#94a3b8"><circle cx="104" cy="16" r="3"/><circle cx="111" cy="8" r="4"/></g>
+</svg>
+{%- endmacro %}

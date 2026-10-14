@@ -998,3 +998,145 @@ body.has-trip .sticky-cta, body.has-trip .action-bar { bottom: calc(148px + env(
 .mk-busrot { display: grid; place-items: center; transition: transform .25s linear; filter: drop-shadow(0 3px 6px rgba(0, 0, 0, .35)); }
 .mk-livebus .mk-bubble { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); }
 .demo-link { display: inline-block; margin-top: 6px; font-size: .88rem; }
+
+/* ================================================================== Bandhu (mascot) + first-trip guide + micro-animations */
+.bandhu { display: block; overflow: visible; }
+.bandhu .bandhu-body { animation: bandhu-bob 3.2s ease-in-out infinite; transform-origin: 60px 104px; }
+.bandhu .bandhu-eyes { animation: bandhu-blink 4.5s infinite; transform-origin: 60px 53px; }
+.bandhu .bandhu-shadow { animation: bandhu-shadow 3.2s ease-in-out infinite; transform-origin: 60px 112px; }
+@keyframes bandhu-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px) rotate(-1.5deg); } }
+@keyframes bandhu-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@keyframes bandhu-shadow { 0%, 100% { transform: scaleX(1); opacity: .14; } 50% { transform: scaleX(.85); opacity: .09; } }
+.hello-bandhu { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+.hello-bandhu p { color: var(--text-2); font-size: 1.02rem; }
+.empty .bandhu { margin: 0 auto 10px; }
+.replay { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 20px; background: var(--blue-soft); }
+.replay > div { flex: 1; }
+.replay b { display: block; font-weight: 700; }
+.replay small { color: var(--text-2); }
+
+.guide-spot { position: fixed; z-index: 4000; border-radius: 18px; pointer-events: none; box-shadow: 0 0 0 4px var(--blue), 0 0 0 9999px rgba(15, 23, 42, .45);
+  transition: left .3s ease, top .3s ease, width .3s ease, height .3s ease; }
+.guide-card { position: fixed; z-index: 4001; display: flex; gap: 10px; align-items: flex-start; padding: 14px 14px 12px 10px; border-radius: 22px;
+  background: var(--surface); color: var(--text); box-shadow: 0 18px 50px rgba(0, 0, 0, .3); transition: left .3s ease, top .3s ease; }
+.guide-card.pop { animation: guide-pop .35s cubic-bezier(.2, 1.4, .4, 1); }
+@keyframes guide-pop { from { transform: scale(.9) translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
+.guide-mascot { flex: none; margin-top: -26px; }
+.guide-body { flex: 1; min-width: 0; }
+.guide-body p { font-weight: 600; line-height: 1.4; }
+.guide-actions { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+.guide-skip { color: var(--text-2) !important; font-size: .88rem; }
+.guide-count { margin-left: auto; color: var(--text-3); font-size: .8rem; font-weight: 600; }
+
+/* micro-animations: content arrives gently, buttons respond, important things get one glance */
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.opts > li, .list > .row, .list > a.row, .results > li, .stl > li { animation: rise .32s ease both; }
+.opts > li:nth-child(2), .list > :nth-child(2), .stl > li:nth-child(2) { animation-delay: .04s; }
+.opts > li:nth-child(3), .list > :nth-child(3), .stl > li:nth-child(3) { animation-delay: .08s; }
+.opts > li:nth-child(4), .list > :nth-child(4), .stl > li:nth-child(4) { animation-delay: .12s; }
+.opts > li:nth-child(n+5), .list > :nth-child(n+5), .stl > li:nth-child(n+5) { animation-delay: .16s; }
+.btn:active, .opt:active, .row:active, .chip:active, .shortcut:active { transform: scale(.98); }
+.opt.best { animation: rise .32s ease both, glow-once 1.6s ease .4s 1; }
+@keyframes glow-once { 0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); } 40% { box-shadow: 0 0 0 6px rgba(37, 99, 235, .18); } }
+.notice.ok .ic, .notice.ok svg { animation: check-pop .45s cubic-bezier(.2, 1.6, .4, 1); }
+@keyframes check-pop { from { transform: scale(0); } to { transform: scale(1); } }
+.mk-bubble.soon { animation: bubble-pulse 1.2s ease-in-out infinite; }
+@keyframes bubble-pulse { 0%, 100% { box-shadow: 0 6px 16px rgba(37, 99, 235, .4), 0 0 0 0 rgba(37, 99, 235, .5); } 50% { box-shadow: 0 6px 16px rgba(37, 99, 235, .4), 0 0 0 10px rgba(37, 99, 235, 0); } }
+
+/* ================================================================== Bandhu assistant */
+/* moods: parts of the mascot that only show in some moods */
+.bandhu .mo-grin, .bandhu .mo-o, .bandhu .bandhu-brows, .bandhu .bandhu-arm, .bandhu .bandhu-hearts, .bandhu .bandhu-happy-eyes, .bandhu .bandhu-think { display: none; }
+.bandhu .bandhu-look { transition: transform .18s ease-out; }
+.bandhu.mood-happy .mo-smile, .bandhu.mood-wave .mo-smile, .bandhu.mood-love .mo-smile { display: none; }
+.bandhu.mood-happy .mo-grin, .bandhu.mood-wave .mo-grin, .bandhu.mood-love .mo-grin { display: inline; }
+.bandhu.mood-happy .bandhu-eyes { display: none; } .bandhu.mood-happy .bandhu-happy-eyes { display: inline; }
+.bandhu.mood-love .bandhu-eyes { display: none; } .bandhu.mood-love .bandhu-hearts { display: inline; }
+.bandhu.mood-love .bandhu-hearts path { transform-box: fill-box; transform-origin: center; animation: heart-beat .7s ease-in-out infinite; }
+@keyframes heart-beat { 50% { transform: scale(1.2); } }
+.bandhu.mood-wave .bandhu-arm { display: inline; transform-box: fill-box; transform-origin: 50% 95%; animation: wave .5s ease-in-out infinite alternate; }
+@keyframes wave { from { transform: rotate(-10deg); } to { transform: rotate(28deg); } }
+.bandhu.mood-think .mo-smile, .bandhu.mood-worry .mo-smile { display: none; }
+.bandhu.mood-think .mo-o, .bandhu.mood-worry .mo-o { display: inline; }
+.bandhu.mood-think .bandhu-think { display: inline; }
+.bandhu.mood-think .bandhu-think circle { animation: think-dot 1s ease-in-out infinite; } .bandhu.mood-think .bandhu-think circle + circle { animation-delay: .2s; }
+@keyframes think-dot { 50% { opacity: .3; transform: translateY(-2px); } }
+.bandhu.mood-think .bandhu-eyes { transform: translate(-2px, -3px); animation: none; }
+.bandhu.mood-worry .bandhu-brows { display: inline; }
+.bandhu.mood-worry .bandhu-body { animation: shiver .18s linear 4; }
+@keyframes shiver { 25% { transform: translateX(-1.5px); } 75% { transform: translateX(1.5px); } }
+.bandhu.hop { animation: hop .55s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes hop { 0% { transform: translateY(0) scale(1, 1); } 25% { transform: translateY(2px) scale(1.08, .9); } 55% { transform: translateY(-12px) scale(.95, 1.06); } 100% { transform: none; } }
+
+/* the floating button */
+.bandhu-fab { position: fixed; z-index: 960; right: 14px; bottom: calc(80px + env(safe-area-inset-bottom)); width: 60px; height: 60px;
+  display: grid; place-items: center; border: 0; padding: 0; border-radius: 50%; background: var(--surface);
+  box-shadow: 0 10px 26px rgba(29, 78, 216, .3), 0 0 0 1px var(--surface-3); cursor: pointer;
+  transition: transform .2s cubic-bezier(.3, 1.5, .5, 1), opacity .2s; -webkit-tap-highlight-color: transparent; }
+.bandhu-fab:active { transform: scale(.9); }
+.bandhu-fab .bandhu { margin-top: -4px; }
+.bandhu-dot { position: absolute; top: 3px; right: 3px; width: 13px; height: 13px; border-radius: 50%; background: var(--ok); border: 2px solid var(--surface); animation: dot-pulse 1.6s infinite; }
+@keyframes dot-pulse { 0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, .5); } 70%, 100% { box-shadow: 0 0 0 9px rgba(22, 163, 74, 0); } }
+body.has-trip .bandhu-fab, body.has-trip .bandhu-peek { margin-bottom: 76px; }
+body.bandhu-open .bandhu-fab { opacity: 0; transform: scale(.5); pointer-events: none; }
+@media (min-width: 960px) { .bandhu-fab { right: 76px; bottom: 92px; } body.has-trip .bandhu-fab, body.has-trip .bandhu-peek { margin-bottom: 0; } }
+
+/* one-line nudge next to the button */
+.bandhu-peek { position: fixed; z-index: 961; right: 84px; bottom: calc(92px + env(safe-area-inset-bottom)); max-width: 220px; padding: 10px 14px;
+  border: 0; border-radius: 18px 18px 4px 18px; background: var(--brand); color: var(--brand-ink); font: 600 .92rem/1.3 inherit; font-family: inherit; text-align: left;
+  box-shadow: 0 10px 24px rgba(29, 78, 216, .35); cursor: pointer; opacity: 0; transform: translateX(14px) scale(.85); transform-origin: right bottom;
+  transition: opacity .25s, transform .35s cubic-bezier(.3, 1.5, .5, 1); }
+.bandhu-peek.show { opacity: 1; transform: none; }
+@media (min-width: 960px) { .bandhu-peek { right: 146px; bottom: 104px; } }
+
+/* the sheet */
+.bandhu-sheet { position: fixed; inset: 0; z-index: 4500; display: flex; align-items: flex-end; justify-content: center; }
+.bandhu-sheet[hidden] { display: none; }
+.bandhu-backdrop { position: absolute; inset: 0; background: rgba(15, 23, 42, .4); animation: fade-in .2s ease; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.bandhu-panel { position: relative; width: 100%; max-width: 520px; padding: 0 16px calc(16px + env(safe-area-inset-bottom));
+  background: var(--surface); border-radius: 28px 28px 0 0; box-shadow: 0 -12px 40px rgba(0, 0, 0, .25), 0 0 0 1px var(--surface-3);
+  animation: sheet-up .4s cubic-bezier(.2, 1.2, .4, 1); transition: transform .25s ease; }
+.bandhu-sheet.closing .bandhu-panel { animation: sheet-down .2s ease-in forwards; }
+.bandhu-sheet.closing .bandhu-backdrop { animation: fade-in .2s reverse forwards; }
+@keyframes sheet-up { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes sheet-down { to { transform: translateY(100%); } }
+.bandhu-stage { position: relative; display: flex; align-items: flex-end; gap: 12px; padding-top: 6px; touch-action: none; }
+.bandhu-grab { position: absolute; top: 8px; left: 50%; width: 40px; height: 5px; margin-left: -20px; border-radius: 3px; background: var(--surface-3); }
+.bandhu-me { flex: none; margin-top: -46px; cursor: pointer; filter: drop-shadow(0 8px 14px rgba(29, 78, 216, .25)); }
+.bandhu-line { flex: 1; min-height: 52px; margin: 22px 30px 14px 0; padding: 12px 15px; border-radius: 20px 20px 20px 6px; background: var(--blue-soft);
+  font-weight: 700; font-size: 1.04rem; line-height: 1.35; position: relative; }
+.bandhu-x { position: absolute; top: 12px; right: -6px; }
+.bandhu-where { display: flex; align-items: center; gap: 8px; height: 54px; padding: 0 6px 0 16px; border-radius: 18px; background: var(--surface-2);
+  border: 2px solid transparent; transition: border-color .15s, background .15s; }
+.bandhu-where:focus-within { border-color: var(--brand); background: var(--surface); }
+.bandhu-where-ic { color: var(--text-2); display: grid; }
+.bandhu-where input { flex: 1; min-width: 0; height: 100%; border: 0; background: none; color: var(--text); font: inherit; font-size: 1rem; outline: none; }
+.bandhu-where button { width: 42px; height: 42px; border: 0; border-radius: 14px; background: var(--brand); color: var(--brand-ink); display: grid; place-items: center; cursor: pointer; }
+.bandhu-where button:active { transform: scale(.92); }
+.bandhu-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.bandhu-tiles.wide { grid-template-columns: 1fr; }
+.bandhu-tile { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 10px 12px; border: 0; border-radius: 18px; background: var(--surface-2);
+  color: var(--text); text-decoration: none; text-align: left; font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  animation: tile-in .38s cubic-bezier(.3, 1.4, .5, 1) both; animation-delay: calc(var(--i) * 55ms); transition: transform .12s, background .15s; }
+.bandhu-tile:hover { background: var(--surface-3); }
+.bandhu-tile:active, .bandhu-tile.pressed { transform: scale(.95); }
+@keyframes tile-in { from { opacity: 0; transform: translateY(12px) scale(.94); } to { opacity: 1; transform: none; } }
+.bt-e { flex: none; width: 40px; height: 40px; border-radius: 13px; display: grid; place-items: center; font-size: 1.3rem; background: var(--surface); }
+.bt-t { min-width: 0; }
+.bt-t b { display: block; font-weight: 700; font-size: .96rem; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bt-t small { display: block; color: var(--text-2); font-size: .8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bandhu-tile.hot { background: var(--brand); color: var(--brand-ink); }
+.bandhu-tile.hot .bt-e { background: rgba(255, 255, 255, .2); }
+.bandhu-tile.hot small { color: inherit; opacity: .8; }
+.bandhu-tile.danger { background: #dc2626; color: #fff; }
+.bandhu-tile.danger .bt-e { background: rgba(255, 255, 255, .2); }
+.bandhu-tile.danger small { color: rgba(255, 255, 255, .85); }
+@media (min-width: 960px) {
+  .bandhu-sheet { justify-content: flex-end; padding: 0 24px 24px; }
+  .bandhu-backdrop { background: rgba(15, 23, 42, .18); }
+  .bandhu-panel { width: 380px; border-radius: 28px; padding-bottom: 16px; animation: pop-in .35s cubic-bezier(.2, 1.3, .4, 1); transform-origin: right bottom; }
+  .bandhu-sheet.closing .bandhu-panel { animation: pop-in .2s reverse forwards; }
+  .bandhu-grab { display: none; }
+}
+@keyframes pop-in { from { opacity: 0; transform: scale(.7) translateY(30px); } to { opacity: 1; transform: none; } }
+@media (max-width: 959px) { body:has(.bandhu-fab) .sheet-in, body:has(.bandhu-fab) .wrap { padding-bottom: 84px; } }

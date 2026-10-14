@@ -1,4 +1,4 @@
-{% from "_macros.html" import icon with context %}<!doctype html>
+{% from "_macros.html" import icon, bandhu with context %}<!doctype html>
 <html lang="en" {% if request.cookies.get('theme') in ('light', 'dark') %}data-theme="{{ request.cookies.get('theme') }}"{% endif %}
       class="{% if settings.large_text %}large-text {% endif %}{% if settings.high_contrast %}high-contrast {% endif %}{% if settings.simple_ui %}simple-ui {% endif %}{% if settings.reduce_motion %}reduce-motion{% endif %}">
 <head>
@@ -21,7 +21,8 @@
   <link rel="icon" href="{{ url_for('static', filename='img/logo.svg') }}" type="image/svg+xml">
   <meta name="theme-color" content="#1d4ed8">
 </head>
-<body class="{% block body_class %}app{% endblock %}{% if active and endpoint not in ('trip_live', 'trip_ticket', 'feedback', 'landing', 'welcome') %} has-trip{% endif %}" data-endpoint="{{ endpoint }}">
+<body class="{% block body_class %}app{% endblock %}{% if active and endpoint not in ('trip_live', 'trip_ticket', 'feedback', 'landing', 'welcome') %} has-trip{% endif %}" data-endpoint="{{ endpoint }}" data-guide="{{ 1 if settings.onboarded else 0 }}" data-uid="{{ g.uid }}">
+  <template id="bandhu-tpl">{{ bandhu(64) }}</template>
   <div class="splash" data-splash aria-hidden="true">
     <div class="splash-in">
       <img class="splash-logo" src="{{ url_for('static', filename='img/logo.svg') }}" alt="">
@@ -64,11 +65,37 @@
   </nav>
   {% endblock %}
 
+  {% if settings.show_bandhu and settings.onboarded and endpoint not in ('landing', 'welcome', 'search', 'extras.pick_map', 'trip_ticket', 'extras.ticket', 'extras.shared') %}
+  <button type="button" class="bandhu-fab" data-bandhu-open aria-label="Ask Bandhu" aria-haspopup="dialog">{{ bandhu(50, 'Hi!') }}{% if active %}<i class="bandhu-dot"></i>{% endif %}</button>
+  <button type="button" class="bandhu-peek" data-bandhu-peek hidden></button>
+  <div class="bandhu-sheet" data-bandhu-sheet role="dialog" aria-modal="true" aria-label="Bandhu, your bus buddy" hidden
+       data-from="{{ settings.default_from }}" data-name="{{ (user_name or '').split(' ')[0] }}"
+       data-trip="{{ url_for('trip_live', tid=active.id) if active else '' }}" data-trip-to="{{ active.dest_name if active else '' }}">
+    <div class="bandhu-backdrop" data-bandhu-close></div>
+    <div class="bandhu-panel" data-bandhu-panel>
+      <div class="bandhu-stage" data-bandhu-drag>
+        <span class="bandhu-grab" aria-hidden="true"></span>
+        <div class="bandhu-me" data-bandhu-me>{{ bandhu(92, 'Hi!') }}</div>
+        <p class="bandhu-line" data-bandhu-line aria-live="polite"></p>
+        <button type="button" class="icon-btn bandhu-x" data-bandhu-close aria-label="Close">{{ icon('x', 20) }}</button>
+      </div>
+      <form class="bandhu-where" data-bandhu-form autocomplete="off">
+        <label class="sr" for="bandhu-q">Where to, or ask Bandhu</label>
+        <span class="bandhu-where-ic">{{ icon('search', 18) }}</span>
+        <input id="bandhu-q" placeholder="Where to? Or ask me…" enterkeyhint="go">
+        <button type="submit" aria-label="Go">{{ icon('arrow-right', 18) }}</button>
+      </form>
+      <div class="bandhu-tiles" data-bandhu-tiles></div>
+    </div>
+  </div>
+  {% endif %}
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" crossorigin=""></script>
   <script src="{{ url_for('static', filename='js/maps.js') }}"></script>
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/guide.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/assistant.js') }}" defer></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

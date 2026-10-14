@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% from "_macros.html" import icon, topbar with context %}
+{% from "_macros.html" import icon, topbar, bandhu with context %}
 {% block title %}How was your trip?{% endblock %}
 {% block content %}
 {% if done %}
 <div class="wrap">
   <div class="empty" style="padding-top:70px">
-    <span class="empty-ic">{{ icon('check', 32) }}</span>
+    {{ bandhu(96, 'Thanks!') }}
     <h2>Thanks for the feedback!</h2>
     <p>It helps us make routes clearer for other students.</p>
     <a class="btn btn-primary btn-block" href="{{ url_for('app_home') }}">Plan another trip</a>

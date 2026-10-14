@@ -4,7 +4,7 @@
 {% block content %}
 <div class="mapui">
   <div class="mapui-panel">
-    <div class="mapui-head">{{ topbar(o.label, url_for('routes', by=mode if mode != 'bike' else 'cab', **base), origin.name ~ ' → ' ~ dest.name) }}</div>
+    <div class="mapui-head">{{ topbar(o.label, url_for('routes', by='ride', **base), origin.name ~ ' → ' ~ dest.name) }}</div>
     <section class="sheet mapui-body">
       <div class="sheet-in">
         <div class="ride-sum">

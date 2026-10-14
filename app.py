@@ -797,7 +797,7 @@ def settings_start():
 def accessibility():
     s = g.settings
     if request.method == "POST":
-        for k in ("large_text", "high_contrast", "simple_ui", "reduce_motion"):
+        for k in ("large_text", "high_contrast", "simple_ui", "reduce_motion", "show_bandhu"):
             s[k] = request.form.get(k) == "on"
         store.save_settings(g.uid, s)
         return redirect(url_for("accessibility", saved=1))

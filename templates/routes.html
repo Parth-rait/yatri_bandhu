@@ -28,8 +28,7 @@
 
 <nav class="modes" aria-label="Travel mode">
   <a href="{{ url_for('routes', **base) }}" {% if by == 'bus' %}aria-current="true"{% endif %}>{{ icon('bus', 18) }} Bus</a>
-  <a href="{{ url_for('routes', by='auto', **base) }}" {% if by == 'auto' %}aria-current="true"{% endif %}>{{ icon('auto', 18) }} Auto</a>
-  <a href="{{ url_for('routes', by='cab', **base) }}" {% if by == 'cab' %}aria-current="true"{% endif %}>{{ icon('car', 18) }} Cab</a>
+  <a href="{{ url_for('routes', by='ride', **base) }}" {% if by != 'bus' %}aria-current="true"{% endif %}>{{ icon('car', 18) }} Ride</a>
 </nav>
 {% if by == 'bus' %}
 <div class="tripkind">
@@ -99,7 +98,7 @@
         <span class="empty-ic">{{ icon('bus', 28) }}</span>
         {% if res.near_origin == 0 or res.near_dest == 0 %}
           <h2>No bus stop nearby</h2>
-          <a class="btn btn-primary btn-block" href="{{ url_for('routes', by='auto', **base) }}">See auto &amp; cab</a>
+          <a class="btn btn-primary btn-block" href="{{ url_for('routes', by='ride', **base) }}">See ride options</a>
         {% else %}
           <h2>No buses at {{ fmt_time(t) }}</h2>
           <div class="chips" style="justify-content:center">
@@ -131,16 +130,15 @@
       {% endif %}
       {% endif %}
       {% else %}
-      {% set o = res.others|selectattr('id', 'equalto', 'auto' if by == 'auto' else 'cab')|first %}
-      {% set b = res.others|selectattr('id', 'equalto', 'bike')|first %}
-      <div class="opt-head"><h2>{{ 'Auto' if by == 'auto' else 'Cab' }}</h2><span class="est">Estimate</span></div>
+      {% set ride_ic = {'auto': 'auto', 'cab': 'car', 'bike': 'bike'} %}
+      {% set cheapest_ride = res.others|map(attribute='low')|min %}
+      <div class="opt-head"><h2>Ride options</h2><span class="est">Estimate</span></div>
       <ul class="opts">
-        <li><a class="opt best" href="{{ url_for('extras.ride', by=by, **base) }}"><span class="bus-ic">{{ icon('auto' if by == 'auto' else 'car', 20) }}</span>
-          <span class="opt-main"><b>{{ o.label }}</b><small>{{ o.km }} km · tap to book in the app</small></span>
+        {% for o in res.others|sort(attribute='low') %}
+        <li><a class="opt {{ 'best' if loop.first }}" href="{{ url_for('extras.ride', by=o.id, **base) }}"><span class="bus-ic">{{ icon(ride_ic[o.id], 20) }}</span>
+          <span class="opt-main"><b>{{ o.label }}</b><small>{{ o.km }} km{% if loop.first %} · <span class="why-tag">Cheapest ride</span>{% endif %}</small></span>
           <span class="opt-side"><b>~{{ o.minutes }} min</b><span class="green">₹{{ o.low }}–{{ o.high }}</span></span></a></li>
-        <li><a class="opt" href="{{ url_for('extras.ride', by='bike', **base) }}"><span class="bus-ic">{{ icon('bike', 20) }}</span>
-          <span class="opt-main"><b>{{ b.label }}</b><small>{{ b.km }} km · tap to book in the app</small></span>
-          <span class="opt-side"><b>~{{ b.minutes }} min</b><span class="green">₹{{ b.low }}–{{ b.high }}</span></span></a></li>
+        {% endfor %}
         {% if bike %}
         <li><a class="opt" href="{{ bike_app }}" target="_blank" rel="noopener"><span class="bus-ic" style="background:var(--ok-soft);color:var(--ok)">{{ icon('bike', 20) }}</span>
           <span class="opt-main"><b>Smart bike</b><small>{{ bike.pick.name }} → {{ bike.drop.name }} · bikes may be unavailable</small></span>

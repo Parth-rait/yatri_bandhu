@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import icon, theme_toggle with context %}
+{% from "_macros.html" import icon, theme_toggle, bandhu with context %}
 {% block title %}Welcome{% endblock %}
 {% block tabbar %}{% endblock %}
 {% block body_class %}site{% endblock %}
@@ -13,6 +13,7 @@
   {% if step == '1' %}
   <form method="post" class="onb" style="padding:0;min-height:0;flex:1">
     <input type="hidden" name="next" value="2">
+    <div class="hello-bandhu">{{ bandhu(88, 'Hi!') }}<p>I'm <b>Bandhu</b>, your bus buddy.</p></div>
     <h1>What should we call you?</h1>
     <label class="sr" for="name">Your name</label>
     <input class="input big" id="name" name="name" value="{{ settings.name }}" placeholder="Your name" autocomplete="given-name" autofocus>

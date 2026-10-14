@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import icon, bus_badge, topbar with context %}
+{% from "_macros.html" import icon, bus_badge, topbar, bandhu with context %}
 {% block title %}How to read Yatri Bandhu{% endblock %}
 {% block content %}
 {{ topbar('How to read Yatri Bandhu', url_for('profile')) }}
@@ -24,6 +24,13 @@
     <details><summary>How do I know where to get off? {{ icon('chevron-down', 18) }}</summary><p>Each bus step says “Get ready after …”, which is the stop just before yours. Start the trip and turn on live location for a reminder when you're close.</p></details>
     <details><summary>Are times live? {{ icon('chevron-down', 18) }}</summary><p>No. They are estimated from the official CTU timetable (first bus, last bus, frequency). Buses can be a few minutes early or late.</p></details>
     <details><summary>How do I pay? {{ icon('chevron-down', 18) }}</summary><p>Buy a ticket from the conductor on the bus. Fares shown are approximate CTU fares by distance: ₹10, ₹20 or ₹25.</p></details>
+  </div>
+</section>
+<section class="section">
+  <div class="replay">
+    {{ bandhu(72, 'Hi!') }}
+    <div><b>Show me around again</b><small>Bandhu's tips for your first trip</small></div>
+    <button type="button" class="btn btn-primary btn-sm" onclick="RM.replayGuide && RM.replayGuide()">Replay</button>
   </div>
 </section>
 <section class="section"><a class="btn btn-block" href="{{ url_for('about') }}">{{ icon('info', 18) }} About the data</a></section>
